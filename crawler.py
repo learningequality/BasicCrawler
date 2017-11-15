@@ -2,6 +2,9 @@
 from collections import defaultdict
 import json
 import re
+import os
+from urllib.parse import urljoin
+
 
 # GET pages over HTTP
 import requests
@@ -34,7 +37,7 @@ def get_text(x):
 # BASE CRAWLER
 ################################################################################
 
-class BaseCrawler(object):
+class BasicCrawler(object):
     """
     Basic web crawler that uses the breadth first search to visit all pages of a
     website starting from the `MAIN_SOURCE_DOMAIN` and browing pages recursively.
@@ -110,6 +113,24 @@ class BaseCrawler(object):
             path = url
         return path
 
+    def normalize_href_relto_curpage(self, href, page_url):
+        """
+        Transform a `href` link found in the HTML source on `page_url` to a full URL.
+        """
+        if '://' in href:
+            # Full URL with scheme separateor
+            # TODO(ivan): make this better https://stackoverflow.com/a/83378/127114
+            url = href
+
+        elif href.startswith('/'):    # Absolute path
+            url = self.MAIN_SOURCE_DOMAIN + href
+
+        else:
+            # Default to path relative to page_url
+            url = urljoin(page_url, href)
+
+        return url
+
 
     def should_visit_url(self, url):
         """
@@ -172,19 +193,15 @@ class BaseCrawler(object):
         for i, link in enumerate(links):
             if link.has_attr('href'):
 
-                href = link['href']
-                if href.startswith('/'):
-                    url = self.MAIN_SOURCE_DOMAIN + href
-                else:
-                    url = href
+                link_url = self.normalize_href_relto_curpage(link['href'], url)
 
-                if self.should_visit_url(url):
+                if self.should_visit_url(link_url):
                     # print(i, href)
-                    self.enqueue_url(url, page_dict)
+                    self.enqueue_url(link_url, page_dict)
                     # parent['children'].append(url
                 else:
                     page_dict['children'].append({
-                        'url': url,
+                        'url': link_url,
                         'kind': 'NoFollowLink',
                         'parent': page_dict,
                         'children': [],
@@ -249,7 +266,7 @@ class BaseCrawler(object):
 
         # top 10, sorted by count
         sorted_path_count_tuples = sorted(path_count_tuples, key=lambda t: t[1], reverse=True)
-        print('top 10 paths', sorted_path_count_tuples[0:show_top])
+        # print('top 10 paths', sorted_path_count_tuples[0:show_top])
         return sorted_path_count_tuples[0:show_top]
 
 
@@ -313,7 +330,8 @@ class BaseCrawler(object):
             Returns True if `url` is a global nav link.
             """
             seen_count = self.global_urls_seen_count[url]
-            print('float(seen_count)/total_urls_seen_count', float(seen_count)/total_urls_seen_count, seen_count, total_urls_seen_count, self.url_to_path(url))
+            print('seen_count/total_urls_seen_count=', float(seen_count)/total_urls_seen_count,
+                    '=', seen_count, '/', total_urls_seen_count, self.url_to_path(url))
 
             # if previously determined
             for global_nav_resource in global_nav_nodes['children']:
@@ -367,8 +385,8 @@ class BaseCrawler(object):
     def crawl(self, limit=1000):
         start_url = self.START_PAGE
         chennel_dict = dict(
-            url='THIS IS THE TOP LEVEL CONTAINER FOR THE GRAWLER. ITS UNIQUE CHILD NODE IS THE ROOT.',
-            title='Tahrir Academy Website',
+            url='THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.',
+            title='Website Title',  # todo: srape page title
             children=[],
         )
         self.enqueue_url(start_url, chennel_dict)
@@ -413,7 +431,7 @@ class BaseCrawler(object):
 ################################################################################
 
 if __name__ == '__main__':
-    crawler = BaseCrawler()
+    crawler = BasicCrawler()
     channel_dict = crawler.crawl()
 
     with open('web_resource_tree.json', 'w') as wrt_file:

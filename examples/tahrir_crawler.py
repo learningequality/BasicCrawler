@@ -1,11 +1,11 @@
-from .crawler imprt BaseCrawler
+from .crawler imprt BasicCrawler
 
 
 
 # TAHRIR ACADEMY CRAWLER
 ################################################################################
 
-class TahrirAcademyCrawler(BaseCrawler):
+class TahrirAcademyCrawler(BasicCrawler):
     """
     This class implements page handler specific to the Tahrir Academy website.
     """
