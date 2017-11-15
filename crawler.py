@@ -33,7 +33,6 @@ def get_text(x):
 
 
 
-
 # BASE CRAWLER
 ################################################################################
 
@@ -47,7 +46,7 @@ class BasicCrawler(object):
     """
     # Base class proporties
     BASE_IGNORE_URLS = ['javascript:void(0)', '#']
-    BASE_IGNORE_URL_PATTERNS = ['^mailto:.*', '^javascript:.*']
+    BASE_IGNORE_URL_PATTERNS = [re.compile('^mailto:.*'), re.compile('^javascript:.*')]
     GLOBAL_NAV_THRESHOLD = 0.7
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
 
@@ -141,11 +140,11 @@ class BasicCrawler(object):
         if url in self.BASE_IGNORE_URLS or url in self.IGNORE_URLS:
             return False
         for pattern in self.BASE_IGNORE_URL_PATTERNS:
-            match = re.match(pattern, url)
+            match = pattern.match(url)
             if match:
                 return False
         for pattern in self.IGNORE_URL_PATTERNS:
-            match = re.match(pattern, url)
+            match = pattern.match(url)
             if match:
                 return False
 
@@ -201,20 +200,49 @@ class BasicCrawler(object):
                     self.enqueue_url(link_url, page_dict)
                     # parent['children'].append(url
                 else:
-                    page_dict['children'].append({
-                        'url': link_url,
-                        'kind': 'NoFollowLink',
-                        'parent': page_dict,
-                        'children': [],
-                    })
+                    pass
+                    ## Use this when debugging to also add links not-followed to output
+                    # page_dict['children'].append({
+                    #     'url': link_url,
+                    #     'kind': 'NoFollowLink',
+                    #     'parent': page_dict,
+                    #     'children': [],
+                    # })
             else:
                 pass
                 # print(i, 'nohref', link)
 
 
 
-    # WEB RESOURCE MANIPULATIONS
+    # WEB RESOURCE INFO UTILS
     ############################################################################
+
+    def print_crawler_debug(self, channel_tree):
+        """
+        Debug-info function used during interactive development of the cralwer.
+        """
+        print('\n\n\n')
+        print('#'*80)
+        print('# CRAWLER RECOMMENDATIONS BASED ON URLS ENCOUNTERED:')
+        print('#'*80)
+
+        # crawler.print_tree(channel_tree, print_depth=2)
+        # crawler.print_tree(channel_tree, print_depth=3)
+
+        print('\n1. These URLs are very common and look like global navigation links:')
+        global_nav_candidates = self.infer_gloabal_nav(channel_tree)
+        for c in global_nav_candidates['children']:
+            print('  - ', c['url'])
+
+        print('\n2. These are common path fragments found in URLs paths, so could correspond to site struture:')
+        fragments_tuples = self.infer_tree_structure(channel_tree)
+        for fpath, fcount in fragments_tuples:
+            print('  - ', str(fcount), 'urls on site start with ', '/'+fpath)
+
+        print('\n')
+        print('#'*80)
+        print('\n\n')
+
     def infer_tree_structure(self, tree_root, show_top=10):
         """
         Walk web resource tree and look for patterns in urls.
@@ -311,7 +339,7 @@ class BasicCrawler(object):
 
 
 
-    def infer_gloabal_nav(self, tree_root):
+    def infer_gloabal_nav(self, tree_root, debug=False):
         """
         Returns a list of web resources that are likely to be global naviagin links
         like /about, /contact, etc.
@@ -331,8 +359,9 @@ class BasicCrawler(object):
             Returns True if `url` is a global nav link.
             """
             seen_count = self.global_urls_seen_count[url]
-            print('seen_count/total_urls_seen_count=', float(seen_count)/total_urls_seen_count,
-                    '=', seen_count, '/', total_urls_seen_count, self.url_to_path(url))
+            if debug:
+                print('seen_count/total_urls_seen_count=', float(seen_count)/total_urls_seen_count,
+                        '=', seen_count, '/', total_urls_seen_count, self.url_to_path(url))
 
             # if previously determined
             for global_nav_resource in global_nav_nodes['children']:
@@ -343,19 +372,47 @@ class BasicCrawler(object):
                 return True
             return False
 
-        def recusive_visit1_rm_global_nav_children(subtree):
-            newchildren = []
+        def recusive_visit_find_global_nav_children(subtree):
             for child in subtree['children']:
-                # print(child)
                 child_url = child['url']
                 if len(child['children'])== 0 and _is_likely_global_nav(child_url):
-                    print('Found global nav url =', child_url)
+                    print('Found candidate for global nav url =', child_url, 'adding to global_nav_nodes')
                     global_nav_resource = dict(
                         kind='GlobalNavLink',
                         url=child_url,
                     )
                     global_nav_resource.update(child)
                     global_nav_nodes['children'].append(global_nav_resource)
+
+                # recurse
+                clean_child = recusive_visit_find_global_nav_children(child)
+
+            return subtree
+
+        recusive_visit_find_global_nav_children(tree_root)
+
+        return global_nav_nodes
+
+
+
+
+    def remove_global_nav(self, tree_root, global_nav_nodes):
+        """
+        Walks web resource tree and removes all web resources whose URLs mach
+        nodes in global_nav_nodes['children'].
+        This method is a helper for debugging. The final version should use
+        self.IGNORE_URLS, self.IGNORE_URL_PATTERNS to remove global nav links,
+        and not crawl them in the first place.
+        """
+        global_nav_urls = [d['url'] for d in global_nav_nodes['children']]
+
+        def recusive_visit1_rm_global_nav_children(subtree):
+            newchildren = []
+            for child in subtree['children']:
+                # print(child)
+                child_url = child['url']
+                if len(child['children'])== 0 and child_url in global_nav_urls:
+                    print('Found global nav url =', child_url, ' removing from web resource tree')
                 else:
                     clean_child = recusive_visit1_rm_global_nav_children(child)
                     newchildren.append(clean_child)
@@ -363,7 +420,8 @@ class BasicCrawler(object):
             return subtree
 
         recusive_visit1_rm_global_nav_children(tree_root)
-        return global_nav_nodes
+        return tree_root
+
 
 
     def cleanup_web_resource_tree(self, tree_root):
@@ -383,7 +441,7 @@ class BasicCrawler(object):
     # MAIN LOOP
     ############################################################################
 
-    def crawl(self, limit=1000, save_web_resource_tree=True):
+    def crawl(self, limit=1000, save_web_resource_tree=True, debug=True):
         start_url = self.START_PAGE
         channel_dict = dict(
             url='THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.',
@@ -426,6 +484,10 @@ class BasicCrawler(object):
                 os.makedirs(parent_dir, exist_ok=True)
             with open(destpath, 'w') as wrt_file:
                 json.dump(channel_dict, wrt_file, indent=2)
+
+        # Display debug info
+        if debug:
+            self.print_crawler_debug(channel_dict)
 
         return channel_dict
 

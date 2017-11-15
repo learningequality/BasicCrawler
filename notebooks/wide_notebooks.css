@@ -1,0 +1,21 @@
+div.code_cell {
+  margin: 1em 0;
+}
+
+div.text_cell {
+  margin: 1em 0;
+}
+
+div.input {
+  padding: 1em;
+}
+
+div.input_area .CodeMirror {
+  line-height: 1.2em;
+  padding: 0.2em;
+}
+
+#notebook-container {
+  width: 100%;
+}
+
