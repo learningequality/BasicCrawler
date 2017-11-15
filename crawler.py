@@ -56,12 +56,10 @@ class BasicCrawler(object):
     START_PAGE = None           # should be defined in subclass
     IGNORE_URLS = []            # should be defined by subclass
     IGNORE_URL_PATTERNS = []    # should be defined by subclass
-    # GLOBAL_NAV_LINKS = []  # site navigation links like /about should also be ignored
 
     # CACHE LOGIC
     SESSION = requests.Session()
     CACHE = FileCache('.webcache')
-
 
     # keep track of what pages we should crawl next:
     queue = queue.Queue()
@@ -94,6 +92,7 @@ class BasicCrawler(object):
             self.SESSION.mount(source_domain, forever_adapter)   # TODO: change to less aggressive in final version
 
 
+
     # GENERIC URL HELPERS
     ############################################################################
 
@@ -121,10 +120,16 @@ class BasicCrawler(object):
         """
         Transform a `href` link found in the HTML source on `page_url` to a full URL.
         """
+        if 'usermanual' in page_url:
+            print('in normalize_href_relto_curpage', page_url, href)
         if '://' in href:
             # Full URL with scheme separateor
             # TODO(ivan): make this better https://stackoverflow.com/a/83378/127114
             url = href
+
+        elif href.startswith('//'):
+            # shcema-less full URLs
+            url = 'https:' + href
 
         elif href.startswith('/'):    # Absolute path
             url = self.MAIN_SOURCE_DOMAIN + href
@@ -192,8 +197,7 @@ class BasicCrawler(object):
         )
         page_dict.update(context)
 
-
-        # attache this page as new child in context['parent']
+        # attache this page as another child in parent page
         context['parent']['children'].append(page_dict)
 
         links = page.find_all('a')
