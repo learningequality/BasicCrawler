@@ -9,13 +9,7 @@
         {
           "kind": "PageWebResource",
           "url": "http://tahriracademy.org/connect/facebook?_destination=http%3A//tahriracademy.org/connect/finish_login",
-          "children": [
-            {
-              "kind": "PageWebResource",
-              "url": "http://tahriracademy.org/reg/",
-              "children": []
-            }
-          ]
+          "children": []
         },
         {
           "kind": "PageWebResource",

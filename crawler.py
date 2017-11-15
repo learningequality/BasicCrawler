@@ -65,9 +65,10 @@ class BasicCrawler(object):
 
     # keep track of what pages we should crawl next:
     queue = queue.Queue()
-    # queue tasks are tuples (url, parent) where
+    # queue tasks are tuples (url, context) where
     #  - url (str): which page should be visited
-    #  - parent (dict): the web resources dict of the referring page
+    #  - context (dict): generic container for data associated with url, notably
+    #    `context['parent']` is the web resources dict of the referring page
 
     # keep track of how many times a given URL is seen during crawl
     # first time a URL is seen will be automatically followed, but
@@ -84,6 +85,9 @@ class BasicCrawler(object):
             self.START_PAGE = self.MAIN_SOURCE_DOMAIN + '/'
         if start_page:
             self.START_PAGE = start_page
+
+        # keep track of broken links
+        self.broken_links = []
 
         forever_adapter= CacheControlAdapter(heuristic=CacheForeverHeuristic(), cache=self.CACHE)
         for source_domain in self.SOURCE_DOMAINS:
@@ -160,34 +164,37 @@ class BasicCrawler(object):
     # CRAWLING TASK QUEUE API
     ############################################################################
 
-    def enqueue_url(self, url, parent, force=False):
+    def enqueue_url(self, url, context, force=False):
         if url not in self.global_urls_seen_count.keys() or force:
             # print('adding to queue:  url=', url)
-            self.queue.put((url, parent))
+            self.queue.put((url, context))
         else:
             pass
             # print('Not craling url', url, 'beacause previously seen')
         self.global_urls_seen_count[url] += 1
 
 
-    def enqueue_path(self, path, parent, force=False):
+    def enqueue_path(self, path, context, force=False):
         full_url = self.path_to_url(path)
-        self.enqueue_url(full_url, parent, force=force)
+        self.enqueue_url(full_url, context, force=force)
 
 
 
     # BASE PAGE HANDLER
     ############################################################################
 
-    def on_page(self, url, page, parent):
+    def on_page(self, url, page, context):
         # print('Procesing page', url)
         page_dict = dict(
             kind='PageWebResource',
             url=url,
-            parent=parent,
             children=[],
         )
-        parent['children'].append(page_dict)
+        page_dict.update(context)
+
+
+        # attache this page as new child in context['parent']
+        context['parent']['children'].append(page_dict)
 
         links = page.find_all('a')
         for i, link in enumerate(links):
@@ -197,8 +204,8 @@ class BasicCrawler(object):
 
                 if self.should_visit_url(link_url):
                     # print(i, href)
-                    self.enqueue_url(link_url, page_dict)
-                    # parent['children'].append(url
+                    self.enqueue_url(link_url, {'parent':page_dict})
+                    # context['parent']['children'].append(url
                 else:
                     pass
                     ## Use this when debugging to also add links not-followed to output
@@ -238,6 +245,11 @@ class BasicCrawler(object):
         fragments_tuples = self.infer_tree_structure(channel_tree)
         for fpath, fcount in fragments_tuples:
             print('  - ', str(fcount), 'urls on site start with ', '/'+fpath)
+
+        if len(self.broken_links) > 0:
+            print('\n3. These are broken links --- you might want to add them to IGNORE_URLS')
+            print(self.broken_links)
+
 
         print('\n')
         print('#'*80)
@@ -448,13 +460,17 @@ class BasicCrawler(object):
             title='Website Title',  # todo: srape page title
             children=[],
         )
-        self.enqueue_url(start_url, channel_dict)
+        self.enqueue_url(start_url, {'parent':channel_dict})
 
         counter = 0
         while not self.queue.empty():
             # print('queue.qsize()=', self.queue.qsize())
-            url, parent = self.queue.get()
+            url, context = self.queue.get()
             page = self.download_page(url)
+            if page is None:
+                print('GET on URL', url, 'did not return page')
+                self.broken_links.append(url)
+                continue
             self.urls_visited[url] = page  # cache BeatifulSoup parsed html in memory
             #
             # main handler dispatcher logic
@@ -465,7 +481,7 @@ class BasicCrawler(object):
             #         handled = True
             #         handler_fn(url, page, parent)
             if not handled:
-                self.on_page(url, page, parent)
+                self.on_page(url, page, context)
 
             # limit crawling to 1000 pages by default (failsafe default)
             counter += 1
@@ -491,14 +507,38 @@ class BasicCrawler(object):
 
         return channel_dict
 
-    def download_page(self, url):
+    def download_page(self, url, *args, **kwargs):
         """
         Download url and soupify.
         """
         print('Downloading page with url', url)
-        html = self.SESSION.get(url).content
-        page = BeautifulSoup(html, 'html.parser')
+        request = self.make_request(url, *args, **kwargs)
+        if not request:
+            return None
+        html = request.content
+        page = BeautifulSoup(html, "html.parser")
         return page
+
+    def make_request(self, url, timeout=60, *args, **kwargs):
+        retry_count = 0
+        max_retries = 5
+        # print('GET ', url)
+        while True:
+            try:
+                response = self.SESSION.get(url, timeout=timeout, *args, **kwargs)
+                break
+            except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
+                retry_count += 1
+                print("Error with connection ('{msg}'); about to perform retry {count} of {trymax}."
+                      .format(msg=str(e), count=retry_count, trymax=max_retries))
+                time.sleep(retry_count * 1)
+                if retry_count >= max_retries:
+                    return Dummy404ResponseObject(url=url)
+
+        if response.status_code != 200:
+            print("NOT FOUND:", url)
+            return None
+        return response
 
 
 # CLI
