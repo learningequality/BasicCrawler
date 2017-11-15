@@ -49,6 +49,7 @@ class BasicCrawler(object):
     BASE_IGNORE_URLS = ['javascript:void(0)', '#']
     BASE_IGNORE_URL_PATTERNS = ['^mailto:.*', '^javascript:.*']
     GLOBAL_NAV_THRESHOLD = 0.7
+    CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
 
     # Subclass constants
     MAIN_SOURCE_DOMAIN = None   # should be defined in subclass
@@ -382,14 +383,14 @@ class BasicCrawler(object):
     # MAIN LOOP
     ############################################################################
 
-    def crawl(self, limit=1000):
+    def crawl(self, limit=1000, save_web_resource_tree=True):
         start_url = self.START_PAGE
-        chennel_dict = dict(
+        channel_dict = dict(
             url='THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.',
             title='Website Title',  # todo: srape page title
             children=[],
         )
-        self.enqueue_url(start_url, chennel_dict)
+        self.enqueue_url(start_url, channel_dict)
 
         counter = 0
         while not self.queue.empty():
@@ -414,8 +415,19 @@ class BasicCrawler(object):
                 break
 
         # cleanup remove parent links before output tree
-        self.cleanup_web_resource_tree(chennel_dict)
-        return chennel_dict
+        self.cleanup_web_resource_tree(channel_dict)
+
+
+        # Save output
+        if save_web_resource_tree:
+            destpath = self.CRAWLING_STAGE_OUTPUT
+            parent_dir, _ = os.path.split(destpath)
+            if not os.path.exists(parent_dir):
+                os.makedirs(parent_dir, exist_ok=True)
+            with open(destpath, 'w') as wrt_file:
+                json.dump(channel_dict, wrt_file, indent=2)
+
+        return channel_dict
 
     def download_page(self, url):
         """
@@ -433,9 +445,6 @@ class BasicCrawler(object):
 if __name__ == '__main__':
     crawler = BasicCrawler()
     channel_dict = crawler.crawl()
-
-    with open('web_resource_tree.json', 'w') as wrt_file:
-        json.dump(channel_dict, wrt_file, indent=2)
 
 
 
