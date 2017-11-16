@@ -38,6 +38,7 @@ class BasicCrawler(object):
     MAIN_SOURCE_DOMAIN = None   # should be defined by subclass
     SOURCE_DOMAINS = []         # should be defined by subclass
     START_PAGE = None           # should be defined by subclass
+    START_PAGE_CONTEXT = {}     # should be defined by subclass
     IGNORE_URLS = []            # should be defined by subclass
     IGNORE_URL_PATTERNS = []    # should be defined by subclass
     rules = []          # contains tuples (path.RE.pattern, handler_function)
@@ -191,7 +192,7 @@ class BasicCrawler(object):
         )
         page_dict.update(context)
 
-        # attache this page as another child in parent page
+        # attach this page as another child in parent page
         context['parent']['children'].append(page_dict)
 
         links = page.find_all('a')
@@ -447,7 +448,10 @@ class BasicCrawler(object):
             kind='WEB_RESOURCE_TREE_CONTAINER',
             children=[],
         )
-        self.enqueue_url_and_context(start_url, {'parent':channel_dict})
+        root_context = {'parent':channel_dict}
+        if self.START_PAGE_CONTEXT:
+            root_context.update(self.START_PAGE_CONTEXT)
+        self.enqueue_url_and_context(start_url, root_context)
 
         counter = 0
         while not self.queue_empty():
@@ -467,11 +471,21 @@ class BasicCrawler(object):
                 context['original_url'] = original_url
 
             ##########  HANDLER DISPATCH LOGIC  ################################
+            handled = False
             # A. kind-handler based dispatch logic
             if 'kind' in context:
                 kind = context['kind']
                 if kind in self.kind_handlers:
-                    kind_handlers[kind](url, page, context)
+                    handler = self.kind_handlers[kind]
+                    if callable(handler):
+                        handler(url, page, context)
+                        handled = True
+                    elif isinstance(handler, str) and hasattr(self, handler):
+                        handler_fn = getattr(self, handler)
+                        handler_fn(url, page, context)
+                        handled = True
+                    else:
+                        raise ValueError('Unrecognized handler type', handler, 'Should be method or name of method.')
                 else:
                     print('No handler registered for kind', kind, ' so falling back to on_page handler.')
 
@@ -480,9 +494,11 @@ class BasicCrawler(object):
             for pat, handler_fn in self.rules:
                 if pat.match(path):
                     handler_fn(url, page, parent)
+                    handled = True
 
             # if none of the above caught it, we use the default on_page handler
-            self.on_page(url, page, context)
+            if not handled:
+                self.on_page(url, page, context)
             ####################################################################
 
             # limit crawling to 1000 pages by default (failsafe default)
