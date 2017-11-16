@@ -1,6 +1,9 @@
 # Cache dirs
 .webcache
 
+# souschef examples
+examples/CrawlerDemo_TakeHomeTest.zip
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
