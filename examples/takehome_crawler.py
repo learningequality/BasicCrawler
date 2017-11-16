@@ -32,14 +32,14 @@ class TakeHomeCrawler(BasicCrawler):
         Enqueue for crawling all the links on the current page. Works for channel root and topic nodes.
         """
         print('in on_channel')
-        channel_dict = dict(
+        channel_dict = context
+        channel_dict.update(dict(
             url=url,
             children=[],
-        )
-        channel_dict.update(context)
+        ))
 
         # attach this page as another child in parent page
-        context['parent']['children'].append(channel_dict)
+        channel_dict['parent']['children'].append(channel_dict)
 
         maincontent = page.find('div', {'class': 'maincontent'})
 

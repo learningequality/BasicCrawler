@@ -1,10 +1,13 @@
 {
+  "kind": "channel",
   "url": "http://chef-take-home-test.learningequality.org/",
   "children": [
     {
+      "kind": "topic",
       "url": "http://chef-take-home-test.learningequality.org/Math/",
       "children": [
         {
+          "kind": "topic",
           "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/",
           "children": [
             {
@@ -17,10 +20,10 @@
               "children": [],
               "kind": "video"
             }
-          ],
-          "kind": "topic"
+          ]
         },
         {
+          "kind": "topic",
           "url": "http://chef-take-home-test.learningequality.org/Math/Functions/",
           "children": [
             {
@@ -28,21 +31,21 @@
               "children": [],
               "kind": "document"
             }
-          ],
-          "kind": "topic"
+          ]
         },
         {
           "url": "http://chef-take-home-test.learningequality.org/Math/Vectors_overview/",
           "children": [],
           "kind": "document"
         }
-      ],
-      "kind": "topic"
+      ]
     },
     {
+      "kind": "topic",
       "url": "http://chef-take-home-test.learningequality.org/Science/",
       "children": [
         {
+          "kind": "topic",
           "url": "http://chef-take-home-test.learningequality.org/Science/Biology/",
           "children": [
             {
@@ -50,10 +53,10 @@
               "children": [],
               "kind": "audio"
             }
-          ],
-          "kind": "topic"
+          ]
         },
         {
+          "kind": "topic",
           "url": "http://chef-take-home-test.learningequality.org/Science/Chemistry/",
           "children": [
             {
@@ -61,10 +64,10 @@
               "children": [],
               "kind": "video"
             }
-          ],
-          "kind": "topic"
+          ]
         },
         {
+          "kind": "topic",
           "url": "http://chef-take-home-test.learningequality.org/Science/Physics/",
           "children": [
             {
@@ -72,12 +75,9 @@
               "children": [],
               "kind": "video"
             }
-          ],
-          "kind": "topic"
+          ]
         }
-      ],
-      "kind": "topic"
+      ]
     }
-  ],
-  "kind": "channel"
+  ]
 }
