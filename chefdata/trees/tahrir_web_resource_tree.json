@@ -1,6 +1,6 @@
 {
-  "url": "THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.",
-  "title": "Website Title",
+  "url": "This is a temp. outer container for the crawler channel tree.Its unique child node is the web root.",
+  "kind": "WEB_RESOURCE_TREE_CONTAINER",
   "children": [
     {
       "kind": "PageWebResource",
@@ -8,8 +8,9 @@
       "children": [
         {
           "kind": "PageWebResource",
-          "url": "http://tahriracademy.org/connect/facebook?_destination=http%3A//tahriracademy.org/connect/finish_login",
-          "children": []
+          "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=737357366291128&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.5%2Fdialog%2Foauth%3Fredirect_uri%3Dhttp%253A%252F%252Ftahriracademy.org%252Fsocial%252Ffacebook%26display%3Dpopup%26scope%3Demail%2B%2Buser_birthday%2Buser_friends%26response_type%3Dcode%26client_id%3D737357366291128%26ret%3Dlogin%26logger_id%3Dd742a7e4-441a-5998-4c22-086e04990806&cancel_url=http%3A%2F%2Ftahriracademy.org%2Fsocial%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=popup&locale=en_US&logger_id=d742a7e4-441a-5998-4c22-086e04990806",
+          "children": [],
+          "original_url": "http://tahriracademy.org/connect/facebook?_destination=http%3A//tahriracademy.org/connect/finish_login"
         },
         {
           "kind": "PageWebResource",
@@ -354,7 +355,7 @@
               "children": [
                 {
                   "kind": "PageWebResource",
-                  "url": "http://tahriracademy.org/course/show/141/195/836",
+                  "url": "http://tahriracademy.org/content/836/%D9%8A%D8%B9%D9%86%D9%8A-%D8%A5%D9%8A%D9%87-software-%D9%88-hardware-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
                   "children": [
                     {
                       "kind": "PageWebResource",
@@ -396,7 +397,8 @@
                       "url": "http://tahriracademy.org/content/841/touch-%D8%AF%D9%87-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
                       "children": []
                     }
-                  ]
+                  ],
+                  "original_url": "http://tahriracademy.org/course/show/141/195/836"
                 }
               ]
             },

@@ -1,6 +1,6 @@
 {
-  "url": "THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.",
-  "title": "Website Title",
+  "url": "This is a temp. outer container for the crawler channel tree.Its unique child node is the web root.",
+  "kind": "WEB_RESOURCE_TREE_CONTAINER",
   "children": [
     {
       "kind": "PageWebResource",

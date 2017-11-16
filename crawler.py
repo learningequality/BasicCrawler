@@ -15,22 +15,6 @@ import queue
 from bs4 import BeautifulSoup
 
 
-from le_utils.constants import content_kinds
-
-
-
-
-
-
-# HTML --> TEXT CLEANING
-################################################################################
-
-def get_text(x):
-    """
-    Extract text contents of `x`, normalizing newlines to spaces and stripping.
-    """
-    return "" if x is None else x.get_text().replace('\r', '').replace('\n', ' ').strip()
-
 
 
 # BASE CRAWLER
@@ -50,23 +34,22 @@ class BasicCrawler(object):
     GLOBAL_NAV_THRESHOLD = 0.7
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
 
-    # Subclass constants
-    MAIN_SOURCE_DOMAIN = None   # should be defined in subclass
-    SOURCE_DOMAINS = None       # should be defined in subclass
-    START_PAGE = None           # should be defined in subclass
+    # Subclass attributes
+    MAIN_SOURCE_DOMAIN = None   # should be defined by subclass
+    SOURCE_DOMAINS = []         # should be defined by subclass
+    START_PAGE = None           # should be defined by subclass
     IGNORE_URLS = []            # should be defined by subclass
     IGNORE_URL_PATTERNS = []    # should be defined by subclass
+    rules = []          # contains tuples (path.RE.pattern, handler_function)
+    kind_handlers = {}  # mapping from web resource kinds (user defined) and handlers
+                        # e.g. {'LesssonWebResource': self.on_lesson, ...}
 
     # CACHE LOGIC
     SESSION = requests.Session()
     CACHE = FileCache('.webcache')
 
-    # keep track of what pages we should crawl next:
+    # queue used keep track of what pages we should crawl next
     queue = queue.Queue()
-    # queue tasks are tuples (url, context) where
-    #  - url (str): which page should be visited
-    #  - context (dict): generic container for data associated with url, notably
-    #    `context['parent']` is the web resources dict of the referring page
 
     # keep track of how many times a given URL is seen during crawl
     # first time a URL is seen will be automatically followed, but
@@ -78,8 +61,11 @@ class BasicCrawler(object):
 
     def __init__(self, main_source_domain=None, start_page=None):
         if main_source_domain:
+            if main_source_domain.endswith('/'):
+                main_source_domain = main_source_domain[0:-1]
             self.MAIN_SOURCE_DOMAIN = main_source_domain
-            self.SOURCE_DOMAINS = [self.MAIN_SOURCE_DOMAIN]
+            if self.MAIN_SOURCE_DOMAIN not in self.SOURCE_DOMAINS:
+                self.SOURCE_DOMAINS.append(self.MAIN_SOURCE_DOMAIN)
             self.START_PAGE = self.MAIN_SOURCE_DOMAIN + '/'
         if start_page:
             self.START_PAGE = start_page
@@ -119,25 +105,20 @@ class BasicCrawler(object):
     def normalize_href_relto_curpage(self, href, page_url):
         """
         Transform a `href` link found in the HTML source on `page_url` to a full URL.
+        Note: we assume `page_url` is page URL after following redirects.
         """
-        if 'usermanual' in page_url:
-            print('in normalize_href_relto_curpage', page_url, href)
         if '://' in href:
             # Full URL with scheme separateor
             # TODO(ivan): make this better https://stackoverflow.com/a/83378/127114
             url = href
-
         elif href.startswith('//'):
             # shcema-less full URLs
             url = 'https:' + href
-
         elif href.startswith('/'):    # Absolute path
             url = self.MAIN_SOURCE_DOMAIN + href
-
         else:
             # Default to path relative to page_url
             url = urljoin(page_url, href)
-
         return url
 
 
@@ -168,27 +149,40 @@ class BasicCrawler(object):
 
     # CRAWLING TASK QUEUE API
     ############################################################################
+    # queue tasks are tuples (url, context) where
+    #  - url (str): which page should be visited
+    #  - context (dict): generic container for data associated with url, notably
+    #     - `context['parent']` is the web resources dict of the referring page
+    #     - `context['kind']` can be used to assign a custom handler, e.g., on_course
 
-    def enqueue_url(self, url, context, force=False):
+    def queue_empty(self):
+        return self.queue.empty()
+
+    def get_url_and_context(self):
+        return self.queue.get()
+
+    def enqueue_url_and_context(self, url, context, force=False):
         if url not in self.global_urls_seen_count.keys() or force:
             # print('adding to queue:  url=', url)
             self.queue.put((url, context))
         else:
             pass
-            # print('Not craling url', url, 'beacause previously seen')
+            # print('Not going to crawl url', url, 'beacause previously seen.')
         self.global_urls_seen_count[url] += 1
 
-
-    def enqueue_path(self, path, context, force=False):
+    def enqueue_path_and_context(self, path, context, force=False):
         full_url = self.path_to_url(path)
         self.enqueue_url(full_url, context, force=force)
 
 
-
-    # BASE PAGE HANDLER
+    # BASIC PAGE HANDLER
     ############################################################################
 
     def on_page(self, url, page, context):
+        """
+        Basic handler that adds current page to parent's children array and adds
+        all links on current page to the crawling queue.
+        """
         # print('Procesing page', url)
         page_dict = dict(
             kind='PageWebResource',
@@ -203,13 +197,9 @@ class BasicCrawler(object):
         links = page.find_all('a')
         for i, link in enumerate(links):
             if link.has_attr('href'):
-
                 link_url = self.normalize_href_relto_curpage(link['href'], url)
-
                 if self.should_visit_url(link_url):
-                    # print(i, href)
-                    self.enqueue_url(link_url, {'parent':page_dict})
-                    # context['parent']['children'].append(url
+                    self.enqueue_url_and_context(link_url, {'parent':page_dict})
                 else:
                     pass
                     ## Use this when debugging to also add links not-followed to output
@@ -254,10 +244,10 @@ class BasicCrawler(object):
             print('\n3. These are broken links --- you might want to add them to IGNORE_URLS')
             print(self.broken_links)
 
-
         print('\n')
         print('#'*80)
         print('\n\n')
+
 
     def infer_tree_structure(self, tree_root, show_top=10):
         """
@@ -309,14 +299,13 @@ class BasicCrawler(object):
             count = _recusive_count_children(subtrie)
             path_count_tuples.append( (path, count) )
 
-        # top 10, sorted by count
+        # top 10 sorted by count
         sorted_path_count_tuples = sorted(path_count_tuples, key=lambda t: t[1], reverse=True)
-        # print('top 10 paths', sorted_path_count_tuples[0:show_top])
         return sorted_path_count_tuples[0:show_top]
 
 
 
-    def print_tree(self, tree_root, print_depth=3, hide_keys=[]):
+    def print_tree(self, tree_root, print_depth=100, hide_keys=[]):
         """
         Print contents of web resource tree starting at `tree_root`.
         """
@@ -329,8 +318,7 @@ class BasicCrawler(object):
                 return None
 
         def print_web_resource_node(node, depth=0):
-            INDENT_BY = 2
-
+            INDENT_BY = 3
             extra_attrs = ''
             if 'kind' in node:
                 extra_attrs = ' ('+node['kind']+') '
@@ -392,7 +380,7 @@ class BasicCrawler(object):
             for child in subtree['children']:
                 child_url = child['url']
                 if len(child['children'])== 0 and _is_likely_global_nav(child_url):
-                    print('Found candidate for global nav url =', child_url, 'adding to global_nav_nodes')
+                    # print('Found candidate for global nav url =', child_url, 'adding to global_nav_nodes')
                     global_nav_resource = dict(
                         kind='GlobalNavLink',
                         url=child_url,
@@ -453,39 +441,54 @@ class BasicCrawler(object):
         return tree_root
 
 
-
     # MAIN LOOP
     ############################################################################
 
     def crawl(self, limit=1000, save_web_resource_tree=True, debug=True):
         start_url = self.START_PAGE
         channel_dict = dict(
-            url='THIS IS THE TOP LEVEL CONTAINER FOR THE CRAWLER OUTPUT. ITS UNIQUE CHILD NODE IS THE WEB ROOT.',
-            title='Website Title',  # todo: srape page title
+            url='This is a temp. outer container for the crawler channel tree.'
+                'Its unique child node is the web root.',
+            kind='WEB_RESOURCE_TREE_CONTAINER',
             children=[],
         )
-        self.enqueue_url(start_url, {'parent':channel_dict})
+        self.enqueue_url_and_context(start_url, {'parent':channel_dict})
 
         counter = 0
-        while not self.queue.empty():
+        while not self.queue_empty():
             # print('queue.qsize()=', self.queue.qsize())
-            url, context = self.queue.get()
-            page = self.download_page(url)
+            original_url, context = self.get_url_and_context()
+            url, page = self.download_page(original_url)
             if page is None:
-                print('GET on URL', url, 'did not return page')
-                self.broken_links.append(url)
+                print('GET on URL', original_url, 'did not return page')
+                self.broken_links.append(original_url)
                 continue
-            self.urls_visited[url] = page  # cache BeatifulSoup parsed html in memory
-            #
-            # main handler dispatcher logic
+
+            # cache BeatifulSoup parsed html in memory
+            self.urls_visited[original_url] = page
+
+            # annotate context to keep track of URL befor redirects
+            if url != original_url:
+                context['original_url'] = original_url
+
+            ##########  HANDLER DISPATCH LOGIC  ################################
+            # A. kind-handler based dispatch logic
+            if 'kind' in context:
+                kind = context['kind']
+                if kind in self.kind_handlers:
+                    kind_handlers[kind](url, page, context)
+                else:
+                    print('No handler registered for kind', kind, ' so falling back to on_page handler.')
+
+            # B. URL rules handler dispatlogic
             path = url.replace(self.MAIN_SOURCE_DOMAIN, '')
-            handled = False
-            # for pat, handler_fn in self.rules:
-            #     if pat.match(path):
-            #         handled = True
-            #         handler_fn(url, page, parent)
-            if not handled:
-                self.on_page(url, page, context)
+            for pat, handler_fn in self.rules:
+                if pat.match(path):
+                    handler_fn(url, page, parent)
+
+            # if none of the above caught it, we use the default on_page handler
+            self.on_page(url, page, context)
+            ####################################################################
 
             # limit crawling to 1000 pages by default (failsafe default)
             counter += 1
@@ -495,6 +498,8 @@ class BasicCrawler(object):
         # cleanup remove parent links before output tree
         self.cleanup_web_resource_tree(channel_dict)
 
+        # hoist entire tree one level up to get rid of outer container
+        # channel_dict = channel_dict['children'][0]
 
         # Save output
         if save_web_resource_tree:
@@ -511,22 +516,26 @@ class BasicCrawler(object):
 
         return channel_dict
 
+
     def download_page(self, url, *args, **kwargs):
         """
-        Download url and soupify.
+        Download `url` (following redirects) and soupify response contents.
+        Returns (final_url, page) where final_url is URL afrer following redirects.
         """
         print('Downloading page with url', url)
-        request = self.make_request(url, *args, **kwargs)
-        if not request:
-            return None
-        html = request.content
+        response = self.make_request(url, *args, **kwargs)
+        if not response:
+            return (None, None)
+        html = response.content
         page = BeautifulSoup(html, "html.parser")
-        return page
+        return (response.url, page)
 
     def make_request(self, url, timeout=60, *args, **kwargs):
+        """
+        DavidHu's failure-resistant HTTP GET helper method.
+        """
         retry_count = 0
         max_retries = 5
-        # print('GET ', url)
         while True:
             try:
                 response = self.SESSION.get(url, timeout=timeout, *args, **kwargs)
@@ -538,7 +547,6 @@ class BasicCrawler(object):
                 time.sleep(retry_count * 1)
                 if retry_count >= max_retries:
                     return Dummy404ResponseObject(url=url)
-
         if response.status_code != 200:
             print("NOT FOUND:", url)
             return None
@@ -549,21 +557,10 @@ class BasicCrawler(object):
 ################################################################################
 
 if __name__ == '__main__':
-    crawler = BasicCrawler()
-    channel_dict = crawler.crawl()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    crawler = BasicCrawler(
+            main_source_domain='http://chef-take-home-test.learningequality.org',
+            start_page='http://chef-take-home-test.learningequality.org/')
+    crawler.CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
+    channel_tree = crawler.crawl()
+    crawler.print_tree(channel_tree)
 
