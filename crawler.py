@@ -226,7 +226,6 @@ class BasicCrawler(object):
         print('#'*80)
         print('# CRAWLER RECOMMENDATIONS BASED ON URLS ENCOUNTERED:')
         print('#'*80)
-
         # crawler.print_tree(channel_tree, print_depth=2)
         # crawler.print_tree(channel_tree, print_depth=3)
 
@@ -360,14 +359,13 @@ class BasicCrawler(object):
 
         def _is_likely_global_nav(url):
             """
-            Returns True if `url` is a global nav link.
+            Returns True if `url` is likely a global nav link based on how often seen in pages.
             """
             seen_count = self.global_urls_seen_count[url]
             if debug:
                 print('seen_count/total_urls_seen_count=', float(seen_count)/total_urls_seen_count,
                         '=', seen_count, '/', total_urls_seen_count, self.url_to_path(url))
-
-            # if previously determined
+            # if previously determined to be a global nav link
             for global_nav_resource in global_nav_nodes['children']:
                 if url == global_nav_resource['url']:
                     return True
@@ -387,14 +385,11 @@ class BasicCrawler(object):
                     )
                     global_nav_resource.update(child)
                     global_nav_nodes['children'].append(global_nav_resource)
-
                 # recurse
                 clean_child = recusive_visit_find_global_nav_children(child)
-
             return subtree
 
         recusive_visit_find_global_nav_children(tree_root)
-
         return global_nav_nodes
 
 
@@ -498,8 +493,8 @@ class BasicCrawler(object):
         # cleanup remove parent links before output tree
         self.cleanup_web_resource_tree(channel_dict)
 
-        # hoist entire tree one level up to get rid of outer container
-        # channel_dict = channel_dict['children'][0]
+        # hoist entire tree one level up to get rid of the tmep. outer container
+        channel_dict = channel_dict['children'][0]
 
         # Save output
         if save_web_resource_tree:
