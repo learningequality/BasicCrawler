@@ -1,5 +1,17 @@
+
+# credentials
+.token
+
 # Cache dirs
 .webcache
+.ricecookerfilecache
+examples/content/
+restore/
+storage/
+
+
+# souschef examples
+examples/CrawlerDemo_TakeHomeTest.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

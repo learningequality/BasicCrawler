@@ -48,8 +48,17 @@ The output of of the crawling stage is the `chefdata/trees/web_resource_tree.jso
 
 
 
-Scraping outputs Ricecooker Json Tree
--------------------------------------
+
+Scraping output as SousChef Archive
+-----------------------------------
+
+Use 
+
+
+
+
+Scraping output as Ricecooker Json Tree
+---------------------------------------
 It is not the resposibility of the crawler to extract the actual content from the
 web resources it encounters. We'll do the detailed content and metadata extraction
 during the scraping part of the pipeline.

@@ -1,0 +1,252 @@
+{
+  "dirname": "CrawlerDemo_TakeHomeTest",
+  "title": "CrawlerDemo_TakeHomeTest",
+  "description": "sample channel used for the chef take home test.",
+  "source_domain": "learningequality.org",
+  "source_id": "crawlerdemo_learningequality",
+  "language": "en",
+  "thumbnail": null,
+  "children": [
+    {
+      "kind": "topic",
+      "dirname": "Math",
+      "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Math",
+      "title": "Math",
+      "description": "Learn how to spot patterns in the world around you add how to use mathematical equations to describe these patterns.",
+      "author": null,
+      "language": "en",
+      "license": null,
+      "thumbnail": null,
+      "children": [
+        {
+          "kind": "document",
+          "source_id": "f2e22e3",
+          "title": "Vectors overview",
+          "author": "Ivan Savov",
+          "description": "Vectors are the precise way to describe directions in space. We need vectors in order to describe physical quantities like the velocity of an object, its acceleration, and the net force acting on the object.",
+          "language": "en",
+          "license": {
+            "license_id": "Public Domain",
+            "description": null,
+            "copyright_holder": null
+          },
+          "thumbnail": null,
+          "files": [
+            {
+              "file_type": "document",
+              "path": "./content/CrawlerDemo_TakeHomeTest/Math/Vectors overview.pdf",
+              "language": "en"
+            }
+          ]
+        },
+        {
+          "kind": "topic",
+          "dirname": "Functions",
+          "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Math/Functions",
+          "title": "Functions",
+          "description": "Functions codify relations between variables. Any relationship between two variables can be expressed as a function. This makes functions a powerful tool for modelling real-world situations.",
+          "author": null,
+          "language": "en",
+          "license": null,
+          "thumbnail": null,
+          "children": [
+            {
+              "kind": "document",
+              "source_id": "eddc5cb",
+              "title": "Functions overview",
+              "author": "Ivan Savov",
+              "description": "This document introduces basic notion of a function and the different aspects to learn about.",
+              "language": "en",
+              "license": {
+                "license_id": "CC BY",
+                "description": null,
+                "copyright_holder": "Minireference Co."
+              },
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "document",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Math/Functions/Functions overview.pdf",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "topic",
+          "dirname": "Numbers",
+          "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Math/Numbers",
+          "title": "Numbers",
+          "description": null,
+          "author": null,
+          "language": "en",
+          "license": null,
+          "thumbnail": null,
+          "children": [
+            {
+              "kind": "video",
+              "source_id": "fc2b703",
+              "title": "Classifying numbers",
+              "author": "Sal Khan",
+              "description": "Learn how to classify numbers as whole numbers, integers, rational numbers, and irrational numbers.",
+              "language": "en",
+              "license": {
+                "license_id": "CC BY-NC",
+                "description": null,
+                "copyright_holder": "Khan Academy"
+              },
+              "derive_thumbnail": true,
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "video",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Math/Numbers/Classifying numbers.mp4",
+                  "language": "en"
+                }
+              ]
+            },
+            {
+              "kind": "document",
+              "source_id": "05abda1",
+              "title": "Numbers Overview",
+              "author": "Ivan Savov",
+              "description": "This short document defines the different types of numbers that exist.",
+              "language": "en",
+              "license": {
+                "license_id": "CC BY-NC-SA",
+                "description": null,
+                "copyright_holder": "Minireference Co."
+              },
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "document",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Math/Numbers/Numbers Overview.pdf",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "topic",
+      "dirname": "Science",
+      "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Science",
+      "title": "Science",
+      "description": "The scientific method is a very good way to learn more about the world and develop new technologies.",
+      "author": null,
+      "language": "en",
+      "license": null,
+      "thumbnail": null,
+      "children": [
+        {
+          "kind": "topic",
+          "dirname": "Biology",
+          "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Science/Biology",
+          "title": "Biology",
+          "description": null,
+          "author": null,
+          "language": "en",
+          "license": null,
+          "thumbnail": null,
+          "children": [
+            {
+              "kind": "audio",
+              "source_id": "0c244c7",
+              "title": "Whale sounds",
+              "author": "Steve C",
+              "description": "The sounds of whales are fascinating. What is this whale saying? What language is this?",
+              "language": "fr",
+              "license": {
+                "license_id": "CC BY",
+                "description": null,
+                "copyright_holder": "YouTube"
+              },
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "audio",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Science/Biology/Whale sounds.mp3",
+                  "language": "fr"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "topic",
+          "dirname": "Chemistry",
+          "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Science/Chemistry",
+          "title": "Chemistry",
+          "description": null,
+          "author": null,
+          "language": "en",
+          "license": null,
+          "thumbnail": null,
+          "children": [
+            {
+              "kind": "video",
+              "source_id": "4279052",
+              "title": "Organic chemistry",
+              "author": "Sal Khan",
+              "description": "Topics covered in college organic chemistry course. Basic understanding of basic high school or college chemistry assumed.",
+              "language": "en",
+              "license": {
+                "license_id": "CC BY-NC-SA",
+                "description": null,
+                "copyright_holder": "Khan Academy"
+              },
+              "derive_thumbnail": true,
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "video",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Science/Chemistry/Organic chemistry.mp4",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "topic",
+          "dirname": "Physics",
+          "source_id": "sourceid:./content/CrawlerDemo_TakeHomeTest/Science/Physics",
+          "title": "Physics",
+          "description": null,
+          "author": null,
+          "language": "en",
+          "license": null,
+          "thumbnail": null,
+          "children": [
+            {
+              "kind": "video",
+              "source_id": "e07fa4b",
+              "title": "Wave particle duality",
+              "author": "Henry Reich",
+              "description": "We discuss the Wave Particle Duality and why quantum mechanics is weirder than anything we're used to in our daily lives!",
+              "language": "en",
+              "license": {
+                "license_id": "CC BY-NC",
+                "description": null,
+                "copyright_holder": "Minute Physics"
+              },
+              "derive_thumbnail": true,
+              "thumbnail": null,
+              "files": [
+                {
+                  "file_type": "video",
+                  "path": "./content/CrawlerDemo_TakeHomeTest/Science/Physics/Wave particle duality.mp4",
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
