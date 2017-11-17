@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+import json
 import os
 import sys
 from ricecooker.utils import data_writer, path_builder, downloader
-from le_utils.constants import licenses, exercises, content_kinds, file_formats, format_presets, languages
+from le_utils.constants import licenses, content_kinds, file_formats, format_presets, languages
 
 
 from takehome_crawler import TakeHomeCrawler
@@ -12,7 +13,6 @@ from takehome_crawler import TakeHomeCrawler
 import logging
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-import re
 
 # Run Constants
 ###########################################################
@@ -25,24 +25,16 @@ CHANNEL_THUMBNAIL = None                                    # Local path or url 
 PATH = path_builder.PathBuilder(channel_name=CHANNEL_NAME)  # Keeps track of path to write to csv
 WRITE_TO_PATH = "{}{}{}.zip".format(os.path.dirname(os.path.realpath(__file__)), os.path.sep, CHANNEL_NAME) # Where to generate zip file
 
-
-
 CRAWLING_STAGE_OUTPUT = TakeHomeCrawler.CRAWLING_STAGE_OUTPUT
-
-
-
-# Additional Constants
-###########################################################
-
-BASE_URL = 'http://chef-take-home-test.learningequality.org/'
 
 # only add keys we actively care about
 METADATA_KEYS = ['content_id', 'author', 'lang_id', 'license', 'copyright_holder']
-LICENSE_LOOKUP = {"CC BY-NC-SA": licenses.CC_BY_NC_SA,
-                  "CC BY-NC": licenses.CC_BY_NC,
-                  "CC BY": licenses.CC_BY,
-                  "Public Domain": licenses.PUBLIC_DOMAIN
-                  }
+LICENSE_LOOKUP = {
+    "CC BY-NC-SA": licenses.CC_BY_NC_SA,
+    "CC BY-NC": licenses.CC_BY_NC,
+    "CC BY": licenses.CC_BY,
+    "Public Domain": licenses.PUBLIC_DOMAIN
+}
 
 # Set up logging tools
 LOGGER = logging.getLogger()
@@ -50,93 +42,109 @@ __logging_handler = logging.StreamHandler()
 LOGGER.addHandler(__logging_handler)
 LOGGER.setLevel(logging.INFO)
 
-# License to be used for content under channel
-CHANNEL_LICENSE = licenses.CC_BY
 
-""" Main Scraping Method """
+
+# Main Scraping Method
 ###########################################################
 def scrape_source(writer):
     """ scrape_source: Scrapes channel page and writes to a DataWriter
         Args: writer (DataWriter): class that writes data to folder/spreadsheet structure
         Returns: None
     """
-    handle_page_and_subpages(BASE_URL, "Sample Channel")  # Where does this "Sample Channel" string come from if "" is passed? I think it's from the website.
+    web_resource_tree = json.load(open(CRAWLING_STAGE_OUTPUT,'r'))
+    recusive_scrape_web_resouce(web_resource_tree)
 
 
-""" Helper Methods """
-###########################################################
+# Web resource tree walking logic
+################################################################################
 
-def read_source(url):
-    """ Read page source as beautiful soup """
-    html = downloader.read(url)
-    return BeautifulSoup(html, 'html.parser')
+CHANNEL_ROOT_DOMAIN = "http://chef-take-home-test.learningequality.org"
 
-def handle_page_and_subpages(url, parent_path):
-    """Create CSV and ZIP for this URL and its descendants.
-    parent_path is the name of the path in the ZIP file for this URL.
-    Returns nothing."""
-
-    metadata, content, children = handle_page(url)
-
-    # should we only do this if we have children? Not sure...
-    LOGGER.info("Adding folder {} ({})".format(parent_path, metadata['title']))
-    if children:
-        writer.add_folder(path = parent_path,
-                          title = metadata['title'],
-                          source_id = metadata.get('content_id'),
-                          language = metadata.get('lang_id'),
-                          description = metadata.get('description'),
-                          )
-
-    for content_item in content:
-        writer.add_file(path = parent_path,
-                        title = metadata['title'],
-                        download_url = content_item,
-                        author = metadata.get('author'),
-                        source_id = metadata.get('content_id'),
-                        description = metadata.get('description'),
-                        language = metadata.get('lang_id'),
-                        license=LICENSE_LOOKUP[metadata['license']],
-                        copyright_holder = metadata['copyright_holder'])
-
-    for child in children: # recurse
-        LOGGER.debug("Processing {}".format(child['url']))
-        child_path = '/'.join([parent_path.rstrip('/'),child['machine_name'].rstrip('/')])
-        handle_page_and_subpages(child['url'], child_path)
-
-
-def handle_page(url):
+def url_to_path_list(url):
     """
-    Takes a url and returns a list of three things:
+    Extracts the path of the current location within channel folder in zip file
+    from the url provided.
+      - If channel or topic node path is  CHANNEL_NAME+'/'.join(path_list)
+      - If content node path is  CHANNEL_NAME+'/'.join(path_list[0:-1])
+    """
+    path = url.replace(CHANNEL_ROOT_DOMAIN, '')
+    path_list = path.split('/')[0:-1]
+    return path_list
+
+def recusive_scrape_web_resouce(subtree):
+    """
+    Create CSV and ZIP by scraping this web resouce node and its descendants.
+    `CHANNEL_NAME` is the name of the path in the ZIP file for this subtree.
+    Returns nothing.
+    """
+    url = subtree['url']
+    path_list = url_to_path_list(url)
+    metadata, content = scrape_page(url)
+    # channel and topics have metadata only and content==None
+    # content nodes like document/audio/video have metadata and content (file URL)
+
+    kind = subtree['kind']
+    # dispatch based on node kind ##############################################
+    if kind == 'channel':
+        channel_path = CHANNEL_NAME
+        writer.add_folder(
+                path = channel_path,
+                title = metadata['title'],
+                source_id = metadata.get('content_id'),
+                language = metadata.get('lang_id'),
+                description = metadata.get('description'),
+        )
+        LOGGER.info("Added channel root folder {}".format(metadata['title']))
+
+    elif kind == 'topic':
+        parent_path = CHANNEL_NAME + '/'.join(path_list)
+        writer.add_folder(
+                path = parent_path,
+                title = metadata['title'],
+                source_id = metadata.get('content_id'),
+                language = metadata.get('lang_id'),
+                description = metadata.get('description'),
+        )
+        LOGGER.debug("Added folder {}/{}".format(parent_path, metadata['title']))
+
+    elif kind in ['document', 'audio', 'video']:
+        parent_path = CHANNEL_NAME + '/'.join(path_list[0:-1])
+        writer.add_file(
+                path = parent_path,
+                title = metadata['title'],
+                download_url = content,
+                author = metadata.get('author'),
+                source_id = metadata.get('content_id'),
+                description = metadata.get('description'),
+                language = metadata.get('lang_id'),
+                license=LICENSE_LOOKUP[metadata['license']],
+                copyright_holder = metadata['copyright_holder'])
+        LOGGER.debug("Added content {}/{}".format(parent_path, metadata['title'])+str(content))
+
+    # recurse
+    for child in subtree['children']:
+        child_url = child['url']
+        LOGGER.debug("Recusing in child {}".format(child_url))
+        recusive_scrape_web_resouce(child)
+
+
+def scrape_page(url):
+    """
+    Takes a url and returns:
         * metadata: a dictionary of strings (see METADATA_KEYS)
         * content: a list of URLs to content (e.g. video files)
-        * children: a dictionary of the 'name' and fully-qualified 'url' of sub-resources, along with a short 'machine_name'
-
-    Perhaps this should be three separate functions, instead.
     """
-    def absolute_url(url_fragment):
-        """Takes a URL fragment, and returns a full URL"""
-        return urljoin(url, url_fragment)
-
-    def no_brackets(text):
-        """Gets rid of one set of bracketted text (like this)"""
-        lbracket = text.index("(")
-        rbracket = text.index(")")
-        if lbracket == -1 or rbracket == -1: return text
-        if lbracket > rbracket: return text
-        return (text[:lbracket] + text[rbracket+1:]).rstrip()
-
     page = read_source(url)
+    metadata = scrape_metadata(page)
+    content = scrape_content(url, page)
+    return (metadata, content)
+
+
+def scrape_metadata(page):
+    """
+    Extract all available metadata for a given topic node or content node.
+    """
     maincontent = page.find('div', {'class': 'maincontent'})
-
-    children = []
-    children_bs = maincontent.find_all('li', {'class': lambda x: x.endswith('-kind')})  # topic-kind, audio-kind, etc.
-    for child in children_bs:
-        child_url=child.find('a')['href']
-        children.append({ "url": absolute_url(child_url),
-                          "machine_name": child_url,
-                          "name": no_brackets(child.get_text().strip()) })
-
     metadata = {}
     metadata_bs = maincontent.find('ul', {'class': 'metadata'})
     for key in METADATA_KEYS:
@@ -144,23 +152,45 @@ def handle_page(url):
         try:
             value = item.find("span", {'class': 'keyvalue'})
         except:
-            LOGGER.debug("No {} found for {}".format(key, url))
+            LOGGER.debug("Key {} not found.".format(key))
             continue
-
         metadata[key] = value.get_text().strip()
 
     metadata['title'] = maincontent.find("h3").get_text().strip()
     metadata['description'] = maincontent.find("p", {'class': 'descr'}).get_text().strip()
-
-    content = []
-    tags_with_src = maincontent.find_all("", {'src': lambda x: x}) # there is a src tag
-    for tag in tags_with_src:
-        content.append(absolute_url(tag['src']))
-
-    return (metadata, content, children)
+    return metadata
 
 
-""" This code will run when the sous chef is called from the command line. """
+def scrape_content(url, page):
+    """
+    Generic scraper for audio/video/pdf based on src atteibute.
+    """
+    def _absolute_url(url_fragment):
+        """
+        Interprets a URL fragment relative to current URL and returns a full URL.
+        """
+        return urljoin(url, url_fragment)
+
+    maincontent = page.find('div', {'class': 'maincontent'})
+    tags_with_src = maincontent.find("", {'src': lambda x: x}) # there is a src tag
+    if tags_with_src:
+        content = _absolute_url(tags_with_src['src'])
+        return content
+    else:
+        return None
+
+
+def read_source(url):
+    """
+    Read page source as beautiful soup.
+    """
+    html = downloader.read(url)
+    return BeautifulSoup(html, 'html.parser')
+
+
+
+# This code will run when the sous chef is called from the command line.
+################################################################################
 if __name__ == '__main__':
 
     # Open a writer to generate files
@@ -173,4 +203,4 @@ if __name__ == '__main__':
         # Scrape source content
         scrape_source(writer)
 
-        sys.stdout.write("\n\nDONE: Zip created at {}\n".format(writer.write_to_path))
+        sys.stdout.write("DONE: Zip created at {}\n".format(writer.write_to_path))

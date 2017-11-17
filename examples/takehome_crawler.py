@@ -17,7 +17,6 @@ class TakeHomeCrawler(BasicCrawler):
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
 
     def __init__(self, *args, **kwargs):
-        print('in subclass __init__')
         super().__init__(*args, **kwargs)
         self.kind_handlers = {   # mapping from web resource kinds (user defined) and handlers
             'channel': self.on_channel_or_topic,
@@ -27,11 +26,11 @@ class TakeHomeCrawler(BasicCrawler):
             'document': self.on_content,
         }
 
+
     def on_channel_or_topic(self, url, page, context):
         """
         Enqueue for crawling all the links on the current page. Works for channel root and topic nodes.
         """
-        print('in on_channel')
         channel_dict = context
         channel_dict.update(dict(
             url=url,
@@ -43,7 +42,6 @@ class TakeHomeCrawler(BasicCrawler):
 
         maincontent = page.find('div', {'class': 'maincontent'})
 
-        children = []
         children_bs = maincontent.find_all('li', {'class': lambda x: x.endswith('-kind')})  # topic-kind, audio-kind, etc.
 
         for child in children_bs:
@@ -69,8 +67,8 @@ class TakeHomeCrawler(BasicCrawler):
                 print('Skipping child_href', child_href)
                 pass
 
+
     def on_content(self, url, page, context):
-        print('in on_content')
         channel_dict = dict(
             url=url,
             children=[],
@@ -87,5 +85,5 @@ class TakeHomeCrawler(BasicCrawler):
 
 if __name__ == '__main__':
     crawler = TakeHomeCrawler()
-    channel_tree = crawler.crawl()
+    channel_tree = crawler.crawl(debug=False)
     crawler.print_tree(channel_tree)

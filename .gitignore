@@ -1,5 +1,14 @@
+
+# credentials
+.token
+
 # Cache dirs
 .webcache
+.ricecookerfilecache
+examples/content/
+restore/
+storage/
+
 
 # souschef examples
 examples/CrawlerDemo_TakeHomeTest.zip

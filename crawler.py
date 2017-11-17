@@ -533,7 +533,7 @@ class BasicCrawler(object):
         Download `url` (following redirects) and soupify response contents.
         Returns (final_url, page) where final_url is URL afrer following redirects.
         """
-        print('Downloading page with url', url)
+        # print('Downloading page with url', url)
         response = self.make_request(url, *args, **kwargs)
         if not response:
             return (None, None)
