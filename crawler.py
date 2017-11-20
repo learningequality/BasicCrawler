@@ -4,7 +4,7 @@ import json
 import re
 import os
 from urllib.parse import urljoin
-
+import time
 
 # GET pages over HTTP
 import requests
