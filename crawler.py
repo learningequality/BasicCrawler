@@ -31,7 +31,7 @@ class BasicCrawler(object):
     # Base class proporties
     BASE_IGNORE_URLS = ['javascript:void(0)', '#']
     BASE_IGNORE_URL_PATTERNS = [re.compile('^mailto:.*'), re.compile('^javascript:.*')]
-    NONHTML_CONTENT_TYPES = ['application/msword', 'application/pdf', 'video/mpeg',
+    NODOWNLOAD_CONTENT_TYPES = ['application/msword', 'application/pdf', 'video/mpeg',
                              'image/png', 'application/zip', 'audio/mp3',
                              'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                              ]
@@ -161,6 +161,26 @@ class BasicCrawler(object):
             if url.startswith(source_domain):
                 found = True
         return found
+
+
+    def should_download_url(self, url):
+        """
+        Returns True if url is not in IGNORE_URLS and a HTTP HEAD request has a
+        content-type that is not in NODOWNLOAD_CONTENT_TYPES.
+        Returns (vertict, reason) where verdict is bool and reason (str) expalins.
+        """
+        if not self.should_visit_url(url):
+            return False
+        head_response = self.make_request(url, method='HEAD')
+        if head_response:
+            content_type = head_response.headers.get('content-type', None)
+            if content_type and content_type not in self.NODOWNLOAD_CONTENT_TYPES:
+                return (True, 'go GET it')
+            else:
+                print('Skipping', url, 'because it has content type', content_type)
+                return (False, content_type)
+        else:
+            return (False, 'HEAD request failed')
 
 
 
@@ -473,14 +493,32 @@ class BasicCrawler(object):
         counter = 0
         while not self.queue_empty():
             # print('queue.qsize()=', self.queue.qsize())
+
+            # 1. GET next url to crawl an its context dict
             original_url, context = self.get_url_and_context()
+
+            # 2. We don't want to download media files like PDFs and ZIP files
+            verdict, reason = self.should_download_url(original_url)
+            if verdict == False:
+                rsrc_dict = dict(
+                    kind='NoDownloadWebResource',
+                    url=original_url,
+                    children=[],
+                )
+                if reason in self.NODOWNLOAD_CONTENT_TYPES:
+                    rsrc_dict['content-type'] = reason
+                context['parent']['children'].append(rsrc_dict)
+                # TODO(ivan): resolve content-type to file type label using le-utils lookup
+                continue
+
+            # 3. Let's go GET that url
             url, page = self.download_page(original_url)
             if page is None:
                 print('GET on URL', original_url, 'did not return page')
                 self.broken_links.append(original_url)
                 continue
 
-            # cache BeatifulSoup parsed html in memory
+            # cache BeatifulSoup parsed html in memory (because RAM is cheap!)
             self.urls_visited[original_url] = page
 
             # annotate context to keep track of URL befor redirects
@@ -488,6 +526,7 @@ class BasicCrawler(object):
                 print('<'+original_url+'>')
                 print('|'+url+'|')
                 context['original_url'] = original_url
+
 
             ##########  HANDLER DISPATCH LOGIC  ################################
             handled = False
@@ -520,12 +559,13 @@ class BasicCrawler(object):
                 self.on_page(url, page, context)
             ####################################################################
 
-            # limit crawling to 1000 pages by default (failsafe default)
+            # limit crawling to 1000 pages unless otherwise told (failsafe default)
             counter += 1
             if limit and counter > limit:
                 break
 
-        # cleanup remove parent links before output tree
+
+        # remove parent links before output tree
         self.cleanup_web_resource_tree(channel_dict)
 
         # hoist entire tree one level up to get rid of the tmep. outer container
@@ -552,15 +592,6 @@ class BasicCrawler(object):
         Download `url` (following redirects) and soupify response contents.
         Returns (final_url, page) where final_url is URL afrer following redirects.
         """
-        # Do not download media files
-        head_response = self.make_request(url, *args, method='HEAD', **kwargs)
-        if head_response:
-            content_type = head_response.headers.get('content-type', None)
-            if content_type and content_type in self.NONHTML_CONTENT_TYPES:
-                print('Skipping', url, 'because has content type', content_type)
-                # TODO: still want to add to web resouce tree, just donwt want to download... <<<<<<<<<<<<<<<
-                return (None, None)
-
         response = self.make_request(url, *args, **kwargs)
         if not response:
             return (None, None)
