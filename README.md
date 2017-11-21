@@ -3,9 +3,41 @@ Basic web crawler that automates website exploration and producing web resource 
 
 
 
+TODO
+----
+
+  - Finish "is file" logic to check content-type before downloading to avoid large downloads
+     - infer file from extentsion in URL
+     - else make HEAD request to check for `Content-Type: application/zip`
+  - Use HEAD to check for redirects first (apply "is file" logic to redirected URLs)
+  - Remove hacks from crawley.py
+  - def cleanup_url(self, url) in base class
+    * ability to drop dynamic parts of URL might become useful (e.g. query strings containing session IDs) (but wait until needed)
+
+  - REDO tessa claanly step by step...
 
 
 
+Version 0.2 TODO
+----------------
+* Make a single IGNORE_URLS list that accpets:
+   - full urls (string)
+   - compiled RE objects
+   - functions for deciding what to ignore rather (anything callable)
+
+* path to url / vice versa (and possibly elsewhere): consider `urllib.urlparse`?
+ 	[e.g. `url.startwith(source_domain)` could be `source_domain in url.domain` to make it more flexible with subdomains
+  * Additional valid domains can be specified but `url_to_path_list` assumes adding CHANNEL_ROOT_DOMAIN
+   	[we may wish to expand all links based on parent URL]
+  * refactor and remove need for MAIN_SOURCE_DOMAIN and use only SOURCE_DOMAINS instead
+
+
+
+Feature ideas
+-------------
+* Asynchronous download  (not necessary but might be good for performance on large sites)
+  - don't block for HTTP
+  - allow multiple workers getting from queue
 
 
 

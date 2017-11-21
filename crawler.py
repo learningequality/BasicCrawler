@@ -3,8 +3,8 @@ from collections import defaultdict
 import json
 import re
 import os
-from urllib.parse import urljoin
 import time
+from urllib.parse import urljoin, urldefrag
 
 # GET pages over HTTP
 import requests
@@ -31,6 +31,12 @@ class BasicCrawler(object):
     # Base class proporties
     BASE_IGNORE_URLS = ['javascript:void(0)', '#']
     BASE_IGNORE_URL_PATTERNS = [re.compile('^mailto:.*'), re.compile('^javascript:.*')]
+    NONHTML_CONTENT_TYPES = ['application/msword', 'application/pdf', 'video/mpeg',
+                             'image/png', 'application/zip', 'audio/mp3',
+                             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                             ]
+    # TODO add more https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+
     GLOBAL_NAV_THRESHOLD = 0.7
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
 
@@ -83,6 +89,14 @@ class BasicCrawler(object):
     # GENERIC URL HELPERS
     ############################################################################
 
+    def cleanup_url(self, url):
+        """
+        Removes URL fragment that falsely make URLs look diffent.
+        Subclasses can overload this method to perform other URL-normalizations.
+        """
+        url = urldefrag(url)[0]
+        return url
+
     def path_to_url(self, path):
         """
         Returns url from path.
@@ -127,6 +141,8 @@ class BasicCrawler(object):
         """
         Returns True if `url` doesn' match any of the IGNORE criteria.
         """
+        url = self.cleanup_url(url)
+
         # 1. run through ignore lists
         if url in self.BASE_IGNORE_URLS or url in self.IGNORE_URLS:
             return False
@@ -163,6 +179,7 @@ class BasicCrawler(object):
         return self.queue.get()
 
     def enqueue_url_and_context(self, url, context, force=False):
+        # TODO(ivan): clarify crawl-only-once logic and use of force flag in docs
         if url not in self.global_urls_seen_count.keys() or force:
             # print('adding to queue:  url=', url)
             self.queue.put((url, context))
@@ -184,7 +201,7 @@ class BasicCrawler(object):
         Basic handler that adds current page to parent's children array and adds
         all links on current page to the crawling queue.
         """
-        # print('Procesing page', url)
+        # print('in on_page', url)
         page_dict = dict(
             kind='PageWebResource',
             url=url,
@@ -468,6 +485,8 @@ class BasicCrawler(object):
 
             # annotate context to keep track of URL befor redirects
             if url != original_url:
+                print('<'+original_url+'>')
+                print('|'+url+'|')
                 context['original_url'] = original_url
 
             ##########  HANDLER DISPATCH LOGIC  ################################
@@ -533,15 +552,27 @@ class BasicCrawler(object):
         Download `url` (following redirects) and soupify response contents.
         Returns (final_url, page) where final_url is URL afrer following redirects.
         """
-        # print('Downloading page with url', url)
+        # Do not download media files
+        head_response = self.make_request(url, *args, method='HEAD', **kwargs)
+        if head_response:
+            content_type = head_response.headers.get('content-type', None)
+            if content_type and content_type in self.NONHTML_CONTENT_TYPES:
+                print('Skipping', url, 'because has content type', content_type)
+                # TODO: still want to add to web resouce tree, just donwt want to download... <<<<<<<<<<<<<<<
+                return (None, None)
+
         response = self.make_request(url, *args, **kwargs)
         if not response:
             return (None, None)
         html = response.content
         page = BeautifulSoup(html, "html.parser")
+
+        print('Downloaded page with url', url, self.get_title(page))
         return (response.url, page)
 
-    def make_request(self, url, timeout=60, *args, **kwargs):
+
+
+    def make_request(self, url, timeout=60, *args, method='GET', **kwargs):
         """
         DavidHu's failure-resistant HTTP GET helper method.
         """
@@ -549,7 +580,7 @@ class BasicCrawler(object):
         max_retries = 5
         while True:
             try:
-                response = self.SESSION.get(url, timeout=timeout, *args, **kwargs)
+                response = self.SESSION.request(method, url, *args, timeout=timeout, **kwargs)
                 break
             except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
                 retry_count += 1
@@ -557,12 +588,24 @@ class BasicCrawler(object):
                       .format(msg=str(e), count=retry_count, trymax=max_retries))
                 time.sleep(retry_count * 1)
                 if retry_count >= max_retries:
-                    return Dummy404ResponseObject(url=url)
+                    print("FAILED TO RETRIEVE:", url)
+                    return None
         if response.status_code != 200:
-            print("NOT FOUND:", url)
+            print("ERROR", response.status_code, url)
             return None
         return response
 
+    # UTILS
+    ############################################################################
+
+    def get_title(self, page):
+        title = ''
+        head_el = page.find('head')
+        if head_el:
+            title_el = head_el.find('title')
+            if title_el:
+                title = title_el.get_text().strip()
+        return title
 
 # CLI
 ################################################################################
