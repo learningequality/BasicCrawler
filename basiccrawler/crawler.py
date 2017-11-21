@@ -586,7 +586,7 @@ class BasicCrawler(object):
 
         # Save output
         if save_web_resource_tree:
-            write_web_resource_tree_json(channel_dict)
+            self.write_web_resource_tree_json(channel_dict)
 
         # Display debug info
         if debug:
