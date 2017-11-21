@@ -173,8 +173,10 @@ class BasicCrawler(object):
           - reason (str) contains contet-type if one of NODOWNLOAD_CONTENT_TYPES
             otherwise expalins another reason why shouldn't be downloaded
         """
+        print('in should_download_url', url)
         save = url
         url = self.cleanup_url(url)
+        print('in should_download_url after clanup', url)
 
         if not self.should_visit_url(url):
             return (url, False, 'SHOULDNT VISIT')

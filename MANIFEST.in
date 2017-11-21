@@ -1,0 +1,30 @@
+include README.md
+include LICENSE
+
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.md *.rst conf.py Makefile make.bat *.jpg *.png *.gif
+
+recursive-exclude notebooks *
+
+
+
+recursive-exclude storage *
+recursive-exclude restore *
+recursive-exclude chefdata *
+recursive-exclude .ricecookerfilecache *
+recursive-exclude .webcache *
+
+recursive-exclude examples/storage *
+recursive-exclude examples/restore *
+recursive-exclude examples/chefdata *
+recursive-exclude examples/.ricecookerfilecache *
+recursive-exclude examples/.webcache *
+
+recursive-exclude notebooks/storage *
+recursive-exclude notebooks/restore *
+recursive-exclude notebooks/chefdata *
+recursive-exclude notebooks/.ricecookerfilecache *
+recursive-exclude notebooks/.webcache *
