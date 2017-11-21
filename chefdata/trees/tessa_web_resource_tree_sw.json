@@ -1,0 +1,55 @@
+{
+  "kind": "tessa_language_page",
+  "url": "http://www.open.edu/openlearncreate/course/view.php?id=2199",
+  "title": "OLCreate: TESSA_SWAHILI TESSA - Swahili - All Africa",
+  "children": [
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82842",
+      "title": "OLCreate: TESSA_SWAHILI: Stadi za maisha",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82843",
+      "title": "OLCreate: TESSA_SWAHILI: Kujua kusoma na kuandika",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82844",
+      "title": "OLCreate: TESSA_SWAHILI: Hisabati",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82845",
+      "title": "OLCreate: TESSA_SWAHILI: Sayansi",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82846",
+      "title": "OLCreate: TESSA_SWAHILI: Mafunzo Ya Jamii Na Sanaa",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82847",
+      "title": "OLCreate: TESSA_SWAHILI: Sayansi ya shule za Sekondari",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82848",
+      "title": "OLCreate: TESSA_SWAHILI: Nyenzo za msingi kwa walimu na wakufunzi",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=82849",
+      "title": "OLCreate: TESSA_SWAHILI: Vitabu vya maelekezo na miongozo ya vitendea kazi kwa ajili ya walimu na wakufunzi",
+      "children": []
+    }
+  ]
+}

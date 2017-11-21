@@ -1,0 +1,61 @@
+{
+  "kind": "tessa_language_page",
+  "url": "http://www.open.edu/openlearncreate/course/view.php?id=2046",
+  "title": "OLCreate: TESSA_Fr TESSA - Fran\u00e7ais - Afrique francophone",
+  "children": [
+    {
+      "kind": "oucontent",
+      "url": "http://www.open.edu/openlearncreate/mod/oucontent/view.php?id=84487",
+      "title": "OLCreate: TESSA_Fr R\u00e9sum\u00e9 des mat\u00e9riels p\u00e9dagogiques TESSA",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=66857",
+      "title": "OLCreate: TESSA_Fr: Comp\u00e9tences de la vie courante",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=80922",
+      "title": "OLCreate: TESSA_Fr: Alphab\u00e9tisation",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=66860",
+      "title": "OLCreate: TESSA_Fr: Math\u00e9matiques",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=80923",
+      "title": "OLCreate: TESSA_Fr: Sciences",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=80924",
+      "title": "OLCreate: TESSA_Fr: Sciences humaines et arts",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=80919",
+      "title": "OLCreate: TESSA_Fr: Ressources cl\u00e9s",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=78407",
+      "title": "OLCreate: TESSA_Fr: Guides pour les enseignants et les formateurs d\u2019enseignants",
+      "children": []
+    },
+    {
+      "kind": "subpage",
+      "url": "http://www.open.edu/openlearncreate/mod/subpage/view.php?id=66858",
+      "title": "OLCreate: TESSA_Fr: Ressources  audio",
+      "children": []
+    }
+  ]
+}
