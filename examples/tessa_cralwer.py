@@ -84,7 +84,7 @@ class TessaCrawler(BasicCrawler):
         url = re.sub('&printable=1', '', url)
         url = re.sub('&content=scxml', '', url)
         url = re.sub('&notifyeditingon=1', '', url)
-        url = re.sub('\?forcedownload=1', '', url)
+        url = re.sub(r'\?forcedownload=1', '', url)
         url = re.sub('&forcedownload=1', '', url)
         return url
 

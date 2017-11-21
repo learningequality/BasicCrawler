@@ -1088,109 +1088,109 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157598/mod_resource/content/1/04_cast_the_spell%20%281%29.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157598/mod_resource/content/1/04_cast_the_spell%20%281%29.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157599/mod_resource/content/1/castthespell_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157599/mod_resource/content/1/castthespell_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157600/mod_resource/content/1/castthespell_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157600/mod_resource/content/1/castthespell_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157602/mod_resource/content/1/18_seven_rivers_in_africa.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157602/mod_resource/content/1/18_seven_rivers_in_africa.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157603/mod_resource/content/1/sevenrivers_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157603/mod_resource/content/1/sevenrivers_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157604/mod_resource/content/1/sevenrivers_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157604/mod_resource/content/1/sevenrivers_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157606/mod_resource/content/1/24_the_maths_game.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157606/mod_resource/content/1/24_the_maths_game.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157607/mod_resource/content/1/mathsgame_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157607/mod_resource/content/1/mathsgame_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157608/mod_resource/content/1/mathsgame_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157608/mod_resource/content/1/mathsgame_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157610/mod_resource/content/1/14_the_open_day_drama.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157610/mod_resource/content/1/14_the_open_day_drama.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157611/mod_resource/content/1/openday_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157611/mod_resource/content/1/openday_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157612/mod_resource/content/2/openday_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157612/mod_resource/content/2/openday_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157614/mod_resource/content/1/27_the_town_meeting.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157614/mod_resource/content/1/27_the_town_meeting.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157615/mod_resource/content/1/townmeeting_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157615/mod_resource/content/1/townmeeting_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157616/mod_resource/content/1/townmeeting_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157616/mod_resource/content/1/townmeeting_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157618/mod_resource/content/1/10_let_me_do_the_cooking.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157618/mod_resource/content/1/10_let_me_do_the_cooking.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157619/mod_resource/content/1/letmedocooking_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157619/mod_resource/content/1/letmedocooking_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157620/mod_resource/content/1/cooking_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157620/mod_resource/content/1/cooking_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
@@ -1210,37 +1210,37 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157624/mod_resource/content/1/25_the_show_must_go_on.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157624/mod_resource/content/1/25_the_show_must_go_on.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157625/mod_resource/content/1/showgoon_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157625/mod_resource/content/1/showgoon_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157626/mod_resource/content/1/showmustgo_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157626/mod_resource/content/1/showmustgo_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157628/mod_resource/content/1/28_viva_unweze.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157628/mod_resource/content/1/28_viva_unweze.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157629/mod_resource/content/1/viva_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157629/mod_resource/content/1/viva_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157630/mod_resource/content/1/viva_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157630/mod_resource/content/1/viva_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1253,73 +1253,73 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157633/mod_resource/content/1/01_adjuas_predicament.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157633/mod_resource/content/1/01_adjuas_predicament.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157634/mod_resource/content/1/adjua_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157634/mod_resource/content/1/adjua_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157635/mod_resource/content/1/adjua_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157635/mod_resource/content/1/adjua_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157637/mod_resource/content/1/13_the_notorious_fighter.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157637/mod_resource/content/1/13_the_notorious_fighter.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157638/mod_resource/content/1/notorious_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157638/mod_resource/content/1/notorious_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157639/mod_resource/content/2/notorious_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157639/mod_resource/content/2/notorious_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157641/mod_resource/content/1/22_the_chase.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157641/mod_resource/content/1/22_the_chase.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157642/mod_resource/content/1/chase_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157642/mod_resource/content/1/chase_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157643/mod_resource/content/1/chase_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157643/mod_resource/content/1/chase_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157645/mod_resource/content/1/30_where_do_babies_come_from.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157645/mod_resource/content/1/30_where_do_babies_come_from.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157646/mod_resource/content/1/babies_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157646/mod_resource/content/1/babies_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157647/mod_resource/content/1/babies_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157647/mod_resource/content/1/babies_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1332,91 +1332,91 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157650/mod_resource/content/1/16_public_holiday.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157650/mod_resource/content/1/16_public_holiday.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157651/mod_resource/content/1/public_holiday_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157651/mod_resource/content/1/public_holiday_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157652/mod_resource/content/1/public_holiday_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157652/mod_resource/content/1/public_holiday_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157654/mod_resource/content/1/17_seeking_help.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157654/mod_resource/content/1/17_seeking_help.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157655/mod_resource/content/1/seeking_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157655/mod_resource/content/1/seeking_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157656/mod_resource/content/1/seekinghelp_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157656/mod_resource/content/1/seekinghelp_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157658/mod_resource/content/1/19_smart_father.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157658/mod_resource/content/1/19_smart_father.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157659/mod_resource/content/1/smartfather_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157659/mod_resource/content/1/smartfather_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157660/mod_resource/content/1/smartfather_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157660/mod_resource/content/1/smartfather_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157662/mod_resource/content/1/23_the_lost_boy.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157662/mod_resource/content/1/23_the_lost_boy.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157663/mod_resource/content/1/lostboy_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157663/mod_resource/content/1/lostboy_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157664/mod_resource/content/1/lostboy_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157664/mod_resource/content/1/lostboy_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171879/mod_resource/content/2/08_keep_your_mouth_shut.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171879/mod_resource/content/2/08_keep_your_mouth_shut.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171880/mod_resource/content/3/keepmouthshut_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171880/mod_resource/content/3/keepmouthshut_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171881/mod_resource/content/3/keepmouthshut_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/171881/mod_resource/content/3/keepmouthshut_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1429,73 +1429,73 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157667/mod_resource/content/1/03_be_careful.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157667/mod_resource/content/1/03_be_careful.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157668/mod_resource/content/1/becareful_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157668/mod_resource/content/1/becareful_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157669/mod_resource/content/1/becareful_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157669/mod_resource/content/1/becareful_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157671/mod_resource/content/1/05_catch_the_thief.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157671/mod_resource/content/1/05_catch_the_thief.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157672/mod_resource/content/1/catchthief_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157672/mod_resource/content/1/catchthief_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157673/mod_resource/content/1/catchthethief_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157673/mod_resource/content/1/catchthethief_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157675/mod_resource/content/1/20_something_good.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157675/mod_resource/content/1/20_something_good.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157676/mod_resource/content/1/somethinggood_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157676/mod_resource/content/1/somethinggood_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157677/mod_resource/content/1/somethinggood_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157677/mod_resource/content/1/somethinggood_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157679/mod_resource/content/1/07_the_eye_witness.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157679/mod_resource/content/1/07_the_eye_witness.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157680/mod_resource/content/1/eyewitness_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157680/mod_resource/content/1/eyewitness_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157681/mod_resource/content/1/eyewitness_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157681/mod_resource/content/1/eyewitness_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1508,55 +1508,55 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157684/mod_resource/content/1/02_anything_for_school.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157684/mod_resource/content/1/02_anything_for_school.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157685/mod_resource/content/1/anythingforschool_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157685/mod_resource/content/1/anythingforschool_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157686/mod_resource/content/1/anythingforschool_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157686/mod_resource/content/1/anythingforschool_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157688/mod_resource/content/1/15_plantain_seller.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157688/mod_resource/content/1/15_plantain_seller.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157689/mod_resource/content/1/plaintain_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157689/mod_resource/content/1/plaintain_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157690/mod_resource/content/1/plaintainseller_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157690/mod_resource/content/1/plaintainseller_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157692/mod_resource/content/1/11_the_music_teacher.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157692/mod_resource/content/1/11_the_music_teacher.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157693/mod_resource/content/1/musicteacher_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157693/mod_resource/content/1/musicteacher_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157694/mod_resource/content/1/musicteacher_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157694/mod_resource/content/1/musicteacher_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1569,37 +1569,37 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157697/mod_resource/content/1/26_thief_thief.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157697/mod_resource/content/1/26_thief_thief.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157698/mod_resource/content/1/thief_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157698/mod_resource/content/1/thief_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157699/mod_resource/content/1/thief_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157699/mod_resource/content/1/thief_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157701/mod_resource/content/1/29_walking_encyclopaedia.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157701/mod_resource/content/1/29_walking_encyclopaedia.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157702/mod_resource/content/1/walking_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157702/mod_resource/content/1/walking_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157703/mod_resource/content/1/walking_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157703/mod_resource/content/1/walking_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1612,73 +1612,73 @@
           "children": [
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157706/mod_resource/content/1/06_excursion.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157706/mod_resource/content/1/06_excursion.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157707/mod_resource/content/1/excursion_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157707/mod_resource/content/1/excursion_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157708/mod_resource/content/1/excursion_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157708/mod_resource/content/1/excursion_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157710/mod_resource/content/1/09_kite_for_rent.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157710/mod_resource/content/1/09_kite_for_rent.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157711/mod_resource/content/1/kiteforrent_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157711/mod_resource/content/1/kiteforrent_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157712/mod_resource/content/1/kiteforrent_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157712/mod_resource/content/1/kiteforrent_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157714/mod_resource/content/1/12_no_hiding_place.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157714/mod_resource/content/1/12_no_hiding_place.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157715/mod_resource/content/1/nohidingplace_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157715/mod_resource/content/1/nohidingplace_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157716/mod_resource/content/1/nohidingplace_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157716/mod_resource/content/1/nohidingplace_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157718/mod_resource/content/1/21_the_artwork.mp3?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157718/mod_resource/content/1/21_the_artwork.mp3",
               "children": [],
               "content-type": "audio/mp3"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157719/mod_resource/content/1/artwork_transcript.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157719/mod_resource/content/1/artwork_transcript.pdf",
               "children": [],
               "content-type": "application/pdf"
             },
             {
               "kind": "NoDownloadWebResource",
-              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157721/mod_resource/content/1/artwork_synopsis.pdf?forcedownload=1",
+              "url": "http://www.open.edu/openlearncreate/pluginfile.php/157721/mod_resource/content/1/artwork_synopsis.pdf",
               "children": [],
               "content-type": "application/pdf"
             }
@@ -1693,103 +1693,103 @@
       "children": [
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158024/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%20Combined.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158024/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%20Combined.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158008/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2001.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158008/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2001.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158009/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2002.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158009/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2002.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158010/mod_resource/content/4/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2003.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158010/mod_resource/content/4/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2003.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158011/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2004.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158011/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2004.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158012/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2005.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158012/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2005.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158013/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2006.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158013/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2006.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158014/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2007.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158014/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2007.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158015/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2008.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158015/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2008.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158016/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2009.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158016/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2009.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158017/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2010.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158017/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2010.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158018/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2011.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158018/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2011.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158019/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2012.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158019/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2012.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158020/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2013.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158020/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2013.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158021/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2014.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158021/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2014.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158022/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2015.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158022/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%2015.pdf",
           "children": [],
           "content-type": "application/pdf"
         },
         {
           "kind": "NoDownloadWebResource",
-          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158023/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%20Additional_Resources.pdf?forcedownload=1",
+          "url": "http://www.open.edu/openlearncreate/pluginfile.php/158023/mod_resource/content/3/0000%20-%20Open%20University%20-%20Tessa%20Training%20Packs%20-%20Additional_Resources.pdf",
           "children": [],
           "content-type": "application/pdf"
         }

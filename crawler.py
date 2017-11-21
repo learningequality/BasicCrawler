@@ -173,6 +173,9 @@ class BasicCrawler(object):
           - reason (str) contains contet-type if one of NODOWNLOAD_CONTENT_TYPES
             otherwise expalins another reason why shouldn't be downloaded
         """
+        save = url
+        url = self.cleanup_url(url)
+
         if not self.should_visit_url(url):
             return (url, False, 'SHOULDNT VISIT')
         head_response = self.make_request(url, method='HEAD')
@@ -182,6 +185,8 @@ class BasicCrawler(object):
                 return (head_response.url, True, 'go GET it')
             else:
                 print('Skipping', url, 'because it has content type', content_type)
+                if 'forcedownload' in url or 'forcedownload' in save:
+                    print('forced still here..', save, url)
                 return (head_response.url, False, content_type)
         else:
             return (url, False, 'HEAD request failed')
@@ -204,6 +209,7 @@ class BasicCrawler(object):
 
     def enqueue_url_and_context(self, url, context, force=False):
         # TODO(ivan): clarify crawl-only-once logic and use of force flag in docs
+        url = self.cleanup_url(url)
         if url not in self.global_urls_seen_count.keys() or force:
             # print('adding to queue:  url=', url)
             self.queue.put((url, context))
@@ -225,7 +231,7 @@ class BasicCrawler(object):
         Basic handler that adds current page to parent's children array and adds
         all links on current page to the crawling queue.
         """
-        # print('in on_page', url)
+        print('in on_page', url)
         page_dict = dict(
             kind='PageWebResource',
             url=url,
@@ -503,6 +509,7 @@ class BasicCrawler(object):
 
             # 2. We don't want to download media files like PDFs and ZIP files
             url, verdict, reason = self.should_download_url(original_url)
+            url = self.cleanup_url(url)  # WHY meed this??<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             if verdict == False:
                 rsrc_dict = dict(
                     kind='NoDownloadWebResource',
