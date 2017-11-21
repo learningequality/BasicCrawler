@@ -167,20 +167,24 @@ class BasicCrawler(object):
         """
         Returns True if url is not in IGNORE_URLS and a HTTP HEAD request has a
         content-type that is not in NODOWNLOAD_CONTENT_TYPES.
-        Returns (vertict, reason) where verdict is bool and reason (str) expalins.
+        Returns (url, vertict, reason) where
+          - url is the url after redirects,
+          - verdict is bool
+          - reason (str) contains contet-type if one of NODOWNLOAD_CONTENT_TYPES
+            otherwise expalins another reason why shouldn't be downloaded
         """
         if not self.should_visit_url(url):
-            return False
+            return (url, False, 'SHOULDNT VISIT')
         head_response = self.make_request(url, method='HEAD')
         if head_response:
             content_type = head_response.headers.get('content-type', None)
             if content_type and content_type not in self.NODOWNLOAD_CONTENT_TYPES:
-                return (True, 'go GET it')
+                return (head_response.url, True, 'go GET it')
             else:
                 print('Skipping', url, 'because it has content type', content_type)
-                return (False, content_type)
+                return (head_response.url, False, content_type)
         else:
-            return (False, 'HEAD request failed')
+            return (url, False, 'HEAD request failed')
 
 
 
@@ -498,15 +502,17 @@ class BasicCrawler(object):
             original_url, context = self.get_url_and_context()
 
             # 2. We don't want to download media files like PDFs and ZIP files
-            verdict, reason = self.should_download_url(original_url)
+            url, verdict, reason = self.should_download_url(original_url)
             if verdict == False:
                 rsrc_dict = dict(
                     kind='NoDownloadWebResource',
-                    url=original_url,
+                    url=url,
                     children=[],
                 )
                 if reason in self.NODOWNLOAD_CONTENT_TYPES:
                     rsrc_dict['content-type'] = reason
+                if url != original_url:
+                    context['original_url'] = original_url
                 context['parent']['children'].append(rsrc_dict)
                 # TODO(ivan): resolve content-type to file type label using le-utils lookup
                 continue
@@ -523,8 +529,6 @@ class BasicCrawler(object):
 
             # annotate context to keep track of URL befor redirects
             if url != original_url:
-                print('<'+original_url+'>')
-                print('|'+url+'|')
                 context['original_url'] = original_url
 
 

@@ -3,23 +3,11 @@ Basic web crawler that automates website exploration and producing web resource 
 
 
 
-TODO
-----
-
-  - Finish "is file" logic to check content-type before downloading to avoid large downloads
-     - infer file from extentsion in URL
-     - else make HEAD request to check for `Content-Type: application/zip`
-  - Use HEAD to check for redirects first (apply "is file" logic to redirected URLs)
-  - Remove hacks from crawley.py
-  - def cleanup_url(self, url) in base class
-    * ability to drop dynamic parts of URL might become useful (e.g. query strings containing session IDs) (but wait until needed)
-
-  - REDO tessa claanly step by step...
-
-
-
 Version 0.2 TODO
 ----------------
+  - Finish "is file" logic to check content-type before downloading to avoid large downloads
+     - infer file from extentsion in URL
+
 * Make a single IGNORE_URLS list that accpets:
    - full urls (string)
    - compiled RE objects

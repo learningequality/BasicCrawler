@@ -14,6 +14,9 @@ TESSA_LANG_URL_MAP = {
     'ar': 'http://www.open.edu/openlearncreate/course/view.php?id=2198',
     'sw': 'http://www.open.edu/openlearncreate/course/view.php?id=2199',
 }
+SUBPAGE_RE = re.compile('.*mod/subpage/.*')
+CONTENT_RE = re.compile('.*mod/oucontent/.*')
+RESOURCE_RE = re.compile('.*mod/resource/.*')
 
 
 class TessaCrawler(BasicCrawler):
@@ -68,6 +71,7 @@ class TessaCrawler(BasicCrawler):
             'tessa_language_page': self.on_tessa_language_page,
             'subpage': self.on_subpage,
             'oucontent': self.on_oucontent,
+            'resource': self.on_resource,
         }
 
 
@@ -80,6 +84,8 @@ class TessaCrawler(BasicCrawler):
         url = re.sub('&printable=1', '', url)
         url = re.sub('&content=scxml', '', url)
         url = re.sub('&notifyeditingon=1', '', url)
+        url = re.sub('\?forcedownload=1', '', url)
+        url = re.sub('&forcedownload=1', '', url)
         return url
 
 
@@ -103,19 +109,13 @@ class TessaCrawler(BasicCrawler):
         # attach this page as another child in parent page
         context['parent']['children'].append(page_dict)
 
-
-        CONTENT_RE = re.compile('.*mod/oucontent/.*')
-        SUBPAGE_RE = re.compile('.*mod/subpage/.*')
-
         course_content_div = page.find(class_="course-content")
         links = course_content_div.find_all('a')
         for i, link in enumerate(links):
             if link.has_attr('href'):
                 link_url = self.normalize_href_relto_curpage(link['href'], url)
                 if self.should_visit_url(link_url):
-
                     context = {'parent':page_dict}
-
                     if SUBPAGE_RE.match(link_url):
                         context.update({'kind':'subpage'})
                         self.enqueue_url_and_context(link_url, context)
@@ -123,17 +123,7 @@ class TessaCrawler(BasicCrawler):
                         context.update({'kind':'oucontent'})
                         self.enqueue_url_and_context(link_url, context)
                     else:
-                        print('Skipping link', link_url)
-
-                else:
-                    pass
-                    ## Use this when debugging to also add links not-followed to output
-                    # page_dict['children'].append({
-                    #     'url': link_url,
-                    #     'kind': 'NoFollowLink',
-                    #     'parent': page_dict,
-                    #     'children': [],
-                    # })
+                        print('Skipping link', link_url, 'on page', url)
             else:
                 pass
                 # print(i, 'nohref', link)
@@ -152,11 +142,31 @@ class TessaCrawler(BasicCrawler):
         # attach this page as another child in parent page
         context['parent']['children'].append(subpage_dict)
 
+        course_content_div = page.find(class_="pagecontent-content")
+        links = course_content_div.find_all('a')
+        for i, link in enumerate(links):
+            if link.has_attr('href'):
+                link_url = self.normalize_href_relto_curpage(link['href'], url)
+                if self.should_visit_url(link_url):
+                    context = {'parent':subpage_dict}
+                    if SUBPAGE_RE.match(link_url):
+                        context.update({'kind':'subpage'})
+                        self.enqueue_url_and_context(link_url, context)
+                    elif CONTENT_RE.match(link_url):
+                        context.update({'kind':'oucontent'})
+                        self.enqueue_url_and_context(link_url, context)
+                    elif RESOURCE_RE.match(link_url):
+                        context.update({'kind':'resource'})
+                        self.enqueue_url_and_context(link_url, context)
+                    else:
+                        print('>>> Skipping link', link_url)
+            else:
+                pass
+                print(i, 'nohref', link)
 
 
     def on_oucontent(self, url, page, context):
-        print('Procesing oucontent', url)
-        print('Procesing subpage', url)
+        print('Procesing oucontent', url, self.get_title(page))
         oucontent_dict = dict(
             kind='TessaContent',
             url=url,
@@ -169,48 +179,18 @@ class TessaCrawler(BasicCrawler):
         context['parent']['children'].append(oucontent_dict)
 
 
-
-
-    def on_page(self, url, page, context):
-        """
-        Basic handler that adds current page to parent's children array and adds
-        all links on current page to the crawling queue.
-        """
-        print('in on_page', url)
-        return
-        page_dict = dict(
-            kind='PageWebResource',
+    def on_resource(self, url, page, context):
+        print('Procesing resource', url, self.get_title(page))
+        resource_dict = dict(
+            kind='TessaResource',
             url=url,
+            title=self.get_title(page),
             children=[],
         )
-        page_dict.update(context)
+        resource_dict.update(context)
 
-        # attach this page as another child in parent page
-        context['parent']['children'].append(page_dict)
-
-        # HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS HACKS
-        course_content_div = page.find(class_="course-content")
-        if not course_content_div:
-            course_content_div = page.find(id="region-main")
-
-        links = course_content_div.find_all('a')
-        for i, link in enumerate(links):
-            if link.has_attr('href'):
-                link_url = self.normalize_href_relto_curpage(link['href'], url)
-                if self.should_visit_url(link_url):
-                    self.enqueue_url_and_context(link_url, {'parent':page_dict})
-                else:
-                    pass
-                    ## Use this when debugging to also add links not-followed to output
-                    # page_dict['children'].append({
-                    #     'url': link_url,
-                    #     'kind': 'NoFollowLink',
-                    #     'parent': page_dict,
-                    #     'children': [],
-                    # })
-            else:
-                pass
-                # print(i, 'nohref', link)
+        # attach this resource as another child in parent page
+        context['parent']['children'].append(resource_dict)
 
 
 # CLI
