@@ -586,12 +586,7 @@ class BasicCrawler(object):
 
         # Save output
         if save_web_resource_tree:
-            destpath = self.CRAWLING_STAGE_OUTPUT
-            parent_dir, _ = os.path.split(destpath)
-            if not os.path.exists(parent_dir):
-                os.makedirs(parent_dir, exist_ok=True)
-            with open(destpath, 'w') as wrt_file:
-                json.dump(channel_dict, wrt_file, indent=2)
+            write_web_resource_tree_json(channel_dict)
 
         # Display debug info
         if debug:
@@ -599,6 +594,13 @@ class BasicCrawler(object):
 
         return channel_dict
 
+    def write_web_resource_tree_json(self, channel_dict):
+        destpath = self.CRAWLING_STAGE_OUTPUT
+        parent_dir, _ = os.path.split(destpath)
+        if not os.path.exists(parent_dir):
+            os.makedirs(parent_dir, exist_ok=True)
+        with open(destpath, 'w') as wrt_file:
+            json.dump(channel_dict, wrt_file, indent=2)
 
     def download_page(self, url, *args, **kwargs):
         """

@@ -2,6 +2,11 @@
 Basic web crawler that automates website exploration and producing web resource trees.
 
 
+TODO
+----
+  - Add sane logging
+  - Add `devmode`
+
 
 Version 0.2 TODO
 ----------------
