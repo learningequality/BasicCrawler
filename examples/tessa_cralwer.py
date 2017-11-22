@@ -3,8 +3,7 @@ import argparse
 import re
 from urllib.parse import urljoin, urldefrag
 
-
-from crawler import BasicCrawler
+from basiccrawler.crawler import BasicCrawler
 
 
 TESSA_HOME_URL = 'http://www.tessafrica.net/home'   # content is not here though...

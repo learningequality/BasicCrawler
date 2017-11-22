@@ -1,4 +1,4 @@
-from .crawler imprt BasicCrawler
+from basiccrawler.crawler import BasicCrawler
 
 
 

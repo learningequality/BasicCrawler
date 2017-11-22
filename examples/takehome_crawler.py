@@ -2,7 +2,10 @@
 
 from urllib.parse import urljoin
 
-from crawler import BasicCrawler
+from basiccrawler.crawler import BasicCrawler
+
+from basiccrawler.crawler import LOGGER, logging
+LOGGER.setLevel(logging.INFO)
 
 
 class TakeHomeCrawler(BasicCrawler):

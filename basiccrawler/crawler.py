@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from collections import defaultdict
 import json
+import logging
 import re
 import os
 import time
@@ -14,6 +15,16 @@ import queue
 # parse HTML
 from bs4 import BeautifulSoup
 
+
+
+# LOGGING
+################################################################################
+logging.getLogger("cachecontrol.controller").setLevel(logging.WARNING)
+logging.getLogger("requests.packages").setLevel(logging.WARNING)
+from ricecooker.config import LOGGER
+__logging_handler = logging.StreamHandler()
+LOGGER.addHandler(__logging_handler)
+LOGGER.setLevel(logging.INFO)
 
 
 
@@ -173,22 +184,18 @@ class BasicCrawler(object):
           - reason (str) contains contet-type if one of NODOWNLOAD_CONTENT_TYPES
             otherwise expalins another reason why shouldn't be downloaded
         """
-        print('in should_download_url', url)
-        save = url
         url = self.cleanup_url(url)
-        print('in should_download_url after clanup', url)
 
         if not self.should_visit_url(url):
             return (url, False, 'SHOULDNT VISIT')
+
         head_response = self.make_request(url, method='HEAD')
         if head_response:
             content_type = head_response.headers.get('content-type', None)
             if content_type and content_type not in self.NODOWNLOAD_CONTENT_TYPES:
                 return (head_response.url, True, 'go GET it')
             else:
-                print('Skipping', url, 'because it has content type', content_type)
-                if 'forcedownload' in url or 'forcedownload' in save:
-                    print('forced still here..', save, url)
+                LOGGER.debug('Skipping ' + url + ' because it has content type ' + content_type)
                 return (head_response.url, False, content_type)
         else:
             return (url, False, 'HEAD request failed')
@@ -213,11 +220,11 @@ class BasicCrawler(object):
         # TODO(ivan): clarify crawl-only-once logic and use of force flag in docs
         url = self.cleanup_url(url)
         if url not in self.global_urls_seen_count.keys() or force:
-            # print('adding to queue:  url=', url)
+            LOGGER.debug('adding to queue:  url=' + url)
             self.queue.put((url, context))
         else:
             pass
-            # print('Not going to crawl url', url, 'beacause previously seen.')
+            # LOGGER.debug('Not going to crawl url ' + url + 'beacause previously seen.')
         self.global_urls_seen_count[url] += 1
 
     def enqueue_path_and_context(self, path, context, force=False):
@@ -233,7 +240,7 @@ class BasicCrawler(object):
         Basic handler that adds current page to parent's children array and adds
         all links on current page to the crawling queue.
         """
-        print('in on_page', url)
+        LOGGER.debug('in on_page ' + url)
         page_dict = dict(
             kind='PageWebResource',
             url=url,
@@ -261,7 +268,7 @@ class BasicCrawler(object):
                     # })
             else:
                 pass
-                # print(i, 'nohref', link)
+                # LOGGER.debug('a with no nohref found ' + str(link))
 
 
 
@@ -413,8 +420,10 @@ class BasicCrawler(object):
             """
             seen_count = self.global_urls_seen_count[url]
             if debug:
-                print('seen_count/total_urls_seen_count=', float(seen_count)/total_urls_seen_count,
-                        '=', seen_count, '/', total_urls_seen_count, self.url_to_path(url))
+                LOGGER.debug('seen_count/total_urls_seen_count='
+                              + str(float(seen_count)/total_urls_seen_count)
+                              + '=' + str(seen_count) + '/' + str(total_urls_seen_count)
+                              + self.url_to_path(url))
             # if previously determined to be a global nav link
             for global_nav_resource in global_nav_nodes['children']:
                 if url == global_nav_resource['url']:
@@ -428,7 +437,8 @@ class BasicCrawler(object):
             for child in subtree['children']:
                 child_url = child['url']
                 if len(child['children'])== 0 and _is_likely_global_nav(child_url):
-                    # print('Found candidate for global nav url =', child_url, 'adding to global_nav_nodes')
+                    LOGGER.debug('Found candidate for global nav url=' + str(child_url)
+                                  + 'adding to global_nav_nodes')
                     global_nav_resource = dict(
                         kind='GlobalNavLink',
                         url=child_url,
@@ -458,10 +468,9 @@ class BasicCrawler(object):
         def recusive_visit1_rm_global_nav_children(subtree):
             newchildren = []
             for child in subtree['children']:
-                # print(child)
                 child_url = child['url']
                 if len(child['children'])== 0 and child_url in global_nav_urls:
-                    print('Found global nav url =', child_url, ' removing from web resource tree')
+                    LOGGER.info('Removing global nav url =' + child_url)
                 else:
                     clean_child = recusive_visit1_rm_global_nav_children(child)
                     newchildren.append(clean_child)
@@ -504,7 +513,6 @@ class BasicCrawler(object):
 
         counter = 0
         while not self.queue_empty():
-            # print('queue.qsize()=', self.queue.qsize())
 
             # 1. GET next url to crawl an its context dict
             original_url, context = self.get_url_and_context()
@@ -529,7 +537,7 @@ class BasicCrawler(object):
             # 3. Let's go GET that url
             url, page = self.download_page(original_url)
             if page is None:
-                print('GET on URL', original_url, 'did not return page')
+                LOGGER.warning('GET ' + original_url + ' did not return page')
                 self.broken_links.append(original_url)
                 continue
 
@@ -558,7 +566,8 @@ class BasicCrawler(object):
                     else:
                         raise ValueError('Unrecognized handler type', handler, 'Should be method or name of method.')
                 else:
-                    print('No handler registered for kind', kind, ' so falling back to on_page handler.')
+                    LOGGER.info('No handler registered for kind ' + str(kind) 
+                                 + ' so falling back to on_page handler.')
 
             # B. URL rules handler dispatlogic
             path = url.replace(self.MAIN_SOURCE_DOMAIN, '')
@@ -612,8 +621,7 @@ class BasicCrawler(object):
             return (None, None)
         html = response.content
         page = BeautifulSoup(html, "html.parser")
-
-        print('Downloaded page with url', url, self.get_title(page))
+        LOGGER.debug('Downloaded page ' + str(url) + ' title:' + self.get_title(page))
         return (response.url, page)
 
 
@@ -630,14 +638,14 @@ class BasicCrawler(object):
                 break
             except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
                 retry_count += 1
-                print("Error with connection ('{msg}'); about to perform retry {count} of {trymax}."
+                LOGGER.warning("Connection error ('{msg}'); about to perform retry {count} of {trymax}."
                       .format(msg=str(e), count=retry_count, trymax=max_retries))
                 time.sleep(retry_count * 1)
                 if retry_count >= max_retries:
-                    print("FAILED TO RETRIEVE:", url)
+                    LOGGER.error("FAILED TO RETRIEVE:" + str(url))
                     return None
         if response.status_code != 200:
-            print("ERROR", response.status_code, url)
+            LOGGER.error("ERROR " + str(response.status_code) + ' when getting url=' + url)
             return None
         return response
 
