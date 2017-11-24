@@ -4,7 +4,8 @@ Basic web crawler that automates website exploration and producing web resource 
 
 TODO
 ----
-  - Add sane logging
+  - Cleanups form paper notes
+  - Finish link-following logic
   - Add `devmode`
 
 
@@ -32,8 +33,10 @@ Feature ideas
   - don't block for HTTP
   - allow multiple workers getting from queue
 
-
-
+* content_selector hints for default `on_page` handler to follow links only within
+  a certain subset of the HTML tree. Can have:
+     - site-wide selector at class level
+     - pass in additional `content_selector` from referring page via context dict
 
 
 Usage
