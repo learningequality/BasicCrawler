@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from collections import defaultdict
+from collections import defaultdict, Counter
 import json
 import logging
 import re
@@ -283,8 +283,6 @@ class BasicCrawler(object):
         print('#'*80)
         print('# CRAWLER RECOMMENDATIONS BASED ON URLS ENCOUNTERED:')
         print('#'*80)
-        # crawler.print_tree(channel_tree, print_depth=2)
-        # crawler.print_tree(channel_tree, print_depth=3)
 
         print('\n1. These URLs are very common and look like global navigation links:')
         global_nav_candidates = self.infer_gloabal_nav(channel_tree)
@@ -321,7 +319,6 @@ class BasicCrawler(object):
             for child in subtree['children']:
                 recusive_visit_extract_urls(child)
         recusive_visit_extract_urls(tree_root)
-
 
         # Build path trie
         subpath_trie = {}
@@ -360,6 +357,19 @@ class BasicCrawler(object):
         return sorted_path_count_tuples[0:show_top]
 
 
+    def compute_subtree_stats(self, subtree, counter=None):
+        """
+        Recusively compute counts of different `kind` web sesources in subtree.
+        """
+        if counter is None:
+            counter = Counter()
+            # don't count subtree itself, only its children
+        else:
+            counter[subtree['kind']] += 1
+        if 'children' in subtree:
+            for child in subtree['children']:
+                self.compute_subtree_stats(child, counter=counter)
+        return counter
 
     def print_tree(self, tree_root, print_depth=100, hide_keys=[]):
         """
@@ -394,16 +404,17 @@ class BasicCrawler(object):
                     for child in node['children']:
                         print_web_resource_node(child, depth=depth+1)
             else:
-                    print(' '*INDENT_BY*depth + '   ', 'has', str(len(node['children'])), 'children')
+                counts = self.compute_subtree_stats(node)  # summary counts
+                if counts:
+                    counts_str = str(counts).replace('Counter', '').strip('()')
+                    print(' '*INDENT_BY*depth + '   ', 'children counts:', counts_str)
         print_web_resource_node(tree_root)
-
 
 
     def infer_gloabal_nav(self, tree_root, debug=False):
         """
         Returns a list of web resources that are likely to be global naviagin links
         like /about, /contact, etc.
-        Adding the urls of these resources to
         """
         global_nav_nodes = dict(
             url=self.MAIN_SOURCE_DOMAIN,
@@ -566,7 +577,7 @@ class BasicCrawler(object):
                     else:
                         raise ValueError('Unrecognized handler type', handler, 'Should be method or name of method.')
                 else:
-                    LOGGER.info('No handler registered for kind ' + str(kind) 
+                    LOGGER.info('No handler registered for kind ' + str(kind)
                                  + ' so falling back to on_page handler.')
 
             # B. URL rules handler dispatlogic
