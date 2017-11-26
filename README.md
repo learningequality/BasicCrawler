@@ -4,15 +4,12 @@ Basic web crawler that automates website exploration and producing web resource 
 
 TODO
 ----
-  - Cleanups form paper notes
-  - Finish link-following logic
-  - Add `devmode`
 
 
 Version 0.2 TODO
 ----------------
   - Finish "is file" logic to check content-type before downloading to avoid large downloads
-     - infer file from extentsion in URL
+     - infer file from extentsion in URL??
 
 * Make a single IGNORE_URLS list that accpets:
    - full urls (string)
@@ -37,6 +34,11 @@ Feature ideas
   a certain subset of the HTML tree. Can have:
      - site-wide selector at class level
      - pass in additional `content_selector` from referring page via context dict
+
+* Automatically detect standard embed tags (audio, video, pdfs) and add links to
+  web resource tree in default `on_page` handler.
+
+
 
 
 Usage

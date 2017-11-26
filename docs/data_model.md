@@ -2,11 +2,28 @@ Data model
 ==========
 
 
+LE Trees
+--------
+All tree data structures follow the same structure based on `children` attribute
+which is list-like and contains the child nodes. Leaf nodes can be recognized by
+their zero-length `children` attributes.
+
+    {
+      "key":"parentval",
+      "children":[
+         {"key": "childval1", "children":[]},
+         {"key": "childval2", "children":[]}
+      ]
+    }
+
+Additionally, while chef is running, nodes are annotated with `parent` attributes
+that point to the parent node in the tree.
+
+
 
 
 Crawling data model
 -------------------
-
 During the crawl web resources are represented objects with different attributes.
 The `url` attribute will always be present.
 
@@ -51,8 +68,7 @@ The output of of the crawling stage is the `chefdata/trees/web_resource_tree.jso
 
 Scraping output as SousChef Archive
 -----------------------------------
-
-Use 
+See [souschef docs](https://github.com/learningequality/ricecooker/blob/master/docs/souschef.md).
 
 
 
@@ -69,7 +85,7 @@ needed to create an appropriate Kolibri Studio TopicNode or ContentNode.
 
 For example, when the scraper encounters the web resource record:
 
-    {-
+    {
       "kind": "LessonWebResource",
       "url": "http://site.org/path/lesson.html",
       "somekey": "Some extra value passed from parent page to child page",
