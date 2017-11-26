@@ -1,0 +1,531 @@
+{
+  "kind": "PageWebResource",
+  "url": "https://applieddigitalskills.withgoogle.com/en/curriculum",
+  "children": [
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/en/apps",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/en/apps",
+          "children": []
+        }
+      ],
+      "original_url": "https://applieddigitalskills.withgoogle.com/apps"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/en/high-school",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/en/high-school",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/brainstorm-story-ideas/if-then-adventure-stories-introduction.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/unit-introduction.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/unit-introduction.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/guide-to-an-area/create-an-area-guide/organize-data-to-create-an-area-guide.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-and-budget/make-a-long-term-spending-decision/budget-to-make-good-financial-decisions.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/create-an-editing-tool-with-programming/identify-programming-concepts-in-everyday-life/using-programming-to-automate-tasks.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/pick-the-next-box-office-hit/review-movie-ideas/pick-the-next-box-office-hit-intro.html",
+          "children": []
+        }
+      ],
+      "original_url": "https://applieddigitalskills.withgoogle.com/high-school"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/en/adults",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/en/adults",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event-college-and-continuing-education/course-introduction/course-introduction.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-and-budget-college-and-continuing-education/make-a-long-term-spending-decision/budget-to-make-good-financial-decisions.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/use-google-to-get-a-new-job-college-and-continuing-education/use-google-to-get-a-new-job--unit-introduction/use-google-to-get-a-new-job--unit-introduction.html",
+          "children": []
+        }
+      ],
+      "original_url": "https://applieddigitalskills.withgoogle.com/adults"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/en/educators",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/en/educators",
+          "children": []
+        }
+      ],
+      "original_url": "https://applieddigitalskills.withgoogle.com/educators"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/en/curriculum",
+      "children": [],
+      "original_url": "https://applieddigitalskills.withgoogle.com/curriculum"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://accounts.google.com/ServiceLogin?passive=1209600&continue=https://accounts.google.com/o/oauth2/auth?client_id%3D697756715164-tg5ir0ti7hocn6mbb5m390n3d6gqoskc.apps.googleusercontent.com%26redirect_uri%3Dhttps://applieddigitalskills.withgoogle.com/hybridauth/endpoint?hauth.done%253DGoogle%26response_type%3Dcode%26scope%3Dhttps://www.googleapis.com/auth/userinfo.profile%2Bhttps://www.googleapis.com/auth/userinfo.email%26access_type%3Donline%26prompt%3Dselect_account%26hl%3Den%26from_login%3D1%26as%3D-351fe9e05fe0beb0&hl=en&oauth=1&sarp=1&scc=1",
+      "children": [],
+      "original_url": "https://applieddigitalskills.withgoogle.com/apps/route"
+    },
+    {
+      "kind": "BrokenLink",
+      "url": "https://applieddigitalskills.withgoogle.com/user/logout?destination=/apps",
+      "children": []
+    },
+    {
+      "kind": "BrokenLink",
+      "url": "https://applieddigitalskills.withgoogle.com/apps/dashboard",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/overview.html",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/introduction-to-applied-digital-skills/google-apps-overview.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/introduction-to-applied-digital-skills/google-apps-pre-survey.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/brainstorm-story-ideas/introduction-to-group-decision-making.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/brainstorm-story-ideas/brainstorm-story-elements.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/brainstorm-story-ideas/wrap-up.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/create-an-ifthen-adventure/introduction-to-ifthen-adventure-stories.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/create-an-ifthen-adventure/set-up-your-first-slides.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/create-an-ifthen-adventure/create-choices-and-links.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/create-an-ifthen-adventure/connect-and-create.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/create-an-ifthen-adventure/reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/wrap-up/unit-wrap.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/wrap-up/if-then-adventure-stories-reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/if-then-adventure-stories/wrap-up/if-then-adventure-stories-extensions.html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/overview.html",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/credibility-clues.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/select-a-topic-and-write-your-fake-article.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/share-and-evaluate-articles.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/wrap-up-credibility-checks.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/test-for-credibility/reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/choose-a-research-topic.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/search-the-internet-for-information.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/record-your-research-notes.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/write-a-paragraph-about-your-topic.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/wrap-up-researching-a-topic.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/explore-a-topic-with-research-and-collaboration/reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/introduction-to-coding.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/explore-the-script-editor.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/create-an-alert.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/add-visual-appeal-to-your-popup.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/show-an-html-formatted-message.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/make-the-pop-up-open-automatically.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/code-welcome-screen/reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/wrap-up/unit-wrap.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/wrap-up/research-and-develop-a-topic-reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/research-and-develop-a-topic/wrap-up/research-and-develop-a-topic-extensions.html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-ethics-and-security/overview.html",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-ethics-and-security/technology-ethics-and-security/explore-create-communicate-introduction.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-ethics-and-security/technology-ethics-and-security/introduction-to-the-topics.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-ethics-and-security/technology-ethics-and-security/explore-technology-ethics-and-security.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-ethics-and-security/technology-ethics-and-security/technology-ethics-and-security-reflection.html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/overview.html",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/choose-an-event.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/event-questions-and-research.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/give-and-receive-feedback.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/organize-your-event-plan.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/wrap-up-event-selection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/select-and-research-an-event/activity-reflection-for-select-and-research-an-event.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/introduction-to-spreadsheets.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/understand-spreadsheet-vocabulary.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/add-items-to-your-spreadsheet.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/add-columns-for-task-owners.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/complete-task-list-and-get-feedback.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/wrap-up-to-do-list.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/plan-tasks-for-your-event/activity-reflection-for-plan-tasks-for-you-event.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/introduction-to-event-communication.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/create-a-shared-calendar.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/schedule-meetings-and-events.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/add-an-event-email-signature.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/email-your-team.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/wrap-up-event-communication.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/communicate-with-gmail-and-calendar/reflection.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/introduction-to-logos.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/add-and-edit-images.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/add-and-format-text.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/advanced-options-in-google-drawings.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/logo-wrap-up.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/create-a-logo/activity-reflection-for-create-a-logo.html",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event/build-a-flyer-to-advertise/introduction-to-flyers.html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/guide-to-an-area/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technologys-role-in-current-events/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-and-budget/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/create-an-editing-tool-with-programming/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/technology-at-work/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/pick-the-next-box-office-hit/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/equal-access-to-technology/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-an-event-college-and-continuing-education/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/plan-and-budget-college-and-continuing-education/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://applieddigitalskills.withgoogle.com/applied-digital-skills/en/use-google-to-get-a-new-job-college-and-continuing-education/overview.html",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "https://grow.google/",
+      "children": [],
+      "original_url": "https://applieddigitalskills.withgoogle.com/footer"
+    }
+  ]
+}

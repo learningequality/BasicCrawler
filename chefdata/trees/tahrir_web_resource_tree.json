@@ -1,0 +1,421 @@
+{
+  "kind": "PageWebResource",
+  "url": "http://tahriracademy.org/",
+  "children": [
+    {
+      "kind": "PageWebResource",
+      "url": "https://www.facebook.com/login.php?skip_api_login=1&api_key=737357366291128&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.5%2Fdialog%2Foauth%3Fredirect_uri%3Dhttp%253A%252F%252Ftahriracademy.org%252Fsocial%252Ffacebook%26display%3Dpopup%26scope%3Demail%2B%2Buser_birthday%2Buser_friends%26response_type%3Dcode%26client_id%3D737357366291128%26ret%3Dlogin%26logger_id%3D14d3062b-b4ef-23ff-9ef3-6e1a7aeab4ef&cancel_url=http%3A%2F%2Ftahriracademy.org%2Fsocial%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=popup&locale=en_US&logger_id=14d3062b-b4ef-23ff-9ef3-6e1a7aeab4ef",
+      "children": [],
+      "original_url": "http://tahriracademy.org/connect/facebook?_destination=http%3A//tahriracademy.org/connect/finish_login"
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/70/%D8%A3%D9%88%D9%84%D9%89-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/71/%D8%B9%D9%84%D9%88%D9%85-%D8%A3%D9%88%D9%84%D9%89-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/92/%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA-%D8%A3%D9%88%D9%84%D9%89-%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/81/%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/83/%D8%B9%D9%84%D9%88%D9%85-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/102/%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D9%88-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7-%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/103/%D8%A7%D9%84%D9%84%D8%BA%D8%A9-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/82/%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/108/%D8%B9%D9%84%D9%88%D9%85-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%89",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/77/%D8%A3%D9%88%D9%84%D9%89-%D8%AB%D8%A7%D9%86%D9%88%D9%8A",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/78/%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1-%D8%A3%D9%88%D9%84%D9%89-%D8%AB%D8%A7%D9%86%D9%88%D9%8A",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/109/%D9%83%D9%8A%D9%85%D9%8A%D8%A7%D8%A1-%D8%A3%D9%88%D9%84%D9%89-%D8%AB%D8%A7%D9%86%D9%88%D9%8A",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/110/%D8%B9%D9%84%D9%88%D9%85-%D8%A7%D9%84%D8%A3%D8%AD%D9%8A%D8%A7%D8%A1-%D8%A3%D9%88%D9%84%D9%89-%D8%AB%D8%A7%D9%86%D9%88%D9%8A",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/90/%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/116/%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/119/%D9%85%D9%8A%D9%83%D8%A7%D9%86%D9%8A%D9%83%D8%A7-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/223/%D9%83%D9%8A%D9%85%D9%8A%D8%A7%D8%A1-%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/91/%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/124/%D8%A7%D9%84%D8%A3%D9%82%D8%AA%D8%B5%D8%A7%D8%AF-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/126/%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/128/%D9%83%D9%8A%D9%85%D9%8A%D8%A7%D8%A1-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/132/%D9%85%D9%8A%D9%83%D8%A7%D9%86%D9%8A%D9%83%D8%A7-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/category/134/%D8%B9%D9%84%D9%88%D9%85-%D8%A7%D9%84%D8%A3%D8%AD%D9%8A%D8%A7%D8%A1-%D8%AB%D8%A7%D9%84%D8%AB%D8%A9-%D8%AB%D8%A7%D9%86%D9%88%D9%89",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/192/%D8%B9%D9%84%D9%88%D9%85-%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9-%D9%88%D8%A5%D9%86%D8%B3%D8%A7%D9%86%D9%8A%D8%A9",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/193/%D8%B9%D9%84%D9%88%D9%85-%D8%B7%D8%A8%D9%8A%D8%B9%D9%8A%D9%87",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/194/%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/195/%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/196/%D8%AA%D9%86%D9%85%D9%8A%D8%A9-%D9%88%D9%85%D9%87%D8%A7%D8%B1%D8%A7%D8%AA",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/197/%D8%B5%D8%AD%D8%A9",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/category/198/%D9%81%D9%8A%D8%AF%D9%8A%D9%88%D9%87%D8%A7%D8%AA-%D8%A3%D8%AE%D8%B1%D9%89",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/go-teach/15",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/about",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/about-us-en",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/blog",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/52",
+          "children": [
+            {
+              "kind": "PageWebResource",
+              "url": "http://tahriracademy.org/content/836/%D9%8A%D8%B9%D9%86%D9%8A-%D8%A5%D9%8A%D9%87-software-%D9%88-hardware-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+              "children": [
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/843/%D8%A5%D9%8A%D9%87-%D9%87%D9%8A-%D8%A3%D8%AC%D8%B2%D8%A7%D8%A1-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7-1",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/836/%D9%8A%D8%B9%D9%86%D9%8A-%D8%A5%D9%8A%D9%87-software-%D9%88-hardware-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/949/%D8%A7%D9%84%D9%81%D8%B1%D9%82-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84-hardware-%D9%88-software-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/837/%D9%86%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%AA%D8%B4%D8%BA%D9%8A%D9%84-%D9%87%D9%88-%D9%85%D8%AF%D9%8A%D8%B1-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/838/%D8%A5%D8%B2%D8%A7%D9%8A-%D8%AA%D8%B9%D8%B1%D9%81-%D8%A3%D9%86%D9%88%D8%A7%D8%B9-%D8%A7%D9%84-processor-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/839/%D8%B0%D8%A7%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D9%88%D8%A3%D9%86%D9%88%D8%A7%D8%B9%D9%87%D8%A7-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/840/%D8%A7%D9%84-keyboard-%D9%88%D9%85%D8%A7-%D9%82%D8%A8%D9%84%D9%87%D8%A7-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                },
+                {
+                  "kind": "PageWebResource",
+                  "url": "http://tahriracademy.org/content/841/touch-%D8%AF%D9%87-%D8%AA%D8%B4%D8%B1%D9%8A%D8%AD-%D8%A7%D9%84%D9%83%D9%85%D8%A8%D9%8A%D9%88%D8%AA%D8%B1-%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%A7",
+                  "children": []
+                }
+              ],
+              "original_url": "http://tahriracademy.org/course/show/141/195/836"
+            }
+          ]
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/48",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/23",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/21",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/20",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/13",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/10",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/9",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/8",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog/7",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/blog?page=2",
+          "children": [
+            {
+              "kind": "PageWebResource",
+              "url": "http://tahriracademy.org/blog/6",
+              "children": []
+            },
+            {
+              "kind": "PageWebResource",
+              "url": "http://tahriracademy.org/blog/5",
+              "children": []
+            },
+            {
+              "kind": "PageWebResource",
+              "url": "http://tahriracademy.org/blog/4",
+              "children": []
+            },
+            {
+              "kind": "PageWebResource",
+              "url": "http://tahriracademy.org/blog?page=1",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/contact/new",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/enzel-3allem",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/volunteer",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/16",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/17",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/18",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/32",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/36",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/37",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/volunteer/56",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/career",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/career/28",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/career/53",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/internship",
+      "children": [
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/internship/27",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/internship/39",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/internship/41",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/internship/42",
+          "children": []
+        },
+        {
+          "kind": "PageWebResource",
+          "url": "http://tahriracademy.org/internship/57",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/terms-and-conditions",
+      "children": []
+    },
+    {
+      "kind": "PageWebResource",
+      "url": "http://tahriracademy.org/content-license",
+      "children": []
+    }
+  ]
+}
