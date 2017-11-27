@@ -197,7 +197,7 @@ class BasicCrawler(object):
         # TODO(ivan): clarify crawl-only-once logic and use of force flag in docs
         url = self.cleanup_url(url)
         if url not in self.global_urls_seen_count.keys() or force:
-            # 00LOGGER.debug('adding to queue:  url=' + url)
+            # LOGGER.debug('adding to queue:  url=' + url)
             self.queue.put((url, context))
         else:
             pass
@@ -388,14 +388,13 @@ class BasicCrawler(object):
         """
         Append metadata from `head_response` for media `url` as new child of `parent`.
         """
-        url = head_response.url  # final URL of response after possible redirect
+        url = self.cleanup_url(head_response.url)  # URL after possible redirect
         media_rsrc_dict = dict(
             kind='MediaWebResource',
             url=url,
             parent=parent,
             children=[],
         )
-        #
         if url != original_url:
             media_rsrc_dict['original_url'] = original_url
         #
@@ -549,6 +548,9 @@ class BasicCrawler(object):
         def print_web_resource_node(node, depth=1):
             INDENT_BY = 3
             extra_attrs = ''
+            if node is None:
+                print('Encountered a None node in print_web_resource_node')
+                return
             if 'kind' in node:
                 extra_attrs = ' ('+node['kind']+') '
             path = self.url_to_path(node['url'])  # print paths instead of full URLs
