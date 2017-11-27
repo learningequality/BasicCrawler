@@ -1,42 +1,47 @@
-# BasicCrawler
-Basic web crawler that automates website exploration and producing web resource trees.
+BasicCrawler
+============
+
+Semi-automated crawling bot with special features for extracting web resource trees.
+
+
 
 
 TODO
 ----
+  - Update examples + notebooks
 
+  
 
 Version 0.2 TODO
 ----------------
-  - Finish "is file" logic to check content-type before downloading to avoid large downloads
-     - infer file from extentsion in URL??
 
-* Make a single IGNORE_URLS list that accpets:
-   - full urls (string)
-   - compiled RE objects
-   - functions for deciding what to ignore rather (anything callable)
+  - Make a single IGNORE_URLS list that accpets:
+    - full urls (string)
+    - compiled RE objects
+    - functions for deciding what to ignore rather (anything callable)
 
-* path to url / vice versa (and possibly elsewhere): consider `urllib.urlparse`?
- 	[e.g. `url.startwith(source_domain)` could be `source_domain in url.domain` to make it more flexible with subdomains
-  * Additional valid domains can be specified but `url_to_path_list` assumes adding CHANNEL_ROOT_DOMAIN
-   	[we may wish to expand all links based on parent URL]
-  * refactor and remove need for MAIN_SOURCE_DOMAIN and use only SOURCE_DOMAINS instead
-
+  - path to url / vice versa (and possibly elsewhere): consider `urllib.urlparse`?
+    [e.g. `url.startwith(source_domain)` could be `source_domain in url.domain`
+    to make it more flexible with subdomains
+    - Additional valid domains can be specified but `url_to_path_list` assumes adding CHANNEL_ROOT_DOMAIN
+   	  [we may wish to expand all links based on parent URL]
+    - refactor and remove need for MAIN_SOURCE_DOMAIN and use only SOURCE_DOMAINS instead
 
 
-Feature ideas
--------------
-* Asynchronous download  (not necessary but might be good for performance on large sites)
-  - don't block for HTTP
-  - allow multiple workers getting from queue
 
-* content_selector hints for default `on_page` handler to follow links only within
-  a certain subset of the HTML tree. Can have:
+Future feature ideas
+--------------------
+  - Asynchronous download  (not necessary but might be good for performance on large sites)
+    - don't block for HTTP
+    - allow multiple workers getting from queue
+  - content_selector hints for default `on_page` handler to follow links only within
+    a certain subset of the HTML tree. Can have:
      - site-wide selector at class level
      - pass in additional `content_selector` from referring page via context dict
-
-* Automatically detect standard embed tags (audio, video, pdfs) and add links to
-  web resource tree in default `on_page` handler.
+  - Automatically detect standard embed tags (audio, video, pdfs) and add links to
+    web resource tree in default `on_page` handler.
+  - Add logic infer file extension in URL?
+    (probably not needed because HEAD request is more reliable)
 
 
 

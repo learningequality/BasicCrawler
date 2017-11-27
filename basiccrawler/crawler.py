@@ -231,8 +231,10 @@ class BasicCrawler(object):
                 link_url = urljoin(url, link['href'])
                 if self.should_ignore_url(link_url):
                     pass
-                    # Use this when debugging to also add links not-followed to output
-                    # self.record_ignored_url(link_ulr, page_dict)
+                    # Uncomment three lines below for debugging to record ignored links
+                    # ignored_rsrc_dict = self.create_ignored_url_dict(link_url)
+                    # ignored_rsrc_dict['parent'] = page_dict
+                    # page_dict['children'].append(page_dict)
                 else:
                     self.enqueue_url_and_context(link_url, {'parent':page_dict})
             else:
@@ -268,14 +270,18 @@ class BasicCrawler(object):
                 LOGGER.warning('HEAD ' + original_url + ' did not return response.')
 
             if verdict == True:
-                self.record_media_file_url(context['parent'], original_url, head_response)
+                media_rsrc_dict = self.create_media_url_dict(original_url, head_response)
+                media_rsrc_dict['parent'] = context['parent']
+                context['parent']['children'].append(media_rsrc_dict)
                 continue
 
             # 3. Let's go GET that url
             url, page = self.download_page(original_url)
             if page is None:
                 LOGGER.warning('GET ' + original_url + ' did not return page.')
-                self.record_broken_link_url(context['parent'], original_url)
+                broken_link_dict = self.create_broken_link_url_dict(original_url)
+                broken_link_dict['parent'] = context['parent']
+                context['parent']['children'].append(broken_link_dict)
                 continue
 
             # cache BeatifulSoup parsed html in memory (because RAM is cheap!)
@@ -384,15 +390,14 @@ class BasicCrawler(object):
     # DEFAULT ACTIONS FOR MEDIA FILES AND BROKEN LINKS
     ############################################################################
 
-    def record_media_file_url(self, parent, original_url, head_response):
+    def create_media_url_dict(self, original_url, head_response):
         """
-        Append metadata from `head_response` for media `url` as new child of `parent`.
+        Create metadata dict from `head_response` for media `url`.
         """
         url = self.cleanup_url(head_response.url)  # URL after possible redirect
         media_rsrc_dict = dict(
             kind='MediaWebResource',
             url=url,
-            parent=parent,
             children=[],
         )
         if url != original_url:
@@ -411,34 +416,31 @@ class BasicCrawler(object):
         if content_length:
             media_rsrc_dict['content-length'] = content_length
         #
-        # append as new child of parent
-        parent['children'].append(media_rsrc_dict)
+        return media_rsrc_dict
 
 
-    def record_broken_link_url(self, parent, url):
+    def create_broken_link_url_dict(self, url):
         """
-        Record a broken link `url` as new child of `parent`.
+        Create a metadata dict for the broken link `url`.
         """
         broken_link_dict = dict(
             kind='BrokenLink',
             url=url,
-            parent=parent,
             children=[],
         )
-        parent['children'].append(broken_link_dict)
         self.broken_links.append(url)
+        return broken_link_dict
 
-    def record_ignored_url(self, parent, url):
+    def create_ignored_url_dict(self, url):
         """
-        Record a URL that mathing one of self.IGNORE_URLS as new child of `parent`.
+        Create metadata link for a URL that matches one of self.IGNORE_URLS.
         """
         ignored_url_dict = dict(
             kind='IgnoredUrl',
             url=url,
-            parent=parent,
             children=[],
         )
-        parent['children'].append(ignored_url_dict)
+        return ignored_url_dict
 
 
 
