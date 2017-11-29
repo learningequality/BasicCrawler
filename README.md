@@ -10,7 +10,7 @@ TODO
 ----
   - Update examples + notebooks
 
-  
+
 
 Version 0.2 TODO
 ----------------
@@ -70,9 +70,8 @@ The workflow is as follows
     You should inspect these suggestions and decide which should be ignored
     (i.e. not crawled or included in the web_resource_tree output).
     To ignore URLs you can edit the attributes:
-      - `IGNORE_URLS` (list of strings): crawler will ignore this URL
-      - `IGNORE_URL_PATTERNS` (list of RE objects): regular expression that do the same thing
-    Edit your crawler subclass' code and append to `IGNORE_URLS` and `IGNORE_URL_PATTERNS`
+      - `IGNORE_URLS`: crawler will ignore these URLs
+    Edit your crawler subclass' code and append to `IGNORE_URLS`
     the URLs you want to skip (anything that is not likely to contain content).
 
 3. Run the crawler again, this time there should be less noise in the output.

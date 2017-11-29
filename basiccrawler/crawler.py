@@ -39,16 +39,19 @@ class BasicCrawler(object):
     possible to consturct a web resource tree that can later be used to construct
     a ricecooker json tree, and ultimately a Kolibri channel.
     """
-    # Base class proporties
-    BASE_IGNORE_URLS = ['javascript:void(0)', '#']
-    BASE_IGNORE_URL_PATTERNS = [re.compile('^mailto:.*'), re.compile('^javascript:.*')]
-    MEDIA_CONTENT_TYPES = ['application/pdf', 'video/mpeg', 'application/zip',
-                           'audio/vorbis', 'audio/mp3', 'audio/mpeg',
-                           'image/png', 'image/jpeg', 'image/gif',
-                           'application/msword', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint',
-                           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                           'application/vnd.openxmlformats-officedocument.presentationml.presentation']
+    BASE_IGNORE_URLS = [
+        'javascript:void(0)', '#',
+        re.compile('^mailto:.*'), re.compile('^javascript:.*'),
+    ]
+    MEDIA_CONTENT_TYPES = [
+        'application/pdf', 'video/mpeg', 'application/zip',
+        'audio/vorbis', 'audio/mp3', 'audio/mpeg',
+        'image/png', 'image/jpeg', 'image/gif',
+        'application/msword', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    ]
 
     GLOBAL_NAV_THRESHOLD = 0.7
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
@@ -59,7 +62,6 @@ class BasicCrawler(object):
     START_PAGE = None           # should be defined by subclass
     START_PAGE_CONTEXT = {}     # should be defined by subclass
     IGNORE_URLS = []            # should be defined by subclass
-    IGNORE_URL_PATTERNS = []    # should be defined by subclass
     rules = []          # contains tuples (url_RE_pattern, handler_function)
     kind_handlers = {}  # mapping from web resource kinds (user defined) and handlers
                         # e.g. {'LesssonWebResource': self.on_lesson, ...}
@@ -99,6 +101,7 @@ class BasicCrawler(object):
 
 
 
+
     # GENERIC URL HELPERS
     ############################################################################
 
@@ -110,15 +113,6 @@ class BasicCrawler(object):
         url = urldefrag(url)[0]
         return url
 
-    # def path_to_url(self, path):
-    #     """
-    #     Returns url from path.
-    #     """
-    #     if path.startswith('/'):
-    #         url = self.MAIN_SOURCE_DOMAIN + path
-    #     else:
-    #         url = path
-    #     return url
 
     def url_to_path(self, url):
         """
@@ -138,16 +132,20 @@ class BasicCrawler(object):
         url = self.cleanup_url(url)
 
         # 1. run through ignore lists
-        if url in self.BASE_IGNORE_URLS or url in self.IGNORE_URLS:
-            return True
-        for pattern in self.BASE_IGNORE_URL_PATTERNS:
-            match = pattern.match(url)
-            if match:
-                return True
-        for pattern in self.IGNORE_URL_PATTERNS:
-            match = pattern.match(url)
-            if match:
-                return True
+        combined_ignore_patterns = self.BASE_IGNORE_URLS.copy()
+        combined_ignore_patterns.extend(self.IGNORE_URLS)
+        for pattern in combined_ignore_patterns:
+            if isinstance(pattern, str):
+                if url == pattern:
+                    return True
+            elif isinstance(pattern, re._pattern_type):
+                if pattern.match(url):
+                    return True
+            elif callable(pattern):
+                if pattern(url):
+                    return True
+            else:
+                raise ValueError('Unrecognized pattern in IGNORE_URLS. Use strings, REs, or callables.')
 
         # 2. check if url is on one of the specified source domains
         found = False
@@ -175,6 +173,7 @@ class BasicCrawler(object):
         else:
             LOGGER.warning('HEAD request failed for url ' + url)
             return (False, None)
+
 
 
 

@@ -15,7 +15,6 @@ class TakeHomeCrawler(BasicCrawler):
 
     SOURCE_DOMAINS = [MAIN_SOURCE_DOMAIN]
     IGNORE_URLS = []
-    IGNORE_URL_PATTERNS = []
 
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
 

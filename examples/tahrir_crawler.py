@@ -12,6 +12,7 @@ class TahrirAcademyCrawler(BasicCrawler):
     # track youtube videos crawled in order to build the 'Miscellaneous' topic
     youtube_ids_from_site = []
 
+    IGNORE_URLS = []
 
     def __init__(self):
         self.rules = [
