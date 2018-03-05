@@ -44,7 +44,9 @@ class BasicCrawler(object):
         re.compile('^mailto:.*'), re.compile('^javascript:.*'),
     ]
     MEDIA_CONTENT_TYPES = [
-        'application/pdf', 'video/mpeg', 'application/zip',
+        'application/pdf',
+        'application/zip', 'application/x-zip-compressed',
+        'video/mpeg', 'video/mp4',
         'audio/vorbis', 'audio/mp3', 'audio/mpeg',
         'image/png', 'image/jpeg', 'image/gif',
         'application/msword', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint',
