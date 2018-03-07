@@ -105,8 +105,6 @@ Future feature ideas
      - pass in additional `content_selector` from referring page via context dict
   - Automatically detect standard embed tags (audio, video, pdfs) and add links to
     web resource tree in default `on_page` handler.
-  - Add logic to infer file extension in URL?
-    (probably not needed because HEAD request is more reliable)
 
 
 

@@ -6,6 +6,7 @@ import logging
 import re
 import os
 import queue
+import sys
 import time
 from urllib.parse import urljoin, urldefrag
 
@@ -43,9 +44,10 @@ class BasicCrawler(object):
         'javascript:void(0)', '#',
         re.compile('^mailto:.*'), re.compile('^javascript:.*'),
     ]
+    MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'mp3', 'm4a', 'ogg']
     MEDIA_CONTENT_TYPES = [
         'application/pdf',
-        'application/zip', 'application/x-zip-compressed',
+        'application/zip', 'application/x-zip-compressed', 'application/octet-stream',
         'video/mpeg', 'video/mp4',
         'audio/vorbis', 'audio/mp3', 'audio/mpeg',
         'image/png', 'image/jpeg', 'image/gif',
@@ -53,7 +55,6 @@ class BasicCrawler(object):
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        'application/octet-stream',
     ]
 
     GLOBAL_NAV_THRESHOLD = 0.7
@@ -74,7 +75,7 @@ class BasicCrawler(object):
     CACHE = FileCache('.webcache')
 
     # queue used keep track of what pages we should crawl next
-    queue = queue.Queue()
+    queue = None  # instance of queue.Queue created insite `crawrl` method
 
     # keep track of how many times a given URL is seen during crawl
     # first time a URL is seen will be automatically followed, but
@@ -85,13 +86,15 @@ class BasicCrawler(object):
 
 
     def __init__(self, main_source_domain=None, start_page=None):
+        if main_source_domain is None and start_page is None:
+            raise ValueError('Need to specify main_source_domain or start_page.')
         if main_source_domain:
-            if main_source_domain.endswith('/'):
-                main_source_domain = main_source_domain[0:-1]
-            self.MAIN_SOURCE_DOMAIN = main_source_domain
-            if self.MAIN_SOURCE_DOMAIN not in self.SOURCE_DOMAINS:
-                self.SOURCE_DOMAINS.append(self.MAIN_SOURCE_DOMAIN)
-            self.START_PAGE = self.MAIN_SOURCE_DOMAIN + '/'
+            self.MAIN_SOURCE_DOMAIN = main_source_domain.rstrip('/')
+            self.START_PAGE = self.MAIN_SOURCE_DOMAIN
+        if self.MAIN_SOURCE_DOMAIN is None:
+            self.MAIN_SOURCE_DOMAIN = urlparse(start_page).netloc
+        if self.MAIN_SOURCE_DOMAIN not in self.SOURCE_DOMAINS:
+            self.SOURCE_DOMAINS.append(self.MAIN_SOURCE_DOMAIN)
         if start_page:
             self.START_PAGE = start_page
 
@@ -175,6 +178,11 @@ class BasicCrawler(object):
                 return (False, head_response)
         else:
             LOGGER.warning('HEAD request failed for url ' + url)
+            # Fallback strategy: try to guess if media link based on extension
+            for media_ext in self.MEDIA_FILE_FORMATS:
+                if url.endswith('.' + media_ext):
+                    return (True, None)
+            # if all else fails, assume False
             return (False, None)
 
 
@@ -248,13 +256,19 @@ class BasicCrawler(object):
     ############################################################################
 
     def crawl(self, limit=1000, save_web_resource_tree=True, devmode=True):
-        start_url = self.START_PAGE
+        # initialize or reset crawler state
+        self.queue = queue.Queue()
+        self.global_urls_seen_count = defaultdict(int)
+        self.urls_visited = {}
+
+        #  add the start page to the crawling queue
         channel_dict = dict(
             url='This is a temp. outer container for the crawler channel tree.'
                 'Its unique child node is the web root.',
             kind='WEB_RESOURCE_TREE_CONTAINER',
             children=[],
         )
+        start_url = self.START_PAGE
         root_context = {'parent':channel_dict}
         if self.START_PAGE_CONTEXT:
             root_context.update(self.START_PAGE_CONTEXT)
@@ -268,9 +282,6 @@ class BasicCrawler(object):
 
             # 2. Media files (PDF/ZIP/MP3) and broken link check
             verdict, head_response = self.is_media_file(original_url)
-            if head_response is None:
-                LOGGER.warning('HEAD ' + original_url + ' did not return response.')
-
             if verdict == True:
                 media_rsrc_dict = self.create_media_url_dict(original_url, head_response)
                 media_rsrc_dict['parent'] = context['parent']
@@ -394,30 +405,33 @@ class BasicCrawler(object):
 
     def create_media_url_dict(self, original_url, head_response):
         """
-        Create metadata dict from `head_response` for media `url`.
+        Create metadata dict for media URL `original_url` using `head_response`.
         """
-        url = self.cleanup_url(head_response.url)  # URL after possible redirect
+        original_url_clean = self.cleanup_url(original_url)   # before redirects
         media_rsrc_dict = dict(
             kind='MediaWebResource',
-            url=url,
+            url=original_url_clean,
             children=[],
         )
-        if url != original_url:
-            media_rsrc_dict['original_url'] = original_url
-        #
-        content_type = head_response.headers.get('content-type', None)
-        if content_type:
-            media_rsrc_dict['content-type'] = content_type
-        # TODO(ivan): resolve content-type to contenty type label using le-utils lookup
-        #
-        content_disposition = head_response.headers.get('content-disposition', None)
-        if content_disposition:
-            media_rsrc_dict['content-disposition'] = content_disposition
-        #
-        content_length = head_response.headers.get('content-length', None)
-        if content_length:
-            media_rsrc_dict['content-length'] = content_length
-        #
+        if head_response:
+            url = self.cleanup_url(head_response.url)  # URL after possible redirect
+            media_rsrc_dict['url'] = url
+            if url != original_url:
+                media_rsrc_dict['original_url'] = original_url
+            #
+            content_type = head_response.headers.get('content-type', None)
+            if content_type:
+                media_rsrc_dict['content-type'] = content_type
+            # TODO(ivan): resolve content-type to contenty type label using le-utils lookup
+            #
+            content_disposition = head_response.headers.get('content-disposition', None)
+            if content_disposition:
+                media_rsrc_dict['content-disposition'] = content_disposition
+            #
+            content_length = head_response.headers.get('content-length', None)
+            if content_length:
+                media_rsrc_dict['content-length'] = content_length
+            #
         return media_rsrc_dict
 
 
@@ -706,4 +720,3 @@ if __name__ == '__main__':
     crawler.CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
     channel_tree = crawler.crawl()
     crawler.print_tree(channel_tree)
-
