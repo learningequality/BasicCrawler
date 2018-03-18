@@ -29,6 +29,9 @@ LOGGER.setLevel(logging.DEBUG)
 
 
 
+
+
+
 # BASE CRAWLER
 ################################################################################
 
@@ -368,7 +371,7 @@ class BasicCrawler(object):
         response = self.make_request(url, *args, **kwargs)
         if not response:
             return (None, None)
-        html = response.content
+        html = response.text
         page = BeautifulSoup(html, "html.parser")
         LOGGER.debug('Downloaded page ' + str(url) + ' title:' + self.get_title(page))
         return (response.url, page)
@@ -676,7 +679,7 @@ class BasicCrawler(object):
     # TEXT HELPERS
     ############################################################################
 
-    def get_text(element):
+    def get_text(self, element):
         """
         Extract text contents of `element`, normalizing newlines to spaces and stripping.
         """
