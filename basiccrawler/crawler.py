@@ -709,7 +709,7 @@ class BasicCrawler(object):
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
-            json.dump(channel_dict, wrt_file, indent=2)
+            json.dump(channel_dict, wrt_file, indent=2, sort_keys=True)
 
 
 
