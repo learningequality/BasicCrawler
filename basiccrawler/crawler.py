@@ -25,8 +25,7 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 from ricecooker.config import LOGGER
 __logging_handler = logging.StreamHandler()
 LOGGER.addHandler(__logging_handler)
-LOGGER.setLevel(logging.DEBUG)
-
+LOGGER.setLevel(logging.WARNING)
 
 
 
@@ -575,7 +574,11 @@ class BasicCrawler(object):
             if 'kind' in node:
                 extra_attrs = ' ('+node['kind']+') '
             path = self.url_to_path(node['url'])  # print paths instead of full URLs
-            print(' '*INDENT_BY*depth + '  -', 'path:', path, extra_attrs)
+            if 'title' in node:
+                title = node['title']
+            else:
+                title = ''
+            print(' '*INDENT_BY*depth + '  -', title, 'path:', path, extra_attrs)
             if depth < print_depth:                 # recurse and print children
                 if node['children']:
                     print(' '*INDENT_BY*depth + '   ', 'children:')
@@ -709,7 +712,7 @@ class BasicCrawler(object):
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
-            json.dump(channel_dict, wrt_file, indent=2, sort_keys=True)
+            json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
 
 
 
