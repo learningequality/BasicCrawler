@@ -15,6 +15,11 @@ import requests
 from ricecooker.utils.caching import CacheForeverHeuristic, FileCache, CacheControlAdapter
 
 
+# Python 3.* compatible type for patterns in re
+try:
+    Pattern = re._pattern_type      # Py3.5, Py3.6
+except AttributeError:
+    Pattern = re.Pattern            # Py3.7
 
 
 # LOGGING
@@ -147,7 +152,7 @@ class BasicCrawler(object):
             if isinstance(pattern, str):
                 if url == pattern:
                     return True
-            elif isinstance(pattern, re._pattern_type):
+            elif isinstance(pattern, Pattern):
                 if pattern.match(url):
                     return True
             elif callable(pattern):
