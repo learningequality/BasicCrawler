@@ -46,6 +46,7 @@ class BasicCrawler(object):
         'javascript:void(0)', '#',
         re.compile('^mailto:.*'), re.compile('^javascript:.*'),
     ]
+    ALLOW_BROKEN_HEAD_URLS = []     # proceed with request even
     MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'mp3', 'm4a', 'ogg']
     MEDIA_CONTENT_TYPES = [
         'application/pdf',
@@ -180,6 +181,8 @@ class BasicCrawler(object):
                 return (False, head_response)
         else:
             LOGGER.warning('HEAD request failed for url ' + url)
+            if url in self.ALLOW_BROKEN_HEAD_URLS:
+                return (False, None)   # special case when no valid HEAD response but GET is OK
             # Fallback strategy: try to guess if media link based on extension
             for media_ext in self.MEDIA_FILE_FORMATS:
                 if url.endswith('.' + media_ext):
@@ -381,7 +384,7 @@ class BasicCrawler(object):
         Failure-resistant HTTP GET/HEAD request helper method.
         """
         retry_count = 0
-        max_retries = 5
+        max_retries = 10
         while True:
             try:
                 response = self.SESSION.request(method, url, *args, timeout=timeout, **kwargs)
