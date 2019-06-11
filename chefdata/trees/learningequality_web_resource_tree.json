@@ -1,317 +1,238 @@
 {
-  "kind": "PageWebResource",
-  "url": "https://learningequality.org/",
   "children": [
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/",
-      "children": []
+      "url": "https://learningequality.org/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/values/",
-      "children": []
+      "url": "https://learningequality.org/about/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/team/",
-      "children": []
+      "url": "https://learningequality.org/about/values/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/board/",
-      "children": []
+      "url": "https://learningequality.org/about/team/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/supporters/",
-      "children": []
+      "url": "https://learningequality.org/about/board/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/translators/",
-      "children": []
+      "url": "https://learningequality.org/about/supporters/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/press/",
-      "children": []
+      "url": "https://learningequality.org/about/press/"
     },
     {
+      "children": [],
       "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/jobs/",
-      "children": []
+      "url": "https://learningequality.org/about/jobs/"
     },
     {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/about/internships/",
       "children": [
         {
-          "kind": "PageWebResource",
-          "url": "https://learningequality.org/about/jobs/?gh_jid=533166",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "https://learningequality.org/about/jobs/?gh_jid=533166",
-              "children": []
+              "url": "https://learningequality.org/about/jobs/?gh_jid=533166"
             }
           ],
-          "original_url": "https://learningequality.org/r/internship-application-form"
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/internship-application-form",
+          "url": "https://learningequality.org/about/jobs/?gh_jid=533166"
         },
         {
-          "kind": "PageWebResource",
-          "url": "https://learningequality.org/directions/",
-          "children": []
-        }
-      ]
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/kolibri/",
-      "children": [
-        {
-          "kind": "PageWebResource",
-          "url": "https://learningequality.org/translate/",
-          "children": []
-        }
-      ]
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/ka-lite/",
-      "children": [
-        {
-          "kind": "PageWebResource",
-          "url": "https://learningequality.org/ka-lite/faq/",
-          "children": [
-            {
-              "kind": "PageWebResource",
-              "url": "https://learningequality.org/ka-lite/user-guides/",
-              "children": [
-                {
-                  "kind": "PageWebResource",
-                  "url": "http://ka-lite.readthedocs.io/en/latest/",
-                  "children": [],
-                  "original_url": "https://learningequality.org/docs/"
-                },
-                {
-                  "kind": "PageWebResource",
-                  "url": "http://ka-lite.readthedocs.io/en/latest/installguide/install_main.html",
-                  "children": [],
-                  "original_url": "https://learningequality.org/docs/installguide/install_main.html"
-                },
-                {
-                  "kind": "PageWebResource",
-                  "url": "https://learningequality.org/ka-lite/user-guides/user-manual-012",
-                  "children": [
-                    {
-                      "kind": "PageWebResource",
-                      "url": "https://learningequality.org/ka-lite/user-guides/documentary-instructions",
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "kind": "MediaWebResource",
-                  "url": "https://learningequality.org/media/user_resources/UserManual-0.12.pdf",
-                  "children": [],
-                  "content-type": "application/pdf",
-                  "content-length": "3562346"
-                },
-                {
-                  "kind": "PageWebResource",
-                  "url": "https://learningequality.org/ka-lite/user-guides/student-username-password-handout",
-                  "children": []
-                },
-                {
-                  "kind": "MediaWebResource",
-                  "url": "https://learningequality.org/media/user_resources/StudentPrintableHandout.pdf",
-                  "children": [],
-                  "content-type": "application/pdf",
-                  "content-length": "47768"
-                },
-                {
-                  "kind": "PageWebResource",
-                  "url": "https://learningequality.org/ka-lite/user-guides/khan-academy-offline-alternatives-comparison",
-                  "children": []
-                },
-                {
-                  "kind": "MediaWebResource",
-                  "url": "https://learningequality.org/media/user_resources/KALiteProductComparison.pdf",
-                  "children": [],
-                  "content-type": "application/pdf",
-                  "content-length": "59944"
-                },
-                {
-                  "kind": "MediaWebResource",
-                  "url": "https://learningequality.org/media/user_resources/documentary-instructions.pdf",
-                  "children": [],
-                  "content-type": "application/pdf",
-                  "content-length": "136509"
-                },
-                {
-                  "kind": "PageWebResource",
-                  "url": "https://learningequality.org/ka-lite/user-guides/gsoc-ideas-list-2015",
-                  "children": []
-                },
-                {
-                  "kind": "MediaWebResource",
-                  "url": "https://learningequality.org/media/user_resources/gsoc-ideas-list-2015.pdf",
-                  "children": [],
-                  "content-type": "application/pdf",
-                  "content-length": "187108"
-                }
-              ]
-            },
-            {
-              "kind": "PageWebResource",
-              "url": "https://learningequality.org/donate/",
-              "children": [],
-              "original_url": "https://learningequality.org/give/"
-            },
-            {
-              "kind": "PageWebResource",
-              "url": "https://blog.learningequality.org/announcing-ka-lite-version-0-11-with-i18n-support-a0cbbcdeb221",
-              "children": [],
-              "original_url": "https://learningequality.org/blog/2014/i18n-released/"
-            },
-            {
-              "kind": "PageWebResource",
-              "url": "https://blog.learningequality.org/",
-              "children": [],
-              "original_url": "https://learningequality.org/blog"
-            }
-          ]
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "http://ka-lite.readthedocs.io/en/latest/",
           "children": [],
-          "original_url": "https://learningequality.org/r/docs-latest"
-        },
-        {
           "kind": "PageWebResource",
-          "url": "http://ka-lite.readthedocs.io/en/latest/faq.html",
-          "children": [
-            {
-              "kind": "PageWebResource",
-              "url": "https://learningequality.org/",
-              "children": [],
-              "original_url": "https://learningequality.org"
-            }
-          ],
-          "original_url": "https://learningequality.org/r/docs-latest-faq"
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "http://ka-lite.readthedocs.io/en/latest/installguide/install_main.html",
-          "children": [],
-          "original_url": "https://learningequality.org/r/docs-latest-install-guide"
+          "url": "https://learningequality.org/directions/"
         }
-      ]
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/about/internships/"
     },
     {
-      "kind": "PageWebResource",
-      "url": "https://blog.learningequality.org/?gi=bc6c9a7d800e",
       "children": [],
-      "original_url": "https://learningequality.org/blog/"
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/kolibri/"
     },
     {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/kolibri/",
-      "children": [],
-      "original_url": "https://learningequality.org/indiegogo/"
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/ka-lite/map/",
       "children": [
         {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/samuel-morris-scholars-program-an-unforgettable-impact-99f28a5faeff",
           "children": [],
-          "original_url": "https://learningequality.org/blog/2014/samuel-morris-scholars-program-unforgettable-impac/"
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/kolibri-windows-setup-latest",
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri-v0.12.3-windows-setup.exe"
         },
         {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/ka-lite-brings-offline-education-to-idaho-department-of-corrections-90f7a5f1bf4b",
           "children": [],
-          "original_url": "https://learningequality.org/blog/2013/ka-lite-brings-offline-education-idaho-department-/"
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/kolibri-deb-latest",
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri_0.12.3-0ubuntu1_all.deb"
         },
         {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/the-sparks-familys-overland-travel-from-alaska-to-argentina-dedde75a145",
           "children": [],
-          "original_url": "https://learningequality.org/blog/2013/sparks-family/"
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/inspiring-confidence-a-guest-post-from-edward-j-hills-28719ed03196",
-          "children": [],
-          "original_url": "https://learningequality.org/blog/2013/inspiring-confidence-by-edward-j-hills/"
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/ka-lite-in-typhoon-stricken-mangorocoro-c781aa9c4cb4",
-          "children": [],
-          "original_url": "https://learningequality.org/blog/2014/ka-lite-typhoon-stricken-mangorocoro/"
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/deployment-spotlight-ka-lite-in-rural-guatemala-ec6d991ea802",
-          "children": [],
-          "original_url": "https://learningequality.org/blog/2014/deployment-spotlight-ka-lite-rural-guatemala/"
-        },
-        {
-          "kind": "PageWebResource",
-          "url": "https://blog.learningequality.org/bringing-ka-lite-to-gitwe-rwanda-38872419b1ac",
-          "children": [],
-          "original_url": "https://learningequality.org/blog/2013/bringing-ka-lite-gitwe/"
-        }
-      ]
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/ka-lite/map/add/",
-      "children": [
-        {
-          "kind": "BrokenLink",
-          "url": "https://learningequality.org/ka-lite/map/add/stories@learningequality.org",
-          "children": []
-        }
-      ]
-    },
-    {
-      "kind": "MediaWebResource",
-      "url": "https://learningequality.org/media/FUNSEPA_Final_Evaluation_Report_27May2016.pdf",
-      "children": [],
-      "content-type": "application/pdf",
-      "content-length": "1747391"
-    },
-    {
-      "kind": "MediaWebResource",
-      "url": "https://learningequality.org/media/Rapport-Etude-Cameroun_KL_ENG.pdf",
-      "children": [],
-      "content-type": "application/pdf",
-      "content-length": "624455"
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/ka-lite/infographic/",
-      "children": []
-    },
-    {
-      "kind": "PageWebResource",
-      "url": "https://learningequality.org/donate/",
-      "children": [
-        {
+          "content-length": "90411697",
+          "content-type": "application/octet-stream",
           "kind": "MediaWebResource",
-          "url": "https://learningequality.org/static/doc/learning_equality_irs_determination_letter.pdf",
-          "children": [],
-          "content-type": "application/pdf",
-          "content-length": "28281"
+          "original_url": "https://learningequality.org/r/kolibri-pex-latest",
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri-0.12.3.pex"
         }
-      ]
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/download/"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/toolkit",
+          "url": "https://drive.google.com/drive/folders/1TNCjAOk24NKZFdK-GYzXSbUhksZ4wu0r?usp=sharing"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/toolkit-readme",
+          "url": "https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&continue=https://drive.google.com/file/d/1Pachcc-k7CRRu3koyl-IgKvwzmkZVttN/view?usp%3Dsharing&followup=https://drive.google.com/file/d/1Pachcc-k7CRRu3koyl-IgKvwzmkZVttN/view?usp%3Dsharing"
+        }
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/documentation/"
+    },
+    {
+      "children": [],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/hardware_grant/"
+    },
+    {
+      "children": [],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/translate/"
+    },
+    {
+      "children": [],
+      "kind": "PageWebResource",
+      "original_url": "https://learningequality.org/blog/",
+      "url": "https://blog.learningequality.org/?gi=a88742768739"
+    },
+    {
+      "children": [],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/ka-lite/map/add/"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "content-length": "28281",
+          "content-type": "application/pdf",
+          "kind": "MediaWebResource",
+          "url": "https://learningequality.org/static/doc/learning_equality_irs_determination_letter.pdf"
+        }
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/donate/"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/docs-latest-install-guide",
+          "url": "https://ka-lite.readthedocs.io/en/latest/installguide/install_main.html"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/r/docs-latest",
+          "url": "https://ka-lite.readthedocs.io/en/latest/"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "url": "https://learningequality.org/ka-lite/infographic/"
+        }
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/ka-lite/"
+    },
+    {
+      "children": [
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2014/samuel-morris-scholars-program-unforgettable-impac/",
+          "url": "https://blog.learningequality.org/samuel-morris-scholars-program-an-unforgettable-impact-99f28a5faeff"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2013/ka-lite-brings-offline-education-idaho-department-/",
+          "url": "https://blog.learningequality.org/ka-lite-brings-offline-education-to-idaho-department-of-corrections-90f7a5f1bf4b"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2013/sparks-family/",
+          "url": "https://blog.learningequality.org/the-sparks-familys-overland-travel-from-alaska-to-argentina-dedde75a145"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2013/inspiring-confidence-by-edward-j-hills/",
+          "url": "https://blog.learningequality.org/inspiring-confidence-a-guest-post-from-edward-j-hills-28719ed03196"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2014/ka-lite-typhoon-stricken-mangorocoro/",
+          "url": "https://blog.learningequality.org/ka-lite-in-typhoon-stricken-mangorocoro-c781aa9c4cb4"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2014/deployment-spotlight-ka-lite-rural-guatemala/",
+          "url": "https://blog.learningequality.org/deployment-spotlight-ka-lite-in-rural-guatemala-ec6d991ea802"
+        },
+        {
+          "children": [],
+          "kind": "PageWebResource",
+          "original_url": "https://learningequality.org/blog/2013/bringing-ka-lite-gitwe/",
+          "url": "https://blog.learningequality.org/bringing-ka-lite-to-gitwe-rwanda-38872419b1ac"
+        }
+      ],
+      "kind": "PageWebResource",
+      "url": "https://learningequality.org/ka-lite/map/"
+    },
+    {
+      "children": [],
+      "content-length": "1747391",
+      "content-type": "application/pdf",
+      "kind": "MediaWebResource",
+      "url": "https://learningequality.org/media/FUNSEPA_Final_Evaluation_Report_27May2016.pdf"
+    },
+    {
+      "children": [],
+      "content-length": "624455",
+      "content-type": "application/pdf",
+      "kind": "MediaWebResource",
+      "url": "https://learningequality.org/media/Rapport-Etude-Cameroun_KL_ENG.pdf"
     }
-  ]
+  ],
+  "kind": "PageWebResource",
+  "original_url": "https://learningequality.org",
+  "url": "https://learningequality.org/"
 }
