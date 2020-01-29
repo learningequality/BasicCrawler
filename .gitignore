@@ -1,6 +1,11 @@
-
 # credentials
 .token
+credentials
+
+
+# Output dirs
+chefdata
+
 
 # Cache dirs
 .webcache
@@ -8,7 +13,6 @@
 examples/content/
 restore/
 storage/
-
 
 # souschef examples
 examples/CrawlerDemo_TakeHomeTest.zip

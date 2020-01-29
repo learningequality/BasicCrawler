@@ -10,18 +10,16 @@ except (IOError, ImportError):
     readme = open('README.md').read()
 
 requirements = [
-    'le_utils>=0.1.3',
-    'ricecooker>=0.6.10',
-]
-
-setup_requirements = [
-    'pytest-runner',
-    # TODO(learningequality): put setup requirements (distutils extensions, etc.) here
+    "requests>=2.22.0",
+    "requests-cache>=0.4.13",
+    "beautifulsoup4>=4.6.3",
+    "html5lib>=1.0.1",
+    "le_utils>=0.1.24",
+    "ricecooker>=0.6.38",
 ]
 
 test_requirements = [
-    'pytest',
-    # TODO: put package test requirements here
+    'pytest>=5.3.5',
 ]
 
 setup(
@@ -46,8 +44,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     test_suite='tests',
     tests_require=test_requirements,
-    setup_requires=setup_requirements,
 )
