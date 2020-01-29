@@ -8,7 +8,7 @@ import os
 import queue
 import sys
 import time
-from urllib.parse import urljoin, urldefrag
+from urllib.parse import urljoin, urldefrag, urlparse
 
 from bs4 import BeautifulSoup
 import requests
@@ -97,7 +97,8 @@ class BasicCrawler(object):
             self.MAIN_SOURCE_DOMAIN = main_source_domain.rstrip('/')
             self.START_PAGE = self.MAIN_SOURCE_DOMAIN
         if self.MAIN_SOURCE_DOMAIN is None:
-            self.MAIN_SOURCE_DOMAIN = urlparse(start_page).netloc
+            parsedurl = urlparse(start_page)
+            self.MAIN_SOURCE_DOMAIN = parsedurl.scheme + '://' + parsedurl.netloc
         if self.MAIN_SOURCE_DOMAIN not in self.SOURCE_DOMAINS:
             self.SOURCE_DOMAINS.append(self.MAIN_SOURCE_DOMAIN)
         if start_page:
@@ -560,7 +561,7 @@ class BasicCrawler(object):
                 self.compute_subtree_stats(child, counter=counter)
         return counter
 
-    def print_tree(self, tree_root, print_depth=3, hide_keys=[]):
+    def print_tree(self, tree_root, print_depth=4, hide_keys=[]):
         """
         Print contents of web resource tree starting at `tree_root`.
         """
@@ -713,15 +714,3 @@ class BasicCrawler(object):
         with open(destpath, 'w') as wrt_file:
             json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
 
-
-
-# CLI
-################################################################################
-
-if __name__ == '__main__':
-    crawler = BasicCrawler(
-            main_source_domain='http://chef-take-home-test.learningequality.org',
-            start_page='http://chef-take-home-test.learningequality.org/')
-    crawler.CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
-    channel_tree = crawler.crawl()
-    crawler.print_tree(channel_tree)
