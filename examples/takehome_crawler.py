@@ -1,22 +1,21 @@
 #!/usr/bin/env python
-
 from urllib.parse import urljoin
 
 from basiccrawler.crawler import BasicCrawler
-
 from basiccrawler.crawler import LOGGER, logging
 LOGGER.setLevel(logging.INFO)
 
 
+
 class TakeHomeCrawler(BasicCrawler):
     MAIN_SOURCE_DOMAIN = 'http://chef-take-home-test.learningequality.org'
-    START_PAGE = 'http://chef-take-home-test.learningequality.org/'
     START_PAGE_CONTEXT = {'kind':'channel'}
 
     SOURCE_DOMAINS = [MAIN_SOURCE_DOMAIN]
     IGNORE_URLS = []
 
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/takehome_web_resource_tree.json'
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -31,7 +30,8 @@ class TakeHomeCrawler(BasicCrawler):
 
     def on_channel_or_topic(self, url, page, context):
         """
-        Enqueue for crawling all the links on the current page. Works for channel root and topic nodes.
+        Enqueue for crawling all the links on the current page.
+        Works for channel root and topic nodes.
         """
         channel_dict = context
         channel_dict.update(dict(
@@ -59,7 +59,7 @@ class TakeHomeCrawler(BasicCrawler):
                 raise ValueError('No kind found!')
 
             # add to crawling queue
-            if self.should_visit_url(child_url):
+            if not self.should_ignore_url(child_url):
                 child_context = dict(
                     kind=kind,
                     parent=channel_dict,
@@ -86,6 +86,13 @@ class TakeHomeCrawler(BasicCrawler):
 ################################################################################
 
 if __name__ == '__main__':
-    crawler = TakeHomeCrawler()
-    channel_tree = crawler.crawl(debug=False)
+    """
+    Crawl a fake content site at http://chef-take-home-test.learningequality.org
+    """
+    crawler = TakeHomeCrawler(start_page='http://chef-take-home-test.learningequality.org/')
+    # try also basic-version with no custom logic:
+    # crawler = BasicCrawler(start_page='http://chef-take-home-test.learningequality.org/')
+    channel_tree = crawler.crawl()
     crawler.print_tree(channel_tree)
+    print('\nOutput web resource tree saved to', crawler.CRAWLING_STAGE_OUTPUT)
+
