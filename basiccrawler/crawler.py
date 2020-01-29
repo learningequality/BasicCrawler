@@ -13,7 +13,7 @@ from urllib.parse import urljoin, urldefrag
 from bs4 import BeautifulSoup
 import requests
 from ricecooker.utils.caching import CacheForeverHeuristic, FileCache, CacheControlAdapter
-
+# TODO: de-couple from ricecooker
 
 # Python 3.* compatible type for patterns in re
 try:
@@ -34,9 +34,7 @@ LOGGER.setLevel(logging.WARNING)
 
 
 
-
-
-# BASE CRAWLER
+# BASIC CRAWLER
 ################################################################################
 
 class BasicCrawler(object):
@@ -74,9 +72,8 @@ class BasicCrawler(object):
     START_PAGE = None           # should be defined by subclass
     START_PAGE_CONTEXT = {}     # should be defined by subclass
     IGNORE_URLS = []            # should be defined by subclass
-    rules = []          # contains tuples (url_RE_pattern, handler_function)
-    kind_handlers = {}  # mapping from web resource kinds (user defined) and handlers
-                        # e.g. {'LesssonWebResource': self.on_lesson, ...}
+    kind_handlers = {}          # map from web resource kinds and handlers
+                                # e.g. {'LesssonWebResource': self.on_lesson, .. }
 
     # CACHE LOGIC
     SESSION = requests.Session()
@@ -207,7 +204,7 @@ class BasicCrawler(object):
     #     - `context['parent']` is the web resources dict of the referring page
     #     - `context['kind']` can be used to assign a custom handler, e.g., on_course
 
-    def queue_empty(self):
+    def queue_is_empty(self):
         return self.queue.empty()
 
     def get_url_and_context(self):
@@ -279,13 +276,13 @@ class BasicCrawler(object):
             children=[],
         )
         start_url = self.START_PAGE
-        root_context = {'parent':channel_dict}
+        root_context = {'parent': channel_dict}
         if self.START_PAGE_CONTEXT:
             root_context.update(self.START_PAGE_CONTEXT)
         self.enqueue_url_and_context(start_url, root_context)
 
         counter = 0
-        while not self.queue_empty():
+        while not self.queue_is_empty():
 
             # 1. GET next url to crawl an its context dict
             original_url, context = self.get_url_and_context()
@@ -317,6 +314,7 @@ class BasicCrawler(object):
 
             ##########  HANDLER DISPATCH LOGIC  ################################
             handled = False
+
             # A. kind-handler based dispatch logic
             if 'kind' in context:
                 kind = context['kind']
@@ -334,13 +332,6 @@ class BasicCrawler(object):
                 else:
                     LOGGER.info('No handler registered for kind ' + str(kind)
                                  + ' so falling back to on_page handler.')
-
-            # B. URL rules handler dispatlogic
-            path = url.replace(self.MAIN_SOURCE_DOMAIN, '')    # TODO: redo with urls instead of paths <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            for pat, handler_fn in self.rules:
-                if pat.match(path):
-                    handler_fn(url, page, context['parent'])
-                    handled = True
 
             # if none of the above caught it, we use the default on_page handler
             if not handled:
@@ -692,7 +683,7 @@ class BasicCrawler(object):
 
     def get_text(self, element):
         """
-        Extract text contents of `element`, normalizing newlines to spaces and stripping.
+        Extract stripped text content of `element` and normalize newlines to spaces.
         """
         if element is None:
             return ''
