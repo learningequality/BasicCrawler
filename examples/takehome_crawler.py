@@ -3,9 +3,20 @@ from urllib.parse import urljoin
 
 from basiccrawler.crawler import BasicCrawler
 from basiccrawler.crawler import LOGGER, logging
-LOGGER.setLevel(logging.INFO)
+LOGGER.setLevel(logging.DEBUG)
 
 
+
+# PARAMS
+################################################################################
+START_PAGE = 'http://chef-take-home-test.learningequality.org/'
+IGNORE_URLS = []
+
+
+
+
+# CUSTOM CRAWLER EXAMPLE
+################################################################################
 
 class TakeHomeCrawler(BasicCrawler):
     MAIN_SOURCE_DOMAIN = 'http://chef-take-home-test.learningequality.org'
@@ -89,10 +100,13 @@ if __name__ == '__main__':
     """
     Crawl a fake content site at http://chef-take-home-test.learningequality.org
     """
-    crawler = TakeHomeCrawler(start_page='http://chef-take-home-test.learningequality.org/')
+    crawler = TakeHomeCrawler(start_page=START_PAGE)
+    crawler.IGNORE_URLS.extend(IGNORE_URLS)
     # try also basic-version with no custom logic:
     # crawler = BasicCrawler(start_page='http://chef-take-home-test.learningequality.org/')
     channel_tree = crawler.crawl()
+
     crawler.print_tree(channel_tree)
     print('\nOutput web resource tree saved to', crawler.CRAWLING_STAGE_OUTPUT)
+
 
