@@ -1,19 +1,21 @@
 #!/usr/bin/env python
-
+from bs4 import BeautifulSoup
 from collections import defaultdict, Counter
 import json
 import logging
 import re
 import os
 import queue
+import requests
 import sys
 import time
 from urllib.parse import urljoin, urldefrag, urlparse
+from youtube_dl.utils import std_headers
 
-from bs4 import BeautifulSoup
-import requests
-from ricecooker.utils.caching import CacheForeverHeuristic, FileCache, CacheControlAdapter
+
 # TODO: de-couple from ricecooker
+from ricecooker.utils.caching import CacheForeverHeuristic, FileCache, CacheControlAdapter
+
 
 # Python 3.* compatible type for patterns in re
 try:
@@ -24,7 +26,7 @@ except AttributeError:
 
 # LOGGING
 ################################################################################
-logging.getLogger("cachecontrol.controller").setLevel(logging.WARNING)
+logging.getLogger("cachecontrol.controller").setLevel(logging.ERROR)
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 from ricecooker.config import LOGGER
@@ -50,7 +52,8 @@ class BasicCrawler(object):
         re.compile('^mailto:.*'), re.compile('^javascript:.*'),
     ]
     ALLOW_BROKEN_HEAD_URLS = []     # proceed with request even
-    MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'mp3', 'm4a', 'ogg']
+    MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'mp3', 'm4a', 'ogg',
+                          'exe', 'deb']
     MEDIA_CONTENT_TYPES = [
         'application/pdf',
         'application/zip', 'application/x-zip-compressed', 'application/octet-stream',
@@ -61,6 +64,7 @@ class BasicCrawler(object):
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/x-msdownload', 'application/x-deb'
     ]
 
     GLOBAL_NAV_THRESHOLD = 0.7
@@ -80,7 +84,7 @@ class BasicCrawler(object):
     CACHE = FileCache('.webcache')
 
     # queue used keep track of what pages we should crawl next
-    queue = None  # instance of queue.Queue created insite `crawrl` method
+    queue = None  # instance of queue.Queue created insite `crawl` method
 
     # keep track of how many times a given URL is seen during crawl
     # first time a URL is seen will be automatically followed, but
@@ -232,7 +236,7 @@ class BasicCrawler(object):
         Basic handler that appends current page to parent's children list and
         adds all links on current page to the crawling queue.
         """
-        LOGGER.debug('in on_page ' + url)
+        LOGGER.debug('on_page is visiting the URL ' + url)
         page_dict = dict(
             kind='PageWebResource',
             url=url,
@@ -370,6 +374,7 @@ class BasicCrawler(object):
         response = self.make_request(url, *args, **kwargs)
         if not response:
             return (None, None)
+        response.encoding = 'utf-8'  # to avoid guessing logic which has a problem parsing https://learningequality.org/directions/
         html = response.text
         page = BeautifulSoup(html, "html.parser")
         LOGGER.debug('Downloaded page ' + str(url) + ' title:' + self.get_title(page))
@@ -384,6 +389,7 @@ class BasicCrawler(object):
         max_retries = 10
         while True:
             try:
+                kwargs['headers'] = std_headers  # set random user-agent headers
                 response = self.SESSION.request(method, url, *args, timeout=timeout, **kwargs)
                 break
             except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout) as e:
@@ -713,4 +719,5 @@ class BasicCrawler(object):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
             json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
+
 
