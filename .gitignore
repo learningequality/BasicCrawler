@@ -6,6 +6,8 @@ credentials
 # Output dirs
 chefdata
 
+# other non-code dirs
+inspiration
 
 # Cache dirs
 .webcache

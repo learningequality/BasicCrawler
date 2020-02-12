@@ -8,9 +8,9 @@ recursive-exclude * *.py[co]
 recursive-include docs *.md *.rst conf.py Makefile make.bat *.jpg *.png *.gif
 
 recursive-exclude notebooks *
+recursive-exclude inspiration *
 
-
-
+recursive-exclude credentials *
 recursive-exclude storage *
 recursive-exclude restore *
 recursive-exclude chefdata *
