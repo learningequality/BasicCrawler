@@ -1,83 +1,83 @@
 {
-  "kind": "PageWebResource",
-  "url": "http://chef-take-home-test.learningequality.org/",
   "children": [
     {
-      "kind": "PageWebResource",
-      "url": "http://chef-take-home-test.learningequality.org/Math/",
       "children": [
         {
-          "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/Numbers_Overview/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/Numbers_Overview/"
             },
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/Classifying_numbers/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/Classifying_numbers/"
             }
-          ]
+          ],
+          "kind": "PageWebResource",
+          "url": "http://chef-take-home-test.learningequality.org/Math/Numbers/"
         },
         {
-          "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Math/Functions/",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Math/Functions/Functions_overview/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Math/Functions/Functions_overview/"
             }
-          ]
+          ],
+          "kind": "PageWebResource",
+          "url": "http://chef-take-home-test.learningequality.org/Math/Functions/"
         },
         {
+          "children": [],
           "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Math/Vectors_overview/",
-          "children": []
+          "url": "http://chef-take-home-test.learningequality.org/Math/Vectors_overview/"
         }
-      ]
+      ],
+      "kind": "PageWebResource",
+      "url": "http://chef-take-home-test.learningequality.org/Math/"
     },
     {
-      "kind": "PageWebResource",
-      "url": "http://chef-take-home-test.learningequality.org/Science/",
       "children": [
         {
-          "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Science/Biology/",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Science/Biology/Whale_sounds/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Science/Biology/Whale_sounds/"
             }
-          ]
+          ],
+          "kind": "PageWebResource",
+          "url": "http://chef-take-home-test.learningequality.org/Science/Biology/"
         },
         {
-          "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Science/Chemistry/",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Science/Chemistry/Organic_chemistry/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Science/Chemistry/Organic_chemistry/"
             }
-          ]
+          ],
+          "kind": "PageWebResource",
+          "url": "http://chef-take-home-test.learningequality.org/Science/Chemistry/"
         },
         {
-          "kind": "PageWebResource",
-          "url": "http://chef-take-home-test.learningequality.org/Science/Physics/",
           "children": [
             {
+              "children": [],
               "kind": "PageWebResource",
-              "url": "http://chef-take-home-test.learningequality.org/Science/Physics/Wave_particle_duality/",
-              "children": []
+              "url": "http://chef-take-home-test.learningequality.org/Science/Physics/Wave_particle_duality/"
             }
-          ]
+          ],
+          "kind": "PageWebResource",
+          "url": "http://chef-take-home-test.learningequality.org/Science/Physics/"
         }
-      ]
+      ],
+      "kind": "PageWebResource",
+      "url": "http://chef-take-home-test.learningequality.org/Science/"
     }
-  ]
+  ],
+  "kind": "PageWebResource",
+  "url": "http://chef-take-home-test.learningequality.org/"
 }

@@ -72,23 +72,43 @@
       "children": [
         {
           "children": [],
-          "kind": "PageWebResource",
+          "content-length": "129250600",
+          "content-type": "application/x-msdownload",
+          "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-windows-setup-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri-v0.12.3-windows-setup.exe"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-v0.13.0-windows-setup.exe"
         },
         {
           "children": [],
-          "kind": "PageWebResource",
+          "content-length": "55996800",
+          "content-type": "application/x-deb",
+          "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-deb-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri_0.12.3-0ubuntu1_all.deb"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri_0.13.0-0ubuntu1_all.deb"
         },
         {
           "children": [],
-          "content-length": "90411697",
+          "content-length": "626923816",
+          "content-type": "application/zip",
+          "kind": "MediaWebResource",
+          "original_url": "https://learningequality.org/r/kolibri-pi-latest",
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-pi-image-0.13.0.zip"
+        },
+        {
+          "children": [],
+          "content-length": "110442852",
+          "content-type": "application/octet-stream",
+          "kind": "MediaWebResource",
+          "original_url": "https://learningequality.org/r/kolibri-mac-latest",
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-0.13.0.dmg"
+        },
+        {
+          "children": [],
+          "content-length": "101215306",
           "content-type": "application/octet-stream",
           "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-pex-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.12.3/kolibri-0.12.3.pex"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-0.13.0.pex"
         }
       ],
       "kind": "PageWebResource",
@@ -106,7 +126,7 @@
           "children": [],
           "kind": "PageWebResource",
           "original_url": "https://learningequality.org/r/toolkit-readme",
-          "url": "https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&continue=https://drive.google.com/file/d/1Pachcc-k7CRRu3koyl-IgKvwzmkZVttN/view?usp%3Dsharing&followup=https://drive.google.com/file/d/1Pachcc-k7CRRu3koyl-IgKvwzmkZVttN/view?usp%3Dsharing"
+          "url": "https://drive.google.com/file/d/1tIS6KCbyuU7hhV1GZAVFZ2ZFaCLsP9Pe/view"
         }
       ],
       "kind": "PageWebResource",
@@ -126,7 +146,7 @@
       "children": [],
       "kind": "PageWebResource",
       "original_url": "https://learningequality.org/blog/",
-      "url": "https://blog.learningequality.org/?gi=a88742768739"
+      "url": "https://blog.learningequality.org/"
     },
     {
       "children": [],
