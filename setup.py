@@ -12,8 +12,10 @@ except (IOError, ImportError):
 requirements = [
     "requests>=2.22.0",
     "cachecontrol>=0.12.6",
+    "lockfile>=0.12.2",
     "beautifulsoup4>=4.6.3",
     "html5lib>=1.0.1",
+    "youtube_dl>=2020.6.6",
 ]
 
 test_requirements = [

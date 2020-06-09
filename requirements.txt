@@ -1,7 +1,11 @@
 # Scraping stuff
 requests>=2.22.0
 cachecontrol>=0.12.6
+lockfile>=0.12.2
 
 # HTML parsing
 beautifulsoup4>=4.6.3
 html5lib>=1.0.1
+
+# Media scraping
+youtube_dl>=2020.6.6
