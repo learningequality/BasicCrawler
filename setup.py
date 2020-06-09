@@ -11,11 +11,9 @@ except (IOError, ImportError):
 
 requirements = [
     "requests>=2.22.0",
-    "requests-cache>=0.4.13",
+    "cachecontrol>=0.12.6",
     "beautifulsoup4>=4.6.3",
     "html5lib>=1.0.1",
-    "le_utils>=0.1.24",
-    "ricecooker>=0.6.38",
 ]
 
 test_requirements = [

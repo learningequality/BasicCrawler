@@ -1,11 +1,7 @@
 # Scraping stuff
 requests>=2.22.0
-requests-cache>=0.4.13
+cachecontrol>=0.12.6
 
 # HTML parsing
 beautifulsoup4>=4.6.3
 html5lib>=1.0.1
-
-# Learning Equality cheffing utils
-le_utils>=0.1.24
-ricecooker>=0.6.38

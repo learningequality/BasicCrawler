@@ -1,20 +1,21 @@
-#!/usr/bin/env python
 from bs4 import BeautifulSoup
+from cachecontrol import CacheControlAdapter
+from cachecontrol.caches.file_cache import FileCache
+from cachecontrol.heuristics import BaseHeuristic, expire_after, datetime_to_header
 from collections import defaultdict, Counter
+from datetime import datetime, timedelta
 import json
 import logging
 import re
 import os
 import queue
 import requests
-import sys
 import time
 from urllib.parse import urljoin, urldefrag, urlparse
 from youtube_dl.utils import std_headers
 
 
-# TODO: de-couple from ricecooker
-from ricecooker.utils.caching import CacheForeverHeuristic, FileCache, CacheControlAdapter
+
 
 
 # Python 3.* compatible type for patterns in re
@@ -26,13 +27,28 @@ except AttributeError:
 
 # LOGGING
 ################################################################################
+LOGGER = logging.basicConfig()
+LOGGER = logging.getLogger('crawler')
+LOGGER.setLevel(logging.WARNING)
 logging.getLogger("cachecontrol.controller").setLevel(logging.ERROR)
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
-from ricecooker.config import LOGGER
-__logging_handler = logging.StreamHandler()
-LOGGER.addHandler(__logging_handler)
-LOGGER.setLevel(logging.WARNING)
+
+
+
+# HTTP CACHE
+################################################################################
+
+class CacheForeverHeuristic(BaseHeuristic):
+    """
+    Cache the response effectively forever.
+    """
+    def update_headers(self, response):
+        headers = {}
+        expires = expire_after(timedelta(weeks=10*52), date=datetime.now())
+        headers['expires'] = datetime_to_header(expires)
+        headers['cache-control'] = 'public'
+        return headers
 
 
 
@@ -719,5 +735,4 @@ class BasicCrawler(object):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
             json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
-
 

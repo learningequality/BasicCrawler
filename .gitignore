@@ -2,6 +2,8 @@
 .token
 credentials
 
+oldvenv
+
 
 # Output dirs
 chefdata
