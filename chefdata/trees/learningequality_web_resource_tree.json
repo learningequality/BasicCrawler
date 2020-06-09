@@ -72,43 +72,35 @@
       "children": [
         {
           "children": [],
-          "content-length": "129250600",
+          "content-length": "133697008",
           "content-type": "application/x-msdownload",
           "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-windows-setup-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-v0.13.0-windows-setup.exe"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.3/kolibri-v0.13.3-windows-setup.exe"
         },
         {
           "children": [],
-          "content-length": "55996800",
+          "content-length": "57080600",
           "content-type": "application/x-deb",
           "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-deb-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri_0.13.0-0ubuntu1_all.deb"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.3/kolibri_0.13.3-0ubuntu1_all.deb"
         },
         {
           "children": [],
-          "content-length": "626923816",
+          "content-length": "632490666",
           "content-type": "application/zip",
           "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-pi-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-pi-image-0.13.0.zip"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.3/kolibri-pi-image-0.13.3.zip"
         },
         {
           "children": [],
-          "content-length": "110442852",
-          "content-type": "application/octet-stream",
-          "kind": "MediaWebResource",
-          "original_url": "https://learningequality.org/r/kolibri-mac-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-0.13.0.dmg"
-        },
-        {
-          "children": [],
-          "content-length": "101215306",
+          "content-length": "102418885",
           "content-type": "application/octet-stream",
           "kind": "MediaWebResource",
           "original_url": "https://learningequality.org/r/kolibri-pex-latest",
-          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.0/kolibri-0.13.0.pex"
+          "url": "https://storage.googleapis.com/le-releases/downloads/kolibri/v0.13.3/kolibri-0.13.3.pex"
         }
       ],
       "kind": "PageWebResource",
@@ -157,10 +149,8 @@
       "children": [
         {
           "children": [],
-          "content-length": "28281",
-          "content-type": "application/pdf",
-          "kind": "MediaWebResource",
-          "url": "https://learningequality.org/static/doc/learning_equality_irs_determination_letter.pdf"
+          "kind": "BrokenLink",
+          "url": "https://learningequality.org/donate/ https:/translateastory.org"
         }
       ],
       "kind": "PageWebResource",
@@ -188,6 +178,12 @@
       ],
       "kind": "PageWebResource",
       "url": "https://learningequality.org/ka-lite/"
+    },
+    {
+      "children": [],
+      "kind": "PageWebResource",
+      "original_url": "https://learningequality.org/r/covid-19",
+      "url": "https://docs.google.com/document/d/1rAsGo2z-agLLxi0DPg_qLPWHMhUWQgUGN9TzzD0W36U/edit?usp=sharing"
     },
     {
       "children": [
