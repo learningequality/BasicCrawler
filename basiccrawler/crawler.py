@@ -107,7 +107,7 @@ class BasicCrawler(object):
     # subsequent occureces will record link existence but not recurse
     global_urls_seen_count = defaultdict(int)  # DB of all urls that have ever been seen
     #  { 'http://site.../fullpath?a=b#c': 3, ... }
-    urls_visited = {}  # 'http://site.../fullpath?a=b#c' --> cached version of html content
+    urls_visited = {}  # 'http://site.../fullpath?a=b#c' --> 'visited'
 
 
     def __init__(self, main_source_domain=None, start_page=None):
@@ -325,8 +325,8 @@ class BasicCrawler(object):
                 context['parent']['children'].append(broken_link_dict)
                 continue
 
-            # cache BeatifulSoup parsed html in memory (because RAM is cheap!)
-            self.urls_visited[original_url] = page
+            # record page URL as visited
+            self.urls_visited[original_url] = 'visited'
 
             # annotate context to keep track of URL befor redirects
             if url != original_url:
