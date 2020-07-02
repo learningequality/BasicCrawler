@@ -68,12 +68,12 @@ class BasicCrawler(object):
         re.compile('^mailto:.*'), re.compile('^javascript:.*'),
     ]
     ALLOW_BROKEN_HEAD_URLS = []     # proceed with request even
-    MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'mp3', 'm4a', 'ogg',
+    MEDIA_FILE_FORMATS = ['pdf', 'zip', 'rar', 'mp4', 'wmv', 'mp3', 'm4a', 'ogg',
                           'exe', 'deb']
     MEDIA_CONTENT_TYPES = [
         'application/pdf',
         'application/zip', 'application/x-zip-compressed', 'application/octet-stream',
-        'video/mpeg', 'video/mp4',
+        'video/mpeg', 'video/mp4', 'video/x-ms-wmv',
         'audio/vorbis', 'audio/mp3', 'audio/mpeg',
         'image/png', 'image/jpeg', 'image/gif',
         'application/msword', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint',
