@@ -416,6 +416,10 @@ class BasicCrawler(object):
                 if retry_count >= max_retries:
                     LOGGER.error("FAILED TO RETRIEVE:" + str(url))
                     return None
+            except Exception as e:
+                    LOGGER.error("FAILED TO RETRIEVE:" + str(url))
+                    LOGGER.error("GOT ERROR: " + str(e))
+                    return None
         if response.status_code != 200:
             LOGGER.error("ERROR " + str(response.status_code) + ' when getting url=' + url)
             return None
@@ -735,4 +739,3 @@ class BasicCrawler(object):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
             json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
-
