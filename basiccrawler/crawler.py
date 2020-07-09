@@ -11,6 +11,7 @@ import os
 import queue
 import requests
 import time
+import threading
 from urllib.parse import urljoin, urldefrag, urlparse
 from youtube_dl.utils import std_headers
 
@@ -28,13 +29,25 @@ except AttributeError:
 # LOGGING
 ################################################################################
 LOGGER = logging.basicConfig()
-LOGGER = logging.getLogger('crawler')
-LOGGER.setLevel(logging.WARNING)
+
+def set_log_level(level):
+    global LOGGER
+    if level >= logging.INFO:
+        log_format = '\n\r%(levelname)s:%(name)s:%(message)s'
+    else:
+        log_format = None
+    # reset format
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
+    LOGGER = logging.basicConfig(format=log_format)
+    LOGGER = logging.getLogger('crawler')
+    LOGGER.setLevel(level)
+
 logging.getLogger("cachecontrol.controller").setLevel(logging.ERROR)
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-
+set_log_level(logging.WARNING)
 
 # HTTP CACHE
 ################################################################################
@@ -85,6 +98,9 @@ class BasicCrawler(object):
 
     GLOBAL_NAV_THRESHOLD = 0.7
     CRAWLING_STAGE_OUTPUT = 'chefdata/trees/web_resource_tree.json'
+    CRAWLING_OUTPUT_URLS = 'chefdata/trees/urls.json'
+    CRAWLING_OUTPUT_PAGES = 'chefdata/trees/pages.json'
+    SHORTEN_CRAWL = True # don't revisit pages seen in order to gather statistics
 
     # Subclass attributes
     MAIN_SOURCE_DOMAIN = None   # should be defined by subclass
@@ -105,10 +121,17 @@ class BasicCrawler(object):
     # keep track of how many times a given URL is seen during crawl
     # first time a URL is seen will be automatically followed, but
     # subsequent occureces will record link existence but not recurse
-    global_urls_seen_count = defaultdict(int)  # DB of all urls that have ever been seen
+    #global_urls_seen_count = defaultdict(int)  # DB of all urls that have ever been seen
     #  { 'http://site.../fullpath?a=b#c': 3, ... }
-    urls_visited = {}  # 'http://site.../fullpath?a=b#c' --> 'visited'
+    # urls_visited = {}  # 'http://site.../fullpath?a=b#c' --> 'visited'
 
+    # Track attributes and counts of site components
+    # global_site_struct = {} # Hierarchical structure of site pages
+    # for now we use channel_dict (channel tree) as site structure
+    global_site_pages = {} # DB of all pages that have ever been parsed
+    global_site_urls = {} # DB of all urls that have ever been seen
+
+    continue_processing_flag = True
 
     def __init__(self, main_source_domain=None, start_page=None):
         if main_source_domain is None and start_page is None:
@@ -124,15 +147,20 @@ class BasicCrawler(object):
         if start_page:
             self.START_PAGE = start_page
 
+        # make resolve any redirects
+        #verdict, head_response = self.is_html_file(self.START_PAGE)
+        is_new_url, content_type, content_length, return_url = self.get_url_type(self.START_PAGE)
+        if content_type == 'text/html':
+            self.START_PAGE = return_url
+        else:
+            raise ValueError('The Starting URL ' + self.START_PAGE + ' did not return any html.')
+
         # keep track of broken links
         self.broken_links = []
 
         forever_adapter= CacheControlAdapter(heuristic=CacheForeverHeuristic(), cache=self.CACHE)
         for source_domain in self.SOURCE_DOMAINS:
             self.SESSION.mount(source_domain, forever_adapter)   # TODO: change to less aggressive in final version
-
-
-
 
     # GENERIC URL HELPERS
     ############################################################################
@@ -186,6 +214,47 @@ class BasicCrawler(object):
                 found = True
         return not found     # should ignore if not found in SOURCE_DOMAINS list
 
+    def get_url_type(self, url):
+        """
+        Makes a HEAD request for `url` and reuturns (vertict, head_response),
+        where verdict is True if `url` points to a html file
+        Does up to 5 redirects to find url of content-type html
+        """
+        content_type = None
+        return_url = url
+        content_length = 0
+
+        if url in self.global_site_urls:
+            content_type = self.global_site_urls[url]['content-type']
+            content_length = self.global_site_urls[url]['content-length']
+            is_new_url = False
+        else:
+            is_new_url = True
+            retries = 5
+            while retries > 0:
+                head_response = self.make_request(url, method='HEAD')
+                if head_response:
+                    if head_response.status_code >=300 and head_response.status_code < 400: # redirect
+                        url = head_response.headers['Location']
+                        continue
+                    content_type = head_response.headers.get('Content-Type', None)
+                    if not content_type:
+                        LOGGER.warning('HEAD response does not have `Content-Type` header. url = ' + url)
+                        content_type = 'broken-link'
+                        break
+                    if head_response.status_code == 200: # does 304 enter into the picture?
+                        content_length = int(head_response.headers.get('content-length', 0))
+                        break
+                else:
+                    LOGGER.warning('HEAD request failed for url ' + url)
+                    content_type = 'broken-link'
+                    break
+            if retries == 0:
+                content_type = 'broken-link'
+                create_broken_link_url_dict(self, url) # for legacy
+            content_type = content_type.split(';')[0] # remove char format
+            return_url = self.cleanup_url(return_url)
+        return (is_new_url, content_type, content_length, return_url)
 
     def is_media_file(self, url):
         """
@@ -233,16 +302,15 @@ class BasicCrawler(object):
 
     def enqueue_url_and_context(self, url, context, force=False):
         # TODO(ivan): clarify crawl-only-once logic and use of force flag in docs
+        # we are only crawling pages
+        # other urls are handled in on_page
         url = self.cleanup_url(url)
-        if url not in self.global_urls_seen_count.keys() or force:
-            # LOGGER.debug('adding to queue:  url=' + url)
+        if url not in self.global_site_pages or force:
+            LOGGER.debug('adding to queue:  url=' + url)
             self.queue.put((url, context))
         else:
+            LOGGER.debug('Not going to crawl url ' + url + ' because previously seen.')
             pass
-            # LOGGER.debug('Not going to crawl url ' + url + 'beacause previously seen.')
-        self.global_urls_seen_count[url] += 1
-
-
 
     # BASIC PAGE HANDLER
     ############################################################################
@@ -252,33 +320,63 @@ class BasicCrawler(object):
         Basic handler that appends current page to parent's children list and
         adds all links on current page to the crawling queue.
         """
-        LOGGER.debug('on_page is visiting the URL ' + url)
-        page_dict = dict(
-            kind='PageWebResource',
-            url=url,
-            children=[],
-        )
-        page_dict.update(context)
+        if url in self.global_site_pages:
+            self.global_site_pages[url]['count'] += 1
+            LOGGER.debug('Skipping already crawled page ' + url)
+            return
+        else:
+            LOGGER.debug('on_page is visiting the URL ' + url)
+            page_dict = dict(
+                kind='PageWebResource',
+                url=url,
+                children=[],
+            )
+            page_dict.update(context)
+            children = []
 
-        # attach this page as another child in parent page
-        context['parent']['children'].append(page_dict)
+            # attach this page as another child in parent page
+            context['parent']['children'].append(page_dict)
 
-        links = page.find_all('a')
-        for i, link in enumerate(links):
-            if link.has_attr('href'):
-                link_url = urljoin(url, link['href'])
-                if self.should_ignore_url(link_url):
-                    pass
+            # get all the links on the page
+            links = page.find_all(['a', 'link']) # check for both a and link tags
+            for i, link in enumerate(links):
+                if link.has_attr('href'):
+                    link_url = urljoin(url, link['href'])
+                    children.append(link_url)
+            elements = page.find_all(['audio', 'embed', 'iframe', 'img', 'input', 'script', 'source', 'track', 'video'])
+            for i, element in enumerate(elements):
+                if element.has_attr('src'):
+                    link_url = urljoin(url, element['src'])
+                    children.append(link_url)
+
+            for i, link_url in enumerate(children):
+                LOGGER.debug('link_url: ' + link_url)
+                if self.should_ignore_url(link_url): # should really not ignore 'near' images
+                    continue
                     # Uncomment three lines below for debugging to record ignored links
                     # ignored_rsrc_dict = self.create_ignored_url_dict(link_url)
                     # ignored_rsrc_dict['parent'] = page_dict
                     # page_dict['children'].append(page_dict)
                 else:
-                    self.enqueue_url_and_context(link_url, {'parent':page_dict})
-            else:
-                pass
-                # LOGGER.debug('a with no nohref found ' + str(link))
+                    is_new_url, content_type, content_length, real_url = self.get_url_type(link_url)
+                    children[i] = real_url # handle any redirects
+                    if real_url not in self.global_site_urls:
+                        url_attr = {'content-type': content_type, 'content-length': content_length, 'count': 1}
+                        self.global_site_urls[real_url] = url_attr
+                    else:
+                        self.global_site_urls[real_url]['count'] += 1
 
+                    if content_type == 'text/html': # it's html so queue it for parsing if not in queue
+                        if self.SHORTEN_CRAWL: # don't revisit pages for statistical purposes
+                            if is_new_url: # only queue pages that have never been visited
+                                self.enqueue_url_and_context(real_url, {'parent':page_dict})
+                        else:
+                            if real_url not in self.global_site_pages: # queue pages that may already be in queue but not yet parsed
+                                self.enqueue_url_and_context(real_url, {'parent':page_dict})
+
+            self.global_site_pages[url] = {'count': 1, 'children': children}
+
+            # add page to self.site_struct
 
     # MAIN LOOP
     ############################################################################
@@ -286,8 +384,11 @@ class BasicCrawler(object):
     def crawl(self, limit=1000, save_web_resource_tree=True, devmode=True):
         # initialize or reset crawler state
         self.queue = queue.Queue()
-        self.global_urls_seen_count = defaultdict(int)
+
         self.urls_visited = {}
+        # self.global_site_struct = {}
+        self.global_site_pages = {}
+        self.global_site_urls = {}
 
         #  add the start page to the crawling queue
         channel_dict = dict(
@@ -302,21 +403,21 @@ class BasicCrawler(object):
             root_context.update(self.START_PAGE_CONTEXT)
         self.enqueue_url_and_context(start_url, root_context)
 
-        counter = 0
-        while not self.queue_is_empty():
+        threading.Thread(target=self.key_capture_thread, args=(), name='key_capture_thread', daemon=True).start()
+        print('Press the ENTER key to terminate')
 
-            # 1. GET next url to crawl an its context dict
+        counter = 0
+        dot_count = 0
+        while self.continue_processing_flag and not self.queue_is_empty():
+
+            # 1. GET next url to crawl and its context dict
+            # only html will be on queue
+            # probably should not do pages already seen, but they should not have gone into queue
             original_url, context = self.get_url_and_context()
 
-            # 2. Media files (PDF/ZIP/MP3) and broken link check
-            verdict, head_response = self.is_media_file(original_url)
-            if verdict == True:
-                media_rsrc_dict = self.create_media_url_dict(original_url, head_response)
-                media_rsrc_dict['parent'] = context['parent']
-                context['parent']['children'].append(media_rsrc_dict)
-                continue
+            # 2. Media files (PDF/ZIP/MP3) and broken link check - done inline in on_page
 
-            # 3. Let's go GET that url
+            # 3. Let's go GET that url - should all go to on_page
             url, page = self.download_page(original_url)
             if page is None:
                 LOGGER.warning('GET ' + original_url + ' did not return page.')
@@ -337,6 +438,7 @@ class BasicCrawler(object):
             handled = False
 
             # A. kind-handler based dispatch logic
+            #    Leaving this, but not sure if it will work (TFM)
             if 'kind' in context:
                 kind = context['kind']
                 if kind in self.kind_handlers:
@@ -355,14 +457,24 @@ class BasicCrawler(object):
                                  + ' so falling back to on_page handler.')
 
             # if none of the above caught it, we use the default on_page handler
+            # expecting this always to fall through (TFM)
             if not handled:
                 self.on_page(url, page, context)
+
             ####################################################################
 
             # limit crawling to 1000 pages unless otherwise told (failsafe default)
             counter += 1
             if limit and counter > limit:
                 break
+            # show some output to know we're alive
+            if LOGGER.level >= logging.INFO:
+                if counter % 1 == 0:
+                    print('.', end = '', flush=True)
+                    dot_count += 1
+                    if dot_count == 80:
+                        print('!')
+                        dot_count = 0
 
 
         # remove parent links before output tree
@@ -374,6 +486,8 @@ class BasicCrawler(object):
         # Save output
         if save_web_resource_tree:
             self.write_web_resource_tree_json(channel_dict)
+            self.write_web_resource_tree_json(self.global_site_urls, self.CRAWLING_OUTPUT_URLS)
+            self.write_web_resource_tree_json(self.global_site_pages, self.CRAWLING_OUTPUT_PAGES)
 
         # Display debug info
         if devmode:
@@ -417,9 +531,9 @@ class BasicCrawler(object):
                     LOGGER.error("FAILED TO RETRIEVE:" + str(url))
                     return None
             except Exception as e:
-                    LOGGER.error("FAILED TO RETRIEVE:" + str(url))
-                    LOGGER.error("GOT ERROR: " + str(e))
-                    return None
+                LOGGER.error("FAILED TO RETRIEVE:" + str(url))
+                LOGGER.error("GOT ERROR: " + str(e))
+                return None
         if response.status_code != 200:
             LOGGER.error("ERROR " + str(response.status_code) + ' when getting url=' + url)
             return None
@@ -629,13 +743,13 @@ class BasicCrawler(object):
         )
 
         # 1. infer global nav URLs based on total seen count / total pages visited
-        total_urls_seen_count = len(self.urls_visited.keys())
+        total_urls_seen_count = len(self.global_site_urls.keys())
 
         def _is_likely_global_nav(url):
             """
             Returns True if `url` is likely a global nav link based on how often seen in pages.
             """
-            seen_count = self.global_urls_seen_count[url]
+            seen_count = self.global_site_urls[url]['count']
             if debug:
                 LOGGER.debug('seen_count/total_urls_seen_count='
                               + str(float(seen_count)/total_urls_seen_count)
@@ -732,10 +846,16 @@ class BasicCrawler(object):
     # OUTPUT JSON
     ############################################################################
 
-    def write_web_resource_tree_json(self, channel_dict):
-        destpath = self.CRAWLING_STAGE_OUTPUT
+    def write_web_resource_tree_json(self, channel_dict, destpath=CRAWLING_STAGE_OUTPUT):
         parent_dir, _ = os.path.split(destpath)
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir, exist_ok=True)
         with open(destpath, 'w') as wrt_file:
             json.dump(channel_dict, wrt_file, ensure_ascii=False, indent=2, sort_keys=True)
+
+
+    # KEYBOARD CAPTURE
+    ############################################################################
+    def key_capture_thread(self):
+            input()
+            self.continue_processing_flag = False
